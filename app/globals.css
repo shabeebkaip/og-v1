@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap');
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+   /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none;  /* IE and Edge */
+        scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@font-face {
+    font-family: 'arabic';
+    src: url('/src/fonts/Janna\ LT\ Regular.ttf');
+}
+
+.box-shadow{
+    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+
+  
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --custom-scrollbar-bg-color: rgba(255, 165, 0, 0.1); /* Orange background color */
+  --custom-scrollbar-drag-bg-color: rgba(255, 165, 0, 0.5); /* Orange drag color */
+  --swiper-scrollbar-bg-color: none;
+}
+
+.rtl {
+  direction: rtl;
+}
+
+.swiper-pagination-bullet {
+  background-color: white;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: orange !important;
+}
+
+.custom-scrollbar{
+  display: flex !important;
+  justify-content: center !important;
+}
+
+/* Other styles */
+.custom-scrollbar .swiper-scrollbar {
+  border-radius: 23px !important;
+  background-color: var(--swiper-scrollbar-bg-color);
+  width: 10% !important;
+  display: flex;
+  height: 47px !important;
+  border-color: #FF8500 !important;
+  border: 1px solid #FF8500 !important;
+  margin-left: 42% !important;
+  
+ 
+}
+/* .swiper-wrapper{
+ position: relative;
+ top: 10px;
+} */
+
+@media (max-width: 768px)  {
+  .custom-scrollbar .swiper-scrollbar {
+    margin-left: 30% !important;
+  }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .custom-scrollbar .swiper-scrollbar {
+    margin-left: 37% !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .custom-scrollbar .swiper-scrollbar {
+    height: 40px !important;
+    width: 25% !important;
+  }
+}
+@media (max-width: 768px)  {
+  .custom-scrollbar .swiper-scrollbar {
+    height: 35px !important;
+    width: 43% !important;
+    
+  }
+}
+
+.custom-scrollbar .swiper-scrollbar-drag {
+  background-color: var(--custom-scrollbar-drag-bg-color);
+  width: 30% !important;
+  border-radius: 23px !important;
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .custom-scrollbar .swiper-scrollbar-drag {
+    width: 19% !important;
+  }
+}
+@media (max-width: 768px)  {
+  .custom-scrollbar .swiper-scrollbar-drag  {
+    
+    width: 11% !important;
+  }
+}
+.box-shadow{
+  box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+
+.Table{
+  overflow-x: auto;
+  overflow: scroll;
+
+}
+
+.hideMenuNav {
+  display: none; 
+  background-color: transparent;
+}
+.showMenuNav{
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  /* padding-bottom:20%; */
+  /* align-items: center; */
+  color:white;
+}
+.pagination-number {
+  display: inline-block;
+  margin: 0 3px; /* Adjust the margin to add space between pagination numbers */
+  justify-content: center;
+  text-align: center;
+  border-radius: 6px;
+  border-color: #FF8500;
+  border-width: 1px;
+  padding: 3px;
+  height: 30px;
+  width: 30px;
+}
+.pagination-active {
+  background-color: #FF8500; /* Example color for active pagination number */
+  color: #fff;
+  
+}
+.pagination-break {
+  padding: 3px;
+  color: #FF8500;
+  font-weight: bold; 
+}
+.overflow-x-scroll ::-webkit-scrollbar{
+  display: none;
+}
+.MENU-LINK-MOBILE-OPEN li:hover {
+  cursor: pointer; 
+}
+  @media(max-width: 768px){
+    .box-shadows{
+    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+}
+.mob_box_shadows{
+  @media(min-width: 768px){
+    box-shadow: 0 4px 20px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+}
+
+
