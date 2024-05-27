@@ -1,12 +1,9 @@
 
-import { baseURL } from '@/app/constant'
 import BlueGradient from '@/app/shared/components/BlueGradient'
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
-import axios from 'axios'
 
-const GlobalHub = async () => {
-    const pageContentCareer = await axios.get(`${baseURL}/page-content?key=career`)
-    const pageContent = pageContentCareer.data
+const GlobalHub = async ({ data }) => {
+    const pageContent = data
     const pageContent1 = pageContent?.pageContent[0]
     const text = pageContent1?.text
     return (

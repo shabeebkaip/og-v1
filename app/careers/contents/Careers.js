@@ -1,34 +1,43 @@
-import HeroCarrier from "../components/HeroCarrier.jsx";
-import Joinus from "../components/Joinus.jsx";
-import Teamlist from "../components/Teamlist.jsx";
-import Explore from "../components/Explore.jsx";
-import GlobalHub from "../components/GlobalHub.jsx";
+
 import FooterTop from '@/app/shared/components/FooterTop';
-import axios from "axios";
-import { baseURL } from '@/app/constant';
+import dynamic from 'next/dynamic';
+import { Suspense } from 'react';
+import Loading from '@/app/Loading';
+import { fetchCareerHero, fetchJoinUs, fetchExplore, fetchGlobalHub, fetchCareerList } from '@/app/careers/api.js'
+
+const HeroCarrier = dynamic(() => import('@/app/careers/components/HeroCarrier.jsx'));
+const Joinus = dynamic(() => import('@/app/careers/components/Joinus.jsx'));
+const Teamlist = dynamic(() => import('@/app/careers/components/Teamlist.jsx'));
+const Explore = dynamic(() => import('@/app/careers/components/Explore.jsx'));
+const GlobalHub = dynamic(() => import('@/app/careers/components/GlobalHub.jsx'));
 
 const Careers = async () => {
-  const careelListResponse = await axios.get(`${baseURL}/careers`)
 
-  const careers = careelListResponse.data
+  const hero = await fetchCareerHero();
+  const joinus = await fetchJoinUs();
+  const global = await fetchGlobalHub();
+  const explore = await fetchExplore();
+  const careerList = await fetchCareerList();
+
   return (
-    <div className=" overflow-hidden pb-8">
-      <div className="container md:px-0  px-6 mx-auto">
-        <HeroCarrier />
+    <Suspense fallback={<Loading />}>
+      <div className=" overflow-hidden pb-8">
+        <div className="container md:px-0  px-4 mx-auto">
+          <HeroCarrier data={hero}/>
+        </div>
+        <div className="md:px-0 px-4 container mx-auto">
+          <Joinus data={joinus} />
+        </div>
+        <div className=" ">
+          <Teamlist data ={careerList}/>
+        </div>
+        <div className=" px-4 container mx-auto">
+          <Explore data={explore} />
+          <GlobalHub data={global} />
+        </div>
+        {/* <FooterTop /> */}
       </div>
-      <div className="md:px-0 px-6 container mx-auto">
-        <Joinus />
-      </div>
-      <div className=" ">
-        <Teamlist careers={careers} />
-      </div>
-      <div className=" px-6 container mx-auto">
-        <Explore />
-        <GlobalHub />
-      </div>
-      <FooterTop />
-    </div>
-
+    </Suspense>
   );
 };
 

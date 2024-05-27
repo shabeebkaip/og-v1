@@ -6,12 +6,20 @@ import OrangeGradient from "./OrangeGradient";
 import Link from "next/link";
 import Image from "next/image";
 import axios from 'axios';
+import { find } from '@/lib/utils';
 
+const fetchSocialMediaLinks = async () => {
+    try {
+        const response = await find('footers');
+        return response;
+    }catch(error){
+        console.log(error);
+    }
+}
 
 const Footer = async () => {
     const getCurrentYear = () => new Date().getFullYear();
-    const footerResponse = await axios.get("http://api-one-global.code-ox.com/api/footer");
-    const footer = footerResponse.data.data;
+    const footer = await fetchSocialMediaLinks();
     return (
         <div className="relative w-full p-4 md:p-8">
             <div className="container relative z-20 flex flex-col px-3 py-3 mx-auto bg-white box-shadow md:py-2 md:items-center md:px-3 rounded-3xl ">
@@ -26,8 +34,6 @@ const Footer = async () => {
                                 <Link href='/'><li className="cursor-pointer font-normal hover:text-[#FF8500]">Home</li></Link>
                                 <Link href='/programs'><li className="cursor-pointer font-normal hover:text-[#FF8500]">Programs</li></Link>
                                 <Link href='/careers'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >Careers</li></Link>
-                                {/* <Link href='/Applications/news'><li className="cursor-pointer" >News</li></Link> 
-                               <Link href='/Applications/news'><li className="cursor-pointer" >Contact Us</li></Link>  */}
                             </ul>
                         </div>
                         <div className="text-[#4C4C4D] md:text-lg text-lg xl:text-2xl md:semi-bold font-bold font-Sans mb-4 md:mb-0 ">

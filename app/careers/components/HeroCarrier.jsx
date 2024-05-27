@@ -1,20 +1,17 @@
 
 import BlueGradient from "@/app/shared/components/BlueGradient";
 import OrangeGradient from "@/app/shared/components/OrangeGradient";
-import MobHeroSlider from "@/app/shared/components/MobHeroSlider";
+// import MobdataSlider from "@/app/shared/components/MobdataSlider";
 
 import { fadeIn } from "../../constant/motion";
 import Image from "next/image";
 import axios from "axios";
-import { baseURL } from "@/app/constant";
-const HeroCarrier = async () => {
-  const heroResponse = await axios.get(`${baseURL}/hero?key=career`)
-  const hero = heroResponse.data
-  const array = [hero?.image, hero?.image_1]
+const dataCarrier = async ({ data }) => {
+
   return (
-    <div className='flex w-full gap-4 font-Sans'>
-      <div className='flex lg:w-[55%] w-full flex-col bg-white box-shadow rounded-[23px] justify-center  gap-10 relative  ' >
-        <MobHeroSlider item={array} />
+    <div className='flex w-full gap-4 font-Sans '>
+      <div className='flex lg:w-[55%] w-full flex-col bg-white box-shadow rounded-[23px] justify-center  gap-10 relative md:mt-0 mt-3 ' >
+        {/* <MobdataSlider item={array} /> */}
         <div className='lg:w-[35%] h-[30%] absolute top-0'>
           <OrangeGradient />
         </div>
@@ -30,14 +27,14 @@ const HeroCarrier = async () => {
             variants={fadeIn("right", 0.1)}
             initial="hidden"
             whileInView={"show"}
-            className="w-[70%] pb-[15%]">
+            className="w-[70%] pb-[15%] md:mt-0 mt-4">
             <h3 className="flex flex-col items-center xl:text-[70px] lg:text-[50px] text-center md:text-[37px] text-[24px] text-[#656565] font-normal  ">
-              {hero?.text?.split(hero?.borderText)
+              {data?.text?.split(data?.borderText)
                 .map((text, index) => (
                   <div key={index}>
                     {index > 0 && (
                       <span className=" border-2 border-[#656565] rounded-[53px] px-5">
-                        {hero?.borderText}
+                        {data?.borderText}
                       </span>
                     )}
                     {text}
@@ -55,9 +52,9 @@ const HeroCarrier = async () => {
         initial="hidden"
         whileInView={"show"}
         className='w-[45%] lg:flex flex-col gap-4 hidden '>
-        <Image width={1000} height={200} src={hero?.image} alt='Image' className='w-full md:h-[60%] h:full rounded-[23px] ' />
+        <Image width={1000} height={200} src={data?.image} alt='Image' className='w-full md:h-[60%] h:full rounded-[23px] ' />
 
-        <Image width={1000} height={200} src={hero?.image_1} alt='Image' className='w-full md:h-[40%] h-full rounded-[23px]' />
+        <Image width={1000} height={200} src={data?.image_1} alt='Image' className='w-full md:h-[40%] h-full rounded-[23px]' />
 
       </div>
     </div>
@@ -65,4 +62,4 @@ const HeroCarrier = async () => {
   );
 };
 
-export default HeroCarrier;
+export default dataCarrier;

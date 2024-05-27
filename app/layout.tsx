@@ -5,10 +5,8 @@ import Header from './shared/components/Header'
 import Footer from './shared/components/Footer'
 import Mob_Header from './shared/components/Mob_header'
 import Mobilefooter from './shared/components/Mobilefooter'
+import FooterTop from '@/app/shared/components/FooterTop'
 import { Suspense } from "react";
-
-
-
 
 const inter = Work_Sans({
   subsets: ["latin"],
@@ -32,6 +30,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div id="overlays"></div>
         <div id="root"></div>
+        <Suspense fallback={<div>Loading...</div>}>
         <div className="bg-white">
           <div className="md:hidden" >
             <Mob_Header />
@@ -41,6 +40,7 @@ export default function RootLayout({
             <Header />
           </div>
           {children}
+          <FooterTop />
           <div className="md:hidden flex">
             <Mobilefooter />
           </div>
@@ -48,6 +48,7 @@ export default function RootLayout({
             <Footer />
           </div>
         </div>
+        </Suspense>
       </body>
     </html>
   );

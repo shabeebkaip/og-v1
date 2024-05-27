@@ -5,7 +5,10 @@ import { useReducer } from "react";
 
 const FooterTop = () => {
   const location = useReducer();
-
+  const handleNavigate = () => {
+    const url = '/contact-us';
+    window.open(url, "_blank");
+  }
 
   const getDynamicTextAndStyle = () => {
     const { pathname } = location;
@@ -38,8 +41,8 @@ const FooterTop = () => {
           alt="Banner Background"
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"
         />
-        <div className="absolute inset-0 flex justify-center items-center">
-          <button className={`rounded-full   md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
+        <div className="absolute inset-0 flex justify-center items-center" >
+          <button className={`rounded-full   md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`} onClick={handleNavigate}>
             {buttonText}
           </button>
         </div>

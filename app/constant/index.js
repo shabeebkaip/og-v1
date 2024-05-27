@@ -6,4 +6,4 @@ export const fieldDateFormat = 'DD-MM-YYYY';
 export const backendDateFormat = "YYYY-MM-DD"
 export const deliveryTimeSlotFormat = "hh:mm"
 
-export const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api' : 'https://one-global.code-ox.com/api';
+export const baseURL = process.env.BASE_URL;

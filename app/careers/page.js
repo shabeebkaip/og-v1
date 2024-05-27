@@ -1,17 +1,12 @@
+import React from 'react'
+import Careers from '@/app/careers/contents/Careers'
 
-import { Suspense } from 'react';
-import Careers from './contents/Careers'
-
-
-const CareersPage = () => {
+const page = () => {
     return (
-
-        <Suspense fallback={<div>Loading...</div>}>
-            <div>
-                <Careers />
-            </div>
-        </Suspense>
-    );
+        <div>
+            <Careers/>
+        </div>
+    )
 }
 
-export default CareersPage;
+export default page

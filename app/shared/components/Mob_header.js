@@ -157,16 +157,16 @@ const Mob_Header = () => {
               <Link href='/'><li className="" onClick={handleHomeClick}>
                   Home
                 </li></Link>
-                <Link href='/Applications/programs'><li className="" onClick={handleProgramsClick}>
+                <Link href='/programs'><li className="" onClick={handleProgramsClick}>
                   Programs
                 </li></Link>
-                <Link href='/Applications/careers'> <li className="" onClick={handleCarriersClick} >
+                <Link href='/careers'> <li className="" onClick={handleCarriersClick} >
                   Careers
                 </li></Link>
-                <Link href='/Applications/news'><li className="" onClick={handleNewsClick}>
+                <Link href='/blogs'><li className="" onClick={handleNewsClick}>
                   News
                 </li></Link>
-                <Link href='/Applications/contactUs'><li className="" onClick={handleContactClick}>
+                <Link href='/contact-us'><li className="" onClick={handleContactClick}>
                   Contact us
                 </li></Link>
               </ul>
