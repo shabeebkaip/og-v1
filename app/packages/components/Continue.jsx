@@ -51,7 +51,7 @@ const Continue = () => {
                     window.location.href = `/payment-method?ref=${referenceID}&id=${id}`
                 })
         } else {
-            console.log('Please agree to terms and conditions')
+            alert('Please agree to terms and conditions')
         }
     }
 

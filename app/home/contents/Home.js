@@ -18,7 +18,6 @@ const JoinHub = dynamic(() => import('@/app/home/components/JoinHub'));
 
 const MainHome = async () => {
     const hero = await fetchHero();
-    console.log(hero , 'hero') ;
     const aboutus = await fetchAboutUs();
     const pageContentHome = await fetchPageContentHome();
     const services = await fetchServices();
