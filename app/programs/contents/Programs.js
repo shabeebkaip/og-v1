@@ -12,6 +12,7 @@ const BlueGradient = dynamic(() => import('@/app/shared/components/BlueGradient'
 const ProgramsContents = async () => {
     const hero = await fetchProgramHero();
     const program = await fetchPrograms();
+    console.log('programs', program);
     return (
         <>
             <div className="relative px-6 md:px-0 overflow-hidden sm:pb-[80px] pb-8 ">
