@@ -27,7 +27,7 @@ const MainHome = async () => {
     const ourCommunity = await fetchOurCommunity();
     const communityList = await fetchCommunityList();
     const testimonials = await fetchTestimonials();
-
+    console.log('hero', hero);
     return (
         <Suspense fallback={<Loading />}>
             <div className='relative md:p-0 px-3 bg-white overflow-hidden'>
