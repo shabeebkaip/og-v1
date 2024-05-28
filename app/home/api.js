@@ -1,9 +1,8 @@
 import { find, findOne } from '@/lib/utils';
-import axios from 'axios';
 export const fetchHero = async () => {
   try {
-    const response = await  axios.get("https://api-one-global.code-ox.com/api/hero?key=home")
-    return response?.data?.data?.[0];
+    const response = await findOne('heroes');
+    return response;
   } catch (error) {
     console.error(error);
     return null;

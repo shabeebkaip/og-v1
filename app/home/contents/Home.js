@@ -3,16 +3,16 @@ import { Suspense } from 'react';
 import Loading from '@/app/Loading';
 import { fetchHero, fetchAboutUs, fetchPageContentHome, fetchServices, fetchPrograms, fetchEducationCourses, fetchHackathon, fetchOurCommunity, fetchCommunityList, fetchTestimonials } from '@/app/home/api';
 
-const HomeHero = dynamic(() => import('@/app/home/components/HomeHero'));
-const AboutUs = dynamic(() => import('@/app/home/components/AboutUs'));
-const Services = dynamic(() => import('@/app/home/components/Services'));
-const OrangeGradientLeft = dynamic(() => import('@/app/shared/components/OrangeGradientLeft'));
-const ProgramList = dynamic(() => import('@/app/home/components/ProgramList'));
-const Community = dynamic(() => import('@/app/home/components/Community'));
-const CommunityList = dynamic(() => import('@/app/home/components/CommunityList'));
-const ProgramHub = dynamic(() => import('@/app/home/components/ProgramHub'));
-const Testimonial = dynamic(() => import('@/app/home/components/Testimonial'));
-const JoinHub = dynamic(() => import('@/app/home/components/JoinHub'));
+const HomeHero = dynamic(() => import('@/app/home/components/HomeHero'), { ssr: true });
+const AboutUs = dynamic(() => import('@/app/home/components/AboutUs'), { ssr: true });
+const Services = dynamic(() => import('@/app/home/components/Services'), { ssr: true });
+const OrangeGradientLeft = dynamic(() => import('@/app/shared/components/OrangeGradientLeft'), { ssr: true });
+const ProgramList = dynamic(() => import('@/app/home/components/ProgramList'), { ssr: true });
+const Community = dynamic(() => import('@/app/home/components/Community'), { ssr: true });
+const CommunityList = dynamic(() => import('@/app/home/components/CommunityList'), { ssr: true });
+const ProgramHub = dynamic(() => import('@/app/home/components/ProgramHub'), { ssr: true });
+const Testimonial = dynamic(() => import('@/app/home/components/Testimonial'), { ssr: true });
+const JoinHub = dynamic(() => import('@/app/home/components/JoinHub'), { ssr: true });
 
 
 
