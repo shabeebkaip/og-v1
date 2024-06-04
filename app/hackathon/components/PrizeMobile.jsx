@@ -19,10 +19,9 @@ const PrizeMobile = ({hackathonData}) => {
 
     return (
         <>
-            <div className='text-[50px] font-medium flex flex-col justify-center items-center gap-4 px-6'>
+            <div className='text-[30px] font-medium flex flex-col justify-center items-center gap-4 px-6'>
                 <h3 className='text-[#FF8500] border-2  rounded-[45px] border-[#4C4C4D] px-4'>PRIZES</h3>
                 <h3 className=' text-[#4C4C4D] text-center '>$120,000  in prizes </h3>
-
             </div>
 
             <div className='flex justify-center w-full h-full mt-10 px-3'>
@@ -48,7 +47,7 @@ const PrizeMobile = ({hackathonData}) => {
                                 <div className="py-10">
 
                                     <div className='pb-10'>
-                                        <ul className=' text-[26px] pl-5 '>
+                                        <ul className=' lg:text-[26px] sm:text-[24px] text-[16px] pl-5 '>
                                             {
                                                 item?.List?.map((prize, key) => (
                                                     <li className=' flex-col items-start justify-start flex list-disc ' key={key}><span className='font-normal'>{item.category} {prize.heading}</span>

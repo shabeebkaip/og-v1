@@ -75,7 +75,7 @@ const Event =  ({reversePitch}) => {
             </div>
             <div className='flex flex-col p-5'>
                 <p className='text-[16px] text-[#000000] font-medium'>Deadline</p>
-                <p>{reversePitch?.end_date ? moment(reversePitch?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{reversePitch?.time}  ‎ GMT+10</p>
+                <p>{reversePitch?.end_date ? moment(reversePitch?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{reversePitch?.time}  ‎ </p>
 
             </div>
             <div className='flex gap-20 p-5'>

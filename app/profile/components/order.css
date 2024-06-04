@@ -1,0 +1,21 @@
+/* pagination.css */
+.pagination-item {
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    border: 1px solid #ff8500;
+    border-radius: 4px;
+  }
+  
+  .pagination-item-active {
+    background-color: #ff8500;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .pagination-item-inactive {
+    background-color: white;
+    color: #ff8500;
+    font-weight: normal;
+  }
+  

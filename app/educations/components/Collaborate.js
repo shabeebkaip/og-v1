@@ -44,7 +44,7 @@ const Collaborate = ({universities}) => {
             <SwiperSlide key={index} className=''>
 
 
-                <Image  className="object-contain w-20 h-20 " src={item.image} alt={`img-${index}`} width={200} height={200}/>
+                <Image  className="object-contain w-20 h-20 " src={item?.image} alt={`img-${index}`} width={200} height={200}/>
 
             </SwiperSlide>
         ))}

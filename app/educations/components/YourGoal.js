@@ -16,20 +16,20 @@ const YourGoal = ({findProgram}) => {
                 <MobHeroSlider item={array} className='items-center object-fill ' />
             </div>
             <div className='flex flex-col items-start justify-center text-start 2xl:p-8 lg:p-7'>
-                <p className='font-medium 2xl:text-[45px] lg:text-[32px]  text-[34px] leading-[44px] 2xl:leading-[58.65px] uppercase text-[#FF8500] md:text-[50px]'>{findProgram.heading}</p>
+                <p className='font-medium 2xl:text-[45px] lg:text-[32px]  text-[30px] leading-[44px] 2xl:leading-[58.65px] uppercase text-[#FF8500] md:text-[50px]'>{findProgram.heading}</p>
                 <div className='2xl:max-w-[550px] lg:max-w-[450px] 2xl:mt-9 mt-6 md:mb-0 mb-16'>
                     {findProgram.description?.map((item, index) => (
-                        <p key={index} className='font-light pb-4  2xl:text-[26px] 2xl:leading-[30.5px] w-full lg:text-[19px] text-[26px] leading-[30.5px] lg:leading-tight'>{item?.text}</p>
+                        <p key={index} className='font-light pb-4  2xl:text-[26px] 2xl:leading-[30.5px] w-full lg:text-[19px] md:text-[26px] text-[16px] leading-[30.5px] lg:leading-tight'>{item?.text}</p>
                     ))}
 
                 </div>
             </div>
             <div className="hidden gap-3 md:flex md:flex-row">
                 <div className='flex items-center justify-center '>
-                    <Image width={1000} height={500} src={findProgram.image} alt="" className='2xl:w-[482px] 2xl:h-[601px] lg:w-[380px] object-cover rounded-[23px] ' />
+                    <Image width={1000} height={500} src={findProgram?.image} alt="" className='2xl:w-[482px] 2xl:h-[601px] lg:w-[380px] object-cover rounded-[23px] ' />
                 </div>
                 <div className=''>
-                    <Image width={1000} height={500}  src={findProgram.image1} alt="" className='2xl:w-[415px] 2xl:h-[770px] lg:w-[330px] object-cover rounded-[23px]' />
+                    <Image width={1000} height={500}  src={findProgram?.image1} alt="" className='2xl:w-[415px] 2xl:h-[770px] lg:w-[330px] object-cover rounded-[23px]' />
                 </div>
             </div>
         </div>

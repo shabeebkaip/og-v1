@@ -1,9 +1,7 @@
 import MainHome from '@/app/home/contents/Home'
 
 
-export default  function Home() {
-
-
+export default function Home() {
 
   return (
     <div className=' '>

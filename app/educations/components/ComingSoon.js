@@ -33,7 +33,7 @@ const ComingSoon = ({ courseList }) => {
 
         <div className="container mx-auto ">
             <div className="flex flex-col justify-center items-center mt-9 p-2">
-                <div className="flex flex-col 2xl:text-[50px] text-[34px] md:text-[50px] font-medium 2xl:leading-[84px] uppercase leading-[44px] lg:leading-[70px] md:leading-[50px] text-center">
+                <div className="flex flex-col 2xl:text-[50px] text-[30px] md:text-[50px] font-medium 2xl:leading-[84px] uppercase leading-[44px] lg:leading-[70px] md:leading-[50px] text-center">
                     <p className="text-[#656565]">one global hub</p>
                     <p className="text-[#FF8500] border rounded-full px-5 border-[#656565] md:block hidden ">coming soon courses</p>
                     <div className="md:hidden flex  flex-col justify-center items-center">
@@ -51,7 +51,7 @@ const ComingSoon = ({ courseList }) => {
 
                                         <div className="flex flex-col p-4 2xl:w-[390px] lg:w-[55%] ">
                                             <p className="font-medium md:text-[30px] 2xl:text-[30px] lg:text-[23px] text-[26px] text-[#4C4C4D] uppercase lg:leading-[26px] 2xl:leading-[35.19px] leading-[30.5px]">{item[0]?.heading}</p>
-                                            <p className="2xl:w-[280px] font-light 2xl:text-[26px] text-[26px] lg:text-[19px] leading-[30.5px] text-[#4C4C4D] mt-9 2xl:leading-[30.5px] lg:leading-tight">{item[0]?.description}</p>
+                                            <p className="2xl:w-[280px] font-light 2xl:text-[26px] text-[24px] lg:text-[19px] leading-[30.5px] text-[#4C4C4D] mt-9 2xl:leading-[30.5px] lg:leading-tight">{item[0]?.description}</p>
                                             <button onClick={() => {
                                                 setPopup(true)
                                                 setCourseName(item[0]?.heading)
@@ -71,7 +71,7 @@ const ComingSoon = ({ courseList }) => {
                                             </div>
                                             <div className='flex flex-col p-2 justify-center lg:w-[60%] w-full'>
                                                 <p className=" font-medium md:text-[30px]  2xl:text-[30px]  lg:text-[23px] text-[26px] text-[#4C4C4D] lg:text-white uppercase lg:leading-[26px] 2xl:leading-[35.19px] leading-[30.5px]">{item[1]?.heading}</p>
-                                                <p className='2xl:w-[550px]  font-light 2xl:text-[26px]  text-[26px] lg:text-[19px] 2xl:leading-[30.5px] lg:leading-tight leading-[30.5px] text-[#4C4C4D] lg:text-white mt-5'>{item[1]?.description}</p>
+                                                <p className='2xl:w-[550px]  font-light 2xl:text-[26px]  text-[24px] lg:text-[19px] 2xl:leading-[30.5px] lg:leading-tight leading-[30.5px] text-[#4C4C4D] lg:text-white mt-5'>{item[1]?.description}</p>
                                                 <button onClick={() => {
                                                     setPopup(true)
                                                     setCourseName(item[1]?.heading)
@@ -84,7 +84,7 @@ const ComingSoon = ({ courseList }) => {
                                         <div className='flex lg:flex-row flex-col-reverse  rounded-[23px] shadow-lg  gap-3 h-[50%] ' id="3">
                                             <div className='flex flex-col p-2 justify-center  lg:w-[60%] w-full'>
                                                 <p className="mt-4 font-medium md:text-[30px]  2xl:text-[30px]  lg:text-[23px] text-[26px] text-[#4C4C4D] uppercase lg:leading-[26px] 2xl:leading-[35.19px] leading-[30.5px] ml-2">{item[2]?.heading}</p>
-                                                <p className='2xl:w-[570px]  font-light 2xl:text-[26px]  text-[26px] lg:text-[19px] leading-[30.5px] 2xl:leading-[30.5px] lg:leading-tight text-[#4C4C4D] mt-5 ml-2'>{item[2]?.description}</p>
+                                                <p className='2xl:w-[570px]  font-light 2xl:text-[26px]  text-[24px] lg:text-[19px] leading-[30.5px] 2xl:leading-[30.5px] lg:leading-tight text-[#4C4C4D] mt-5 ml-2'>{item[2]?.description}</p>
                                                 <button className='text-[#4C4C4D] bg-white px-4 py-2 rounded-full border  border-[#FF8500] text-[20px] w-[210px] h-[59px]  md:hidden sm:block mt-8'>Apply now <span className="ml-2">&rarr;</span></button>
                                             </div>
                                             <div className='relative lg:w-[40%]  w-full'>

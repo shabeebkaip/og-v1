@@ -1,5 +1,5 @@
 "use client"
-import { TextField } from '@mui/material'
+import { TextField, FormControl, InputLabel, Select, MenuItem } from '@mui/material'
 import BlueGradient from "@/app/shared/components/BlueGradient";
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import { useEffect, useState } from 'react'
@@ -10,7 +10,8 @@ import { SnackbarProvider, useSnackbar } from 'notistack'
 
 
 
-const StayInTouch = () => {
+
+const StayInTouch = ({ countryCode }) => {
     const [dropDown, setDropDown] = useState([])
     const { enqueueSnackbar } = useSnackbar();
 
@@ -29,7 +30,9 @@ const StayInTouch = () => {
         email: "",
         number: "",
         whatAreYouLookingFor: "",
-        message: ""
+        message: "",
+        country: ""
+
     });
 
     const handleSelectChange = (e) => {
@@ -43,7 +46,8 @@ const StayInTouch = () => {
             email: data.email,
             number: data.number,
             whatAreYouLookingFor: data.whatAreYouLookingFor || dropDown[0]?.contact_list,
-            message: data.message
+            message: data.message,
+            country: data.country
         };
 
         axios.post("https://api-one-global.code-ox.com/api/queries", jsonData, {
@@ -88,6 +92,7 @@ const StayInTouch = () => {
                         Stay in touch
                     </button>
                 </div>
+
                 <div className='flex flex-col mt-10 lg:p-6 w-full items-center'>
                     <input type="text" placeholder='Your name*'
                         className='w-full lg:w-[50%] sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
@@ -101,12 +106,58 @@ const StayInTouch = () => {
                         value={data.email}
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                     />
-                    <input type="text" placeholder='Your phone*'
-                        className='w-full lg:w-[50%]  sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
-                        value={data.number}
-                        onChange={(e) => setData({ ...data, number: e.target.value })}
-                    />
-                    <div className='w-full lg:w-[50%]  sm:h-16 h-10 border rounded-full border-[#242222] pl-1 lg:pl-2 lg:pr-2 md:pr-1 pr-1 font-medium text-[#4C4C4D] flex md:justify-start justify-center items-center text-[19px] mb-4 sm:text-base'>
+
+                    <div className="flex w-full lg:w-[50%]  sm:h-16 h-10 gap-2  ">
+                        <select
+                            className="w-[20%] sm:h-16 h-10 border rounded-full border-[#242222] pl-2 pr-7 font-medium text-[#4C4C4D] mb-4 custom-select text-[18px] "
+                            value={data.country}
+                            onChange={(e) => setData({ ...data, country: e.target.value })}
+                           
+                        >
+                            {countryCode.map((item, index) => (
+                                <option className ='' key={index} value={item.value}  style={{ backgroundColor: '#f0f0f0', border: '1px solid #ccc' }}>{item.dial_code} </option>
+                            ))}
+
+
+
+                        </select>
+                        <input
+                            type="text"
+                            placeholder='Your phone*'
+                            className='w-[80%]   sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
+                            value={data.number}
+                            onChange={(e) => setData({ ...data, number: e.target.value })}
+                        />
+                    </div>
+
+                    
+                    {/* <div className="flex w-full lg:w-[50%]  sm:h-16 h-10">
+                        <FormControl className="w-[20%] sm:h-16 h-10 border rounded-l-full border-[#242222] pl-2 pr-7 font-medium text-[#4C4C4D] mb-4 custom-select ">
+                            <InputLabel id="country-label"></InputLabel>
+                            <Select
+                                labelId="country-label"
+                                value={data.country}
+                                onChange={(e) => setData({ ...data, country: e.target.value })}
+                            >
+                                {countryCode.map((item, index) => (
+                                    <MenuItem key={index} value={item.value}>{item.dial_code} </MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        <TextField
+                            type="text"
+                            placeholder="Your phone*"
+                            className='w-[80%]   sm:h-16 h-10 border rounded-r-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
+                            value={data.number}
+                            onChange={(e) => setData({ ...data, number: e.target.value })}
+                        />
+                    </div> */}
+
+
+
+
+
+                    <div className='w-full lg:w-[50%] mt-4  sm:h-16 h-10 border rounded-full border-[#242222] pl-1 lg:pl-2 lg:pr-2 md:pr-1 pr-1 font-medium text-[#4C4C4D] flex md:justify-start justify-center items-center text-[19px] mb-4 sm:text-base'>
                         <select
                             name="search"
                             id="search"
@@ -145,10 +196,10 @@ const StayInTouch = () => {
     )
 }
 
-const StayInTouchContainer = () => {
+const StayInTouchContainer = ({ countryCode }) => {
     return (
         <SnackbarProvider maxSnack={3}>
-            <StayInTouch />
+            <StayInTouch countryCode={countryCode} />
         </SnackbarProvider>
     )
 }

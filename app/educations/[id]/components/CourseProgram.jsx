@@ -50,10 +50,10 @@ const CourseProgram = ({ educationDetail }) => {
                     {educationDetail?.experts?.map((expert, expertIndex) => (
                         <div className="lg:flex p-2 px-9 gap-4 text-[#4C4C4D] justify-center box-shadow bg-[#f6f4f4] pt-10" key={expertIndex}>
                             <div className="block font-medium md:text-[30px] 2xl:text-[30px] custom-lg:text-[26px] lg:text-[24px] custom-lg:leading-8 2xl:leading-[35.19px] md:leading-[35.19px] w-[30%] lg:w-[20%]">
-                                <Image width={1000} height={500} src={expert.image} alt="" className="border rounded-[23px] md:w-[300px] w-full h-[250px] object-cover" />
-                                <p className='xl:text-[28px] text-[#4C4C4D] font-medium text-[20px]'>{expert.name}</p>
-                                <p className='xl:text-[28px] text-[#4C4C4D] font-medium text-[20px]'>{expert.lastName}</p>
-                                <p className="italic font-normal text-[18px] lg:text-[16px]">{expert.company}</p>
+                                <Image width={1000} height={500} src={expert?.image} alt="" className="border rounded-[23px] md:w-[300px] w-full h-[250px] object-cover" />
+                                <p className='xl:text-[28px] text-[#4C4C4D] font-medium text-[20px]'>{expert?.name}</p>
+                                <p className='xl:text-[28px] text-[#4C4C4D] font-medium text-[20px]'>{expert?.lastName}</p>
+                                <p className="italic font-normal text-[18px] lg:text-[16px]">{expert?.company}</p>
                             </div>
                             <div className="block w-[70%] lg:w-[80%] md:w-full gap-4">
                                 <div className="p-2 flex flex-col gap-5 s-full">
@@ -67,8 +67,7 @@ const CourseProgram = ({ educationDetail }) => {
                                                 <div className="block">
                                                     <div className="flex md:gap-9 gap-3 leading-[18.77px] lg:ml-7 ml-0">
                                                         <p>{topic?.date ? moment(topic?.date).format(displayDateFormatShort) : ""}</p>
-                                                        <p>{topic.time}</p>
-                                                        <p>GMT+10</p>
+                                                        <p>{topic?.time}</p>
                                                     </div>
                                                     <div className="2xl:text-[30px] md:text-[30px] md:leading-[35.19px] custom-lg:text-[26px] lg:text-[21px] 2xl:leading-[35.19px] lg:leading-8 font-medium leading-tight md:w-[700px] uppercase mt-4 ml-0 lg:ml-6">
                                                         <p className="custom-lg:w-[780px] md:w-[590px]">{topic.heading}</p>

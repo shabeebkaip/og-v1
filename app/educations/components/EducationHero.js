@@ -26,7 +26,7 @@ const EducationHero = async ({ hero }) => {
                     </div>
                     <div className='2xl:p-6 rounded-[23px] flex flex-col 2xl:justify-start 2xl:items-start lg:justify-center lg:p-9 lg:ml-43  md:p-4 p-1 '>
                         <div>
-                            <p className='text-[#656565] text-[34px] md:pl-6 font-medium 2xl:leading-[84px] lg:leading-tight 2xl:text-[70px] lg:text-[45px] uppercase lg:text-start md:text-[60px] md:leading-[55px] leading-[44px] text-center'>{hero?.text}</p>
+                            <p className='text-[#656565] text-[30px] md:pl-6 font-medium 2xl:leading-[84px] lg:leading-tight 2xl:text-[70px] lg:text-[45px] uppercase lg:text-start md:text-[60px] md:leading-[55px] leading-[44px] text-center'>{hero?.text}</p>
                         </div>
                         <div className="lg:mt-5 mt-7 ">
                             <h3 className="flex flex-col items-center xl:text-[70px] lg:text-[50px] text-center md:text-[37px] text-[24px] text-[#656565] font-normal  ">
@@ -59,6 +59,7 @@ const EducationHero = async ({ hero }) => {
                                                         hero?.borderText?.trim().toLowerCase() === word.trim().toLowerCase()
                                                             ? '1px solid red'
                                                             : 'none',
+                                                    borderRadius: hero?.borderText?.trim().toLowerCase() === word.trim().toLowerCase() ? '50px' : '0',
                                                 }}
                                             >
                                                 {word}
@@ -87,11 +88,11 @@ const EducationHero = async ({ hero }) => {
                 </div>
                 <div className="flex-col hidden gap-1 lg:flex 2xl:flex-row lg:flex-row   w-[50%]">
                     <div className="flex flex-col w-1/2 gap-2 ">
-                        <Image src={hero.image} alt="" className="rounded-[23px] w-full h-2/3   object-cover " width={200} height={200} />
-                        <Image src={hero.image_1} alt="" className="rounded-[23px] w-full h-1/3  object-cover " width={200} height={200} />
+                        <Image src={hero?.image} alt="" className="rounded-[23px] w-full h-2/3   object-cover " width={200} height={200} />
+                        <Image src={hero?.image_1} alt="" className="rounded-[23px] w-full h-1/3  object-cover " width={200} height={200} />
                     </div>
                     <div className=" w-1/2">
-                        <Image src={hero.image_2} alt="" className="rounded-[23px] w-full h-full   md:object-fill object-cover" width={200} height={200} />
+                        <Image src={hero?.image_2} alt="" className="rounded-[23px] w-full h-full   md:object-fill object-cover" width={200} height={200} />
                     </div>
                 </div>
                 <div className="md:hidden sm:flex justify-center items-center  h-[300px] w-[300px] absolute -mt-48 ml-9 -z-10">

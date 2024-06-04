@@ -20,7 +20,6 @@ const Rules = ({ hackathonData }) => {
             setRemainingDays(daysRemaining);
         }
     }, [hackathonData]);
-
     const [active, setActive] = useState(false);
 
     const handleModalItem = () => {
@@ -33,8 +32,8 @@ const Rules = ({ hackathonData }) => {
         <div className='flex flex-col justify-between gap-7 md:flex-row mt-16 md:p-3'>
             <div className='md:w-[45%] flex flex-col justify-center gap-12'>
                 <div>
-                    <h1 className='xl:text-[50px]  text-[40px] font-medium text-[#FF8500] uppercase'>{hackathonData?.ruleHeading}</h1>
-                    <p className='xl:text-[50px]  text-[40px] font-medium text-[#4C4C4D]'>{hackathonData?.ruleDescription}</p>
+                    <h1 className='xl:text-[50px]  lg:text-[40px] text-[30px]  font-medium text-[#FF8500] uppercase'>{hackathonData?.ruleHeading}</h1>
+                    <p className='xl:text-[50px]  lg:text-[40px] text-[30px] font-medium text-[#4C4C4D]'>{hackathonData?.ruleDescription}</p>
                 </div>
                 <div className='flex justify-between'>
                     <p className='text-[16px] text-[#000000] font-medium'>Who can participate</p>
@@ -44,10 +43,10 @@ const Rules = ({ hackathonData }) => {
                 </div>
 
                 <div className='lg:flex flex-col gap-5 hidden'>
-                    <ul className='flex gap-7 text-[16px] text-[#1C2126] list-disc  flex-col md:grid grid-cols-4 ml-4'>
+                    <ul className='flex gap-10 text-[16px] text-[#1C2126] list-disc  flex-col md:grid grid-cols-3 ml-4'>
                         {
-                            hackathonData?.ruleList?.slice(0, 3).map((item, index) => (
-                                <li key={index}>{item.rule_points}</li>
+                            hackathonData?.who_can_participate?.slice(0, 6).map((item, index) => (
+                                <li key={index}>{item.points}</li>
                             ))
                         }
 
@@ -81,7 +80,7 @@ const Rules = ({ hackathonData }) => {
                     }
                     <div className='flex flex-col p-5'>
                         <p className='text-[16px] text-[#000000] font-medium'>Deadline</p>
-                        <p>{hackathonData?.end_date ? moment(hackathonData?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{hackathonData?.time}  ‎ GMT+10</p>
+                        <p>{hackathonData?.end_date ? moment(hackathonData?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{hackathonData?.time}  ‎ </p>
                     </div>
                     <div className='flex gap-20 p-5'>
                         <div className='flex gap-2' >
@@ -128,4 +127,4 @@ const Rules = ({ hackathonData }) => {
     );
 };
 
-export default Rules;
+export default Rules;

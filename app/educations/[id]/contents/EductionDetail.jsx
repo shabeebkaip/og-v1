@@ -11,7 +11,7 @@ const TakeCourse = dynamic(() => import('@/app/educations/[id]/components/TakeCo
 const AskQuestion = dynamic(() => import('@/app/educations/[id]/components/AskQuestion'))
 
 
-const EductionDetail = async ({ educationId }) => {;
+const EductionDetail = async ({ educationId }) => {
   const data = await fetchCourseDetails(educationId)
   return (
     <div className=' px-3 md:px-0 overflow-hidden'>

@@ -16,12 +16,12 @@ const AboutUs = ({ aboutus }) => {
                 <div className='flex flex-col md:w-[80%] w-full xl:gap-7 gap-3  py-5 px-3 md:px-0'>
                     <h3 className='text-[#FF8500] 2xl:text-[50px] lg:text-[40px] text-[34px] '>{language === "ar" ? aboutus?.ar_heading : aboutus?.heading}</h3>
                     {aboutus?.description && aboutus?.description.map((item, index) => (
-                        <h4 className='2xl:text-[24px] xl:text-lg md:text-[17px] sm:text-[24px] text-[16px] font-light leading-6	' key={index}>{language === "ar" ? item.ar_text : item.text}</h4>
+                        <h4 className='2xl:text-[24px] xl:text-lg md:text-[17px] sm:text-[20px] text-[16px] font-light leading-6	' key={index}>{language === "ar" ? item.ar_text : item.text}</h4>
                     ))}
                     <Image className='w-full rounded-[23px] box-shadow h-full  md:hidden object-cover' src={aboutus?.image} alt="" width={1000} height={200} />
                     <h3 className='text-[#FF8500] 2xl:text-[50px] xl:text-[40px] text-[34px]'>{language === "ar" ? aboutus?.ar_heading1 : aboutus?.heading1}</h3>
                     {aboutus?.description_1 && aboutus?.description_1.map((item, index) => (
-                        <h4 className='2xl:text-[24px] xl:text-lg md:text-[17px] text-[24px] font-light leading-6 ' key={index}>{language === "ar" ? item.ar_text : item.text}</h4>
+                        <h4 className='2xl:text-[24px] xl:text-lg md:text-[17px] text-[20px] font-light leading-6 ' key={index}>{language === "ar" ? item.ar_text : item.text}</h4>
                     ))}
 
                 </div>

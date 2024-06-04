@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import Link from "next/link";
 import { useReducer } from "react";
 
 const FooterTop = () => {
@@ -41,10 +42,12 @@ const FooterTop = () => {
           alt="Banner Background"
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"
         />
-        <div className="absolute inset-0 flex justify-center items-center" >
-          <button className={`rounded-full   md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`} onClick={handleNavigate}>
+        <div className="absolute inset-0 flex justify-center items-center">
+        <Link href='/contact-us'>
+          <button className={`rounded-full   md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
+
             {buttonText}
-          </button>
+          </button></Link>
         </div>
       </div>
     </div>

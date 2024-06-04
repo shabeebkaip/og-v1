@@ -71,7 +71,7 @@ const Hero = ({hero}) => {
 
 
                 </h1>
-                <h1 className="text-[#FF8500] py-6 md:text-[50px] text-[30px]   ">{hero.text_1}</h1>
+                <h1 className="text-[#FF8500] py-6 md:text-[50px] text-[30px]   ">{hero?.text_1}</h1>
               </div>
             </div>
           </div>

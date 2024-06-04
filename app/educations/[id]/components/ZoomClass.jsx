@@ -52,7 +52,7 @@ const ZoomClass = ({educationDetail}) => {
                         <div className="flex flex-col   bg-opacity-10 rounded-[24px] p-5 gap-[25px]">
                             <div className="flex md:flex-row flex-col text-[#4C4C4D] gap-[20px]">
                                 <div className='md:w-[50%] h-[200px] object-cover '>
-                                    <Image width={1000} height={500} src={item.image} className='rounded-[23px] z-[100]  relative ' alt="" />
+                                    <Image width={1000} height={500} src={item?.image} className='rounded-[23px] z-[100]  relative ' alt="" />
                                 </div>
                                 <div className="flex flex-col justify-center  md:w-[50%] text-left">
                                     <p className="xl:text-[28px] md:text-[25px] text-[22px] font-medium leading-[35.19px] ">{item.name} <span className="inline-block md:block">{item.lastName}</span></p>

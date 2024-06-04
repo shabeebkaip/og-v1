@@ -3,14 +3,16 @@
 import MobHeroSlider from '@/app/shared/components/MobHeroSlider'
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider, useSnackbar } from 'notistack'
+import axios from 'axios'
+import { getUserApi } from '@/app/shared/api'
 
 
 const TakeCourse = ({ educationDetail }) => {
     const [popup, setPopup] = useState(false);
-
+    const [userData, setUserData] = useState(null);
 
 
     const hideHandler = () => {
@@ -20,6 +22,41 @@ const TakeCourse = ({ educationDetail }) => {
         educationDetail?.summary_image_1,
         educationDetail?.summary_image_2
     ]
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token ) {
+            getUserApi(token).then(res => setUserData(res.data));
+
+        }
+    }, []);
+    const handleInitiatePayment = () => {
+        let data = {
+            username: userData?.user?.given_name,
+            email: userData?.user?.email,
+            selected: {
+                package_id: educationDetail?._id,
+                package_name: "Education",
+                amount: educationDetail?.prize,
+                program_id: educationDetail?._id,
+                program_name: educationDetail?.heading
+            }
+        };
+        axios.post('https://api-one-global.code-ox.com/api/save-order', data, {
+            headers: {
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+                "Access-Control-Allow-Credentials": true
+            }
+        })
+            .then(response => {
+                const referenceID = response.data.data.referenceID;
+                const id = response.data.data._id;
+                window.location.href = `/payment-method?ref=${referenceID}&id=${id}`;
+            });
+
+    };
     return (
         <SnackbarProvider>
 
@@ -34,9 +71,8 @@ const TakeCourse = ({ educationDetail }) => {
                         <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px]'>{educationDetail?.summaryHeading}</h2>
                         <p className='text-[#4C4C4D] xl:text-[26px]  lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[24px]'>{educationDetail?.summaryDescription}</p>
                         <div className='flex gap-4 md:flex-row flex-col px-6 md:px-0'>
-                            <button className='border lg:h-[54px]  md:h-[40px] h-[60px] rounded-[40px] border-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-lg:px-8 px-4 text-[#FF8500]'  >
+                            <button className='border lg:h-[54px]  md:h-[40px] h-[60px] rounded-[40px] border-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-lg:px-8 px-4 text-[#FF8500]' onClick={handleInitiatePayment}  >
                                 {educationDetail?.prize}
-                                m    m
                             </button>
                             <button onClick={() => {
                                 setPopup(true)

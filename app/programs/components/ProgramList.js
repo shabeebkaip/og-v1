@@ -23,8 +23,8 @@ const ProgramList = ({ program }) => {
                                     initial='hidden'
                                     whileInView={'show'}
                                     className='items-center w-full gap-4 md:grid md:grid-cols-2'>
-                                    <Image src={item?.show_image_1} alt='' className=' rounded-[26px] w-full h-[90%] md:block hidden' width={200} height={100} />
-                                    <Image src={item?.show_image_2} alt='' className='rounded-[26px] w-full h-full' width={200} height={100} />
+                                    <Image src={item?.show_image_1} alt='' className=' rounded-[26px] w-full h-[90%] md:block hidden object-cover' width={200} height={100} />
+                                    <Image src={item?.show_image_2} alt='' className='rounded-[26px] w-full h-full object-cover' width={200} height={100} />
                                 </motion.div>
                                 <motion.div
                                     variants={fadeIn('right', 0.1)}

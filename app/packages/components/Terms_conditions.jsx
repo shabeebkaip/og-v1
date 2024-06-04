@@ -15,11 +15,14 @@ const Terms_conditions = () => {
                 setTerms(response.data)
             })
     }, [])
+
     const handleCheck = (e) => {
         setChecked(e.target.checked)
         localStorage.setItem('checked', e.target.checked)
     }
+
     const language = getGlobalCookie('language')
+    
     return (
         <>
             <div className='relative sm:px-3 mt-7'>

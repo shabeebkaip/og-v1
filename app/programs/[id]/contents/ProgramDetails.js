@@ -9,6 +9,10 @@ const ApplyNow = dynamic(() => import('@/app/programs/[id]/components/ApplyNow')
 const ProgramDetails = async ({ programId }) => {
   const programDetails = await fetchProgramDetails(programId)
   const pageContentProgram = await fetchProgramPageContent()
+
+  
+
+
   return (
     <div className='overflow-hidden relative'>
       {programDetails && <Hero programDetail={programDetails} />}
@@ -20,6 +24,11 @@ const ProgramDetails = async ({ programId }) => {
         {programDetails && <MobEligibilityCriteria programDetail={programDetails} />}
       </div>
       {pageContentProgram && <ApplyNow pageContent1={pageContentProgram} programDetail={programDetails} />}
+
+      {/* {programEndDate < currentDate && pageContentProgram && (
+                <ApplyNow pageContent1={pageContentProgram} programDetail={programDetails} />
+      )} */}
+      
     </div>
   )
 }

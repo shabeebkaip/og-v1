@@ -5,10 +5,13 @@ import { Oneimage } from "./OneImage"
 import Threeimage from "./ThreeImage"
 import TwoImages from "./TwoImage"
 import MotionDiv from "@/app/shared/components/MotionDiv"
+import FormSubmission from "@/app/shared/components/FormSubmission"
+import { useState } from "react"
 
 
 
-const CommunityReverse = ({ mentor }) => {
+const CommunityReverse = ({ mentor}) => {
+ 
     const handleNavigate = () => {
         const url = mentor.btnLink;
         if (url) {
@@ -16,6 +19,16 @@ const CommunityReverse = ({ mentor }) => {
             window.open(absoluteUrl, "_blank");
         }
     };
+
+    const [popup, setPopup] = useState(false);
+    const Datas = {
+        program_name: mentor.heading,
+        program_id: mentor._id,
+      };
+
+    const hideHandler = () => {
+      setPopup(false)
+    }
     return (
         <div>
             <div className="container relative mx-auto">
@@ -38,11 +51,25 @@ const CommunityReverse = ({ mentor }) => {
                                 <p className="lg:max-w-[500px]">{mentor.description1}</p>
                                 <p className="mt-4">{mentor.description2}</p>
                             </div>
-                            <div onClick={handleNavigate}>
-                                <button className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
-                                    {mentor.btnText}
-                                </button>
-                            </div>
+                            <div>
+                            {/* {mentor?.btn_link ? ( */}
+                            {mentor?.btn_link && mentor?.btn_link?.trim() !== "" ? (
+                                <a href={mentor.btnLink} target="_blank" rel="noopener noreferrer">
+                                    <button className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
+                                        {mentor.btnText}
+                                    </button>
+                                </a>
+                            ) : (
+                                <div >
+                                    <button onClick={() => {
+                                        setPopup(true);
+                                    }} className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
+                                        {mentor.btnText}
+                                    </button>
+                                </div>
+                            )}
+                            {popup && <FormSubmission name={Datas} orderHideHandler={hideHandler} id={mentor?.form_id} />}
+                        </div>
                         </div>
                     </MotionDiv>
                 </div>

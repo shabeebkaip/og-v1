@@ -1,8 +1,7 @@
 
 
 import dynamic from 'next/dynamic';
-
-import { fetchContactHero, fetchCommunityList } from '@/app/contact-us/api.js'
+import { fetchContactHero, fetchCommunityList, fetchCountryCode } from '@/app/contact-us/api.js'
 
 const ContactHero = dynamic(() => import('@/app/contact-us/components/ContactHero.js'));
 const Community = dynamic(() => import('@/app/contact-us/components/Community.js'));
@@ -15,6 +14,8 @@ const StayInTouchContainer = dynamic(() => import('@/app/contact-us/components/S
 const ContactUs = async () => {
     const hero = await fetchContactHero();
     const communityList = await fetchCommunityList();
+    const countryCode = await fetchCountryCode();
+    const code = countryCode?.[0]?.country
     return (
         <div className='flex flex-col gap-10 mx-auto overflow-hidden '>
             <ContactHero data={hero} />
@@ -22,10 +23,11 @@ const ContactUs = async () => {
                 index % 2 === 0 ? (
                     <Community key={index} mentor={item} />
                 ) : (
-                    <CommunityReverse key={index} mentor={item} />
+                    <CommunityReverse key={index} mentor={item} countryCode="jdjdj" />
                 )
             ))}
-            <StayInTouchContainer />
+            
+            <StayInTouchContainer countryCode={code} />
         </div>
     );
 };

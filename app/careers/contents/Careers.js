@@ -1,5 +1,3 @@
-
-import FooterTop from '@/app/shared/components/FooterTop';
 import dynamic from 'next/dynamic';
 import { Suspense } from 'react';
 import Loading from '@/app/Loading';
@@ -18,7 +16,6 @@ const Careers = async () => {
   const global = await fetchGlobalHub();
   const explore = await fetchExplore();
   const careerList = await fetchCareerList();
-
   return (
     <Suspense fallback={<Loading />}>
       <div className=" overflow-hidden pb-8">
@@ -35,7 +32,6 @@ const Careers = async () => {
           <Explore data={explore} />
           <GlobalHub data={global} />
         </div>
-        {/* <FooterTop /> */}
       </div>
     </Suspense>
   );

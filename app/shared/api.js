@@ -10,9 +10,10 @@ const getData = async (path, params = {}) => {
   }
 
 }
-export const authenticateUser = () => {
 
-  let url = window.location.href;
+
+export const authenticateUser = () => {
+  let url = window.location.origin ;
 
   if (url.endsWith('/')) {
     url = url.slice(0, -1);
@@ -24,7 +25,6 @@ export const authenticateUser = () => {
       'Content-Type': 'application/x-www-form-urlencoded'
     }
   }).then((res) => {
-    console.log(res)
     window.location.href = res.data.data
   }).catch((err) => {
     console.log(err)
@@ -32,6 +32,7 @@ export const authenticateUser = () => {
 }
 
 export const getFormApi = (key) => getData('form',key)
+
 export const getUserApi = async (token) => {
   try {
       const response = await axios.get("https://api-one-global.code-ox.com/api/getUserProfile", {

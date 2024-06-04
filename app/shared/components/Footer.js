@@ -38,7 +38,7 @@ const Footer = async () => {
                         </div>
                         <div className="text-[#4C4C4D] md:text-lg text-lg xl:text-2xl md:semi-bold font-bold font-Sans mb-4 md:mb-0 ">
                             <ul>
-                                <Link href='/news'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >News</li></Link>
+                                <Link href='/blogs'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >News</li></Link>
                                 <Link href='/contact-us'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >Contact Us</li></Link>
 
                             </ul>
@@ -71,8 +71,13 @@ const Footer = async () => {
 
                     </div>
                     <div className="w-full md:w-[50%] flex flex-col md:flex-row py-3 md:py-5 ">
-                        <a href='https://oneglobal.com/general-terms-of-use/' target='_blank' className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans mb-3 md:mb-0 hover:text-blue-600">General Terms Of Use</a>
-                        <a href='https://oneglobal.com/privacy-policy/' target='_blank' className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans ml:0 md:ml-10 hover:text-blue-600 ">Privacy Policy</a>
+                        <Link href='/terms-and-condition'>
+                        <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans mb-3 md:mb-0 hover:text-blue-600">General Terms Of Use</p>
+                        </Link>
+                        
+                        <Link href="/privacy-policy">
+                        <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans ml:0 md:ml-10 hover:text-blue-600 ">Privacy Policy</p>
+                        </Link>
                     </div>
                 </div>
             </div>

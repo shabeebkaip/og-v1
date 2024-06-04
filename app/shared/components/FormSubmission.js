@@ -18,8 +18,11 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
         selected: name,
         key: id
     });
-
+    const [otherAnswers, setOtherAnswers] = useState([]);
     const [questionStates, setQuestionStates] = useState([]);
+    const OTHER_OPTION = "Other";
+
+
 
     const clickHandlerOne = (questionIndex) => {
         const updatedStates = [...questionStates];
@@ -34,7 +37,7 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
     };
 
     useEffect(() => {
-        getFormApi({ key: id }).then(res => {
+        getFormApi({ id: id }).then(res => {
             setForm(res);
             const initialResponses = res.form.map((question, index) => ({
                 question: question.question,
@@ -48,9 +51,15 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
         });
     }, [id]);
 
-    const handleChange = (questionIndex, answerIndex) => {
+    const handleChange = (questionIndex, answerIndex, otherValue = "") => {
         const selectedQuestion = form.form[questionIndex].question;
-        const selectedAnswer = form.form[questionIndex].answer[answerIndex].answer;
+        let selectedAnswer;
+
+        if (answerIndex === -1) {
+            selectedAnswer = otherValue;
+        } else {
+            selectedAnswer = form.form[questionIndex].answer[answerIndex].answer;
+        }
 
         setData(prevData => {
             const updatedResponse = [...prevData.response];
@@ -63,8 +72,15 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
                 response: updatedResponse
             };
         });
-    };
 
+        if (answerIndex === -1) {
+            setOtherAnswers(prevOtherAnswers => {
+                const updatedOtherAnswers = [...prevOtherAnswers];
+                updatedOtherAnswers[questionIndex] = otherValue;
+                return updatedOtherAnswers;
+            });
+        }
+    };
     const handleSave = async () => {
         try {
             const response = await axios.post("https://api-one-global.code-ox.com/api/form-submit", data, {
@@ -129,11 +145,38 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
                                                 {question.answer.map((ans, ansIndex) => (
                                                     <div key={ansIndex} className="ml-3 p-2 md:text-[14px] text-[13px]">
                                                         <div className="font-bold flex items-center gap-4">
-                                                            <input type="radio"  name={`question-${questionIndex}`} value={ans.answer} checked={data.response[questionIndex]?.en_answer === ans.answer} onChange={() => handleChange(questionIndex, ansIndex)} />
+                                                            <input
+                                                                type="radio"
+                                                                name={`question-${questionIndex}`}
+                                                                value={ans.answer}
+                                                                checked={data.response[questionIndex]?.en_answer === ans.answer}
+                                                                onChange={() => handleChange(questionIndex, ansIndex)}
+                                                            />
                                                             <h3>{ans.answer}</h3>
                                                         </div>
                                                     </div>
                                                 ))}
+                                                <div className="ml-3 p-2 md:text-[14px] text-[13px]">
+                                                    <div className="font-bold flex items-center gap-4">
+                                                        <input
+                                                            type="radio"
+                                                            name={`question-${questionIndex}`}
+                                                            value={OTHER_OPTION}
+                                                            checked={data.response[questionIndex]?.en_answer === otherAnswers[questionIndex]}
+                                                            onChange={() => handleChange(questionIndex, -1)}
+                                                        />
+                                                        <h3>{OTHER_OPTION}</h3>
+                                                    </div>
+                                                    {data.response[questionIndex]?.en_answer === otherAnswers[questionIndex] && (
+                                                        <input
+                                                            type="text"
+                                                            value={otherAnswers[questionIndex]}
+                                                            onChange={(e) => handleChange(questionIndex, -1, e.target.value)}
+                                                            className="border rounded p-2 w-full mt-2"
+                                                            placeholder="Enter your answer"
+                                                        />
+                                                    )}
+                                                </div>
                                             </div>
                                         )}
                                     </div>

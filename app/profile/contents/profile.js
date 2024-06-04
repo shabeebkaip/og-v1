@@ -6,10 +6,24 @@ import Hero from "@/app/profile/components/Hero";
 import OrderHistory from "@/app/profile/components/OrderHistory";
 import UpgradePlan from "@/app/profile/components/UpgradePlan";
 import { getUserApi } from '@/app/shared/api';
+import { globalGetService } from '@/app/utils/apiServices';
+
+
+
+
+
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
+  const [orderHistory, setOrderHistory] = useState(null);
   const [token, setToken] = useState(null);
+
+  const [activePage, setActivePage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
+  const [totalCount, setTotalCount] = useState(0);
+
+
+  const email = userData?.user?.email
 
   useEffect(() => {
     // Check if we are on the client side
@@ -23,7 +37,29 @@ const Profile = () => {
     if (token) {
       getUserApi(token).then(res => setUserData(res.data));
     }
+
   }, [token]);
+
+  useEffect(() => {
+    
+    if (email) {
+      globalGetService('get-payment-history', { email: email , page: activePage })
+        .then(response => {
+          setOrderHistory(response.data);
+          setTotalPages(response?.pagination?.totalPages);
+          setTotalCount(response?.pagination?.totalCount);
+        });
+
+    }
+
+  }, [email, activePage]);
+
+
+
+  const handlePageChange = (page) => {
+    setActivePage(page);
+  };
+
   return (
     <div>
       <div className="absolute lg:top-[-5%] w-[400px] h-[400px] right-[0px] hidden lg:block   ">
@@ -45,7 +81,9 @@ const Profile = () => {
         <div className=" container mx-auto px-3 md:px-0">
           <Hero user={userData?.user} />
           {/* <UpgradePlan /> */}
-          {/* < OrderHistory /> */}
+
+          < OrderHistory  orderHistory={orderHistory} totalPages={totalPages} activePage={activePage} handlePageChange={handlePageChange} totalCount={totalCount}/>
+
         </div>
       </div>
 
