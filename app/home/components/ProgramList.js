@@ -96,7 +96,7 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                         hackathon && Object.keys(hackathon).length ?
                             <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
-                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Hackathon</h3>
+                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white capitalize `} >{hackathon?.name}</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
                                     <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? hackathon.ar_short_desc : hackathon?.short_desc}</h5>
@@ -134,7 +134,7 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                         reversePitch && Object.keys(reversePitch).length ?
                         <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
-                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Reverse Pitch</h3>
+                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white capitalize  `} >{"Reverse Pitch"}</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
                                     <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? reversePitch.ar_short_desc : reversePitch?.short_desc}</h5>
