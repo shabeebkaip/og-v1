@@ -5,10 +5,10 @@ import moment from 'moment'
 import { baseURL, displayDateFormatShort } from '@/app/constant'
 import Image from 'next/image'
 import Link from 'next/link'
-import axios from 'axios'
 
 const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
     const language = getGlobalCookie('language')
+    console.log(hackathon);
     return (
         <>
             <div className='w-full mt-16 font-Sans md:mt-28'>
@@ -71,7 +71,7 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                                 <div className='flex flex-col items-center justify-center w-full px-10 p-3'>
                                     {
                                         courses?.map((item, index) => (
-                                            <Link href={`/educations/${item._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500 text-center cursor-pointer hover:text-blue-600 flex gap-2 items-center' key={index}>{item.heading}
+                                            <Link href={`/educations/${item?._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500 text-center cursor-pointer hover:text-blue-600 flex gap-2 items-center' key={index}>{item.heading}
                                                 <Image className='w-8 h-8' width={40} height={40} src={"/Home/shareIcon.png"} alt="" />
                                             </Link>
 
@@ -93,13 +93,13 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
 
                     {/* hackathon */}
                     {
-                        hackathon && Object.keys(hackathon).length ?
+                        hackathon && hackathon?.status && Object.keys(hackathon).length ?
                             <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
-                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white capitalize `} >{hackathon?.name}</h3>
+                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Hackathon</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
-                                    <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? hackathon.ar_short_desc : hackathon?.short_desc}</h5>
+                                    <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? hackathon?.ar_short_desc : hackathon?.short_desc}</h5>
                                 </div>
                                 <div className='flex  items-center justify-between w-full px-10 p-3'>
                                     {hackathon?.start_date ?
@@ -112,7 +112,7 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                                         </h4> :
                                         <h4 className='font-bold text-[#4C4C4D] sm:text-[28px] text-[20px]'>
 
-                                            <span className={`${moment() > moment(hackathon.end_date) ? "text-[#B0ABAB]" : ''}`}>
+                                            <span className={`${moment() > moment(hackathon?.end_date) ? "text-[#B0ABAB]" : ''}`}>
                                                 {
                                                     moment() > moment(hackathon?.end_date) ?
                                                         'Applications are closed' :
@@ -131,10 +131,10 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
 
                     {/* {Reverse Pitch} */}
                     {
-                        reversePitch && Object.keys(reversePitch).length ?
+                        reversePitch && reversePitch?.status && Object.keys(reversePitch).length ?
                         <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
-                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white capitalize  `} >{"Reverse Pitch"}</h3>
+                                    <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Reverse Pitch</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
                                     <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? reversePitch.ar_short_desc : reversePitch?.short_desc}</h5>

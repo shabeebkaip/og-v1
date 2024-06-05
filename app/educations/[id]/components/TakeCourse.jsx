@@ -3,7 +3,11 @@
 import MobHeroSlider from '@/app/shared/components/MobHeroSlider'
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import Image from 'next/image'
-import React, { useState, useEffect } from 'react'
+
+import moment from "moment"
+import { displayDateFormatShort } from '@/app/constant';
+import React, { useState } from 'react'
+
 import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider, useSnackbar } from 'notistack'
 import axios from 'axios'
@@ -69,10 +73,19 @@ const TakeCourse = ({ educationDetail }) => {
                     <div
                         className='flex flex-col   xl:w-[80%] xl:gap-10 gap-5 md:w-[85%]' >
                         <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px]'>{educationDetail?.summaryHeading}</h2>
+                        <div className='flex flex-wrap text-[#4C4C4D] gap-3 py-3 '>
+                            <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.reg_st_date ? moment(educationDetail?.reg_st_date).format(displayDateFormatShort) : ""}</button>
+                            <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.reg_end_date ? moment(educationDetail?.reg_end_date).format(displayDateFormatShort) : ""}</button>
+                            <button className='border border-[#92D1FB] rounded-full md:px-4 px-1 '>{educationDetail?.timezone}</button>
+
+                        </div>
                         <p className='text-[#4C4C4D] xl:text-[26px]  lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[24px]'>{educationDetail?.summaryDescription}</p>
                         <div className='flex gap-4 md:flex-row flex-col px-6 md:px-0'>
                             <button className='border lg:h-[54px]  md:h-[40px] h-[60px] rounded-[40px] border-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-lg:px-8 px-4 text-[#FF8500]' onClick={handleInitiatePayment}  >
                                 {educationDetail?.prize}
+
+                                {educationDetail?.currency}
+
                             </button>
                             <button onClick={() => {
                                 setPopup(true)

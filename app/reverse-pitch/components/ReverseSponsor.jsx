@@ -7,7 +7,7 @@ const ReverseSponser = ({reverse}) => {
     return (
         <div className='md:py-24 pt-10 md:pt-0 px-3 md:px-0 mt-16'>
             <div className='flex items-center justify-center text-center'>
-                <p className='uppercase xl:text-[50px]  text-[40px] font-medium text-[#FF8500] md:border-2 rounded-[45px] border-[#4C4C4D] px-4 '>hackathon <span className='border-2 rounded-[45px] border-[#4C4C4D] px-4 md:border-none'>sponsors</span></p>
+                <p className='uppercase xl:text-[50px]  text-[40px] font-medium text-[#FF8500] md:border-2 rounded-[45px] border-[#4C4C4D] px-4 '>Reverse Pitch <span className='border-2 rounded-[45px] border-[#4C4C4D] px-4 md:border-none'>sponsors</span></p>
             </div>
             <div className='flex items-center justify-center gap-10 p-5'>
                 {

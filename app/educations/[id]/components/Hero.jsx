@@ -36,9 +36,10 @@ const Hero = ({ educationDetail }) => {
                     <div className='md:absolute -right-8 top-[-14%] w-[25%] h-[50%] hidden'><BlueGradient /></div>
 
                     <Image width={1000} height={500} src={educationDetail?.image} alt='Image' className='w-full rounded-[23px] md:hidden block ' />
-                    <div className='flex flex-col justify-start xl:w-[80%] xl:gap-10 gap-5 p-4 py-1' >
-                        <div className='flex text-[#4C4C4D] gap-3 py-3 '>
-                            <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.date ? moment(educationDetail?.date).format(displayDateFormatShort) : ""}</button>
+                    <div className='flex flex-col justify-start w-full xl:gap-10 gap-5 p-4 py-1' >
+                        <div className='flex flex-wrap text-[#4C4C4D] gap-3 py-3 '>
+                            <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.st_date ? moment(educationDetail?.st_date).format(displayDateFormatShort) : ""}</button>
+                            <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.end_date ? moment(educationDetail?.end_date).format(displayDateFormatShort) : ""}</button>
                             <button className='border border-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px]'>{educationDetail?.time}hours</button>
                             {educationDetail?.license ? (
                                 <button className="rounded-full md:px-4 px-1 border border-[#FF8500] lg:h-[33px] lg:w-[135px]">Licence</button>

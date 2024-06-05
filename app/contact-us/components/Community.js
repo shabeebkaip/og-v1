@@ -27,6 +27,7 @@ const Community = ({ mentor }) => {
     const hideHandler = () => {
       setPopup(false)
     }
+
     return (
         <div className="container relative mx-auto">
             <div className="flex flex-col w-full gap-5 p-2 font-sans lg:flex-row lg:p-4">
@@ -42,7 +43,7 @@ const Community = ({ mentor }) => {
                         </div>
                         <div>
                             {/* {mentor?.btn_link ? ( */}
-                            {mentor?.btn_link && mentor?.btn_link?.trim() !== "" ? (
+                            {mentor?.btnLink && mentor?.btnLink?.trim() !== "" ? (
                                 <a href={mentor.btnLink} target="_blank" rel="noopener noreferrer">
                                     <button className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
                                         {mentor.btnText}
