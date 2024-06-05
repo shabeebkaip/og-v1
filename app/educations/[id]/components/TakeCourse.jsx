@@ -6,7 +6,7 @@ import Image from 'next/image'
 
 import moment from "moment"
 import { displayDateFormatShort } from '@/app/constant';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider, useSnackbar } from 'notistack'
