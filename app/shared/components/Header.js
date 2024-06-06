@@ -17,6 +17,10 @@ const Header = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('English');
     const [showDropdown, setShowDropdown] = useState(false);
 
+    useEffect(() => {
+        setActiveLink(window.location.pathname);
+    }, [activeLink])
+
     const languages = [
         {
             name: 'English',
@@ -112,11 +116,10 @@ const Header = () => {
     }, [userData]);
 
     useEffect(() => {
-        setActiveLink(window.location.pathname);
         if (code && !userData) {
             fetchUser();
         }
-    }, [code, activeLink, fetchUser, userData]);
+    }, [code, fetchUser, userData]);
 
 
     const handleLogout = () => {
@@ -131,15 +134,15 @@ const Header = () => {
         <div className='container flex items-center justify-between h-40 mx-auto' >
             {loader && <SharedLoader />}
             <div>
-                <Link href='/'><Image className='w-[90%] lg:w-full' src="/og_logo.png" alt="Post Image" onClick={() => handleClick('/')} width={1000} height={500} /></Link>
+                <div onClick={() => window.location.href = "/"} ><Image className='w-[90%] lg:w-full' src="/og_logo.png" alt="Post Image" onClick={() => handleClick('/')} width={1000} height={500} /></div>
             </div>
             <div className='relative flex items-center justify-center gap-3 px-5 py-3 bg-white lg:gap-5 lg:px-10 xl:gap-20 box-shadow rounded-3xl'>
-                <Link href='/'>
+                <div onClick={() => window.location.href = "/"}>
                     <h3 className={`font-normal cursor-pointer lg:text-lg ${activeLink === '/' ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/')}>
                         Home
                     </h3>
-                </Link>
-                <Link href="/programs">
+                </div>
+                <div onClick={() => window.location.href = "/programs"}>
                     <h3
                         className={`font-normal cursor-pointer lg:text-lg 
                ${activeLink === '/programs' || activeLink.startsWith('/programs/')
@@ -148,15 +151,15 @@ const Header = () => {
                     >
                         Programs
                     </h3>
-                </Link>
+                </div>
 
-                <Link href='/careers'>  <h3 className={`font-normal text-gray-700 cursor-pointer lg:text-lg ${activeLink === '/careers' ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/careers')} >
+                <div onClick={() => window.location.href = "/careers"}>  <h3 className={`font-normal text-gray-700 cursor-pointer lg:text-lg ${activeLink === '/careers' ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/careers')} >
                     Careers
-                </h3></Link>
-                <Link href='/blogs'> <h3 className={`font-normal text-gray-700 cursor-pointer lg:text-lg ${activeLink.includes('/blogs') ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/news')}>
+                </h3></div>
+                <div onClick={() => window.location.href = "/blogs"}> <h3 className={`font-normal text-gray-700 cursor-pointer lg:text-lg ${activeLink.includes('/blogs') ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/news')}>
                     News
                 </h3>
-                </Link>
+                </div>
             </div>
             {userData ? (
                 <div className='relative'>

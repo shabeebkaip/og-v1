@@ -39,8 +39,8 @@ const JoinHackathon = ({ hackathonData, pageContent }) => {
 
           {
             token ?
-              hackathonData?.btn_link && hackathonData?.btn_link.trim() !== "" ? (
-                <a href={hackathonData?.btn_link} target='_blank'>
+              hackathonData?.btnLink && hackathonData?.btnLink.trim() !== "" ? (
+                <a href={hackathonData?.btnLink} target='_blank'>
                   <button className='border rounded-[40px] border-[#FF8500] text-[20px] text-[#1C2126] px-6 py-2'>Join hackathon</button>
                 </a>
               ) : (

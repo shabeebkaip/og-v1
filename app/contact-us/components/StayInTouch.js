@@ -31,7 +31,7 @@ const StayInTouch = ({ countryCode }) => {
         number: "",
         whatAreYouLookingFor: "",
         message: "",
-        country: ""
+        code :"+965"
 
     });
 
@@ -47,7 +47,7 @@ const StayInTouch = ({ countryCode }) => {
             number: data.number,
             whatAreYouLookingFor: data.whatAreYouLookingFor || dropDown[0]?.contact_list,
             message: data.message,
-            country: data.country
+            code: data.code
         };
 
         axios.post("https://api-one-global.code-ox.com/api/queries", jsonData, {
@@ -107,24 +107,26 @@ const StayInTouch = ({ countryCode }) => {
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                     />
 
-                    <div className="flex w-full lg:w-[50%]  sm:h-16 h-10 gap-2  ">
+                    <div className="flex w-full lg:w-[50%]  sm:h-16 h-10 sm:gap-2 sm:flex-row flex-col   ">
+                       
                         <select
-                            className="w-[20%] sm:h-16 h-10 border rounded-full border-[#242222] pl-2 pr-7 font-medium text-[#4C4C4D] mb-4 custom-select text-[18px] "
-                            value={data.country}
-                            onChange={(e) => setData({ ...data, country: e.target.value })}
+                            className="sm:w-[30%] sm:h-16 h-10 border rounded-full border-[#242222] pl-2 pr-7 font-medium text-[#4C4C4D] mb-4 custom-select text-[18px] p-2 sm:p-0  " style={{ paddingLeft: '8px', paddingRight: '8px' }}
+                            value={data.code}
+                            onChange={(e) => setData({ ...data, code: e.target.value })}
                            
                         >
                             {countryCode.map((item, index) => (
-                                <option className ='' key={index} value={item.value}  style={{ backgroundColor: '#f0f0f0', border: '1px solid #ccc' }}>{item.dial_code} </option>
+                                <option className ='' key={index} value={item.value}  style={{ backgroundColor: '#f0f0f0', border: '1px solid #ccc'}}>{item.dial_code} </option>
                             ))}
 
 
 
                         </select>
+                    
                         <input
                             type="text"
                             placeholder='Your phone*'
-                            className='w-[80%]   sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
+                            className='sm:w-[70%]   sm:h-16 h-10 border rounded-full border-[#4C4C4D] pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2'
                             value={data.number}
                             onChange={(e) => setData({ ...data, number: e.target.value })}
                         />
@@ -157,7 +159,7 @@ const StayInTouch = ({ countryCode }) => {
 
 
 
-                    <div className='w-full lg:w-[50%] mt-4  sm:h-16 h-10 border rounded-full border-[#242222] pl-1 lg:pl-2 lg:pr-2 md:pr-1 pr-1 font-medium text-[#4C4C4D] flex md:justify-start justify-center items-center text-[19px] mb-4 sm:text-base'>
+                    <div className='w-full lg:w-[50%] sm:mt-4 mt-[68px] sm:h-16 h-10 border rounded-full border-[#242222] pl-1 lg:pl-2 lg:pr-2 md:pr-1 pr-1 font-medium text-[#4C4C4D] flex md:justify-start justify-center items-center text-[19px] mb-4 sm:text-base'>
                         <select
                             name="search"
                             id="search"

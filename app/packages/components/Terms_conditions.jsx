@@ -26,12 +26,12 @@ const Terms_conditions = () => {
     return (
         <>
             <div className='relative sm:px-3 mt-7'>
-                <div className='justify-center hidden my-32 md:flex'>
+                <div className='justify-center hidden my-32 md:flex' >
                     <p className=' xl:text-[50px] md:text-[40px] text-[24px] font-medium text-[#FF8500] border-2 rounded-[45px] border-[#4C4C4D] px-4 uppercase '>
                         Terms & Conditions
                     </p>
                 </div>
-                <div className='grid md:grid-cols-2 gap-10 box-shadow rounded-[23px] lg:p-16 p-10 flex-col md:flex-row z-10 bg-white'>
+                <div className='grid md:grid-cols-2 gap-10 box-shadow rounded-[23px] lg:p-16 p-10 flex-col md:flex-row z-10 bg-white' id='terms-conditions'>
                     {terms.map((item, index) => (
                         <div key={index} className=''>
                             <p className='lg:text-[24px] text-[18px] text-[#4C4C4D] text-left font-normal leading-[30px] '>
@@ -42,7 +42,7 @@ const Terms_conditions = () => {
                     ))}
 
                     <div className='pt-10'>
-                        <input type="checkbox" className="border-[#FF8500] border h-6 w-6 " value={checked} onChange={(e) => handleCheck(e)} />
+                        <input type="checkbox" className="border-[#FF8500] border h-6 w-6 "  id="" value={checked} onChange={(e) => handleCheck(e)} />
                         <label className=" lg:text-[24px] text-[18px] text-[#4C4C4D] pl-6">Agree to Terms & Conditions</label>
                     </div>
 

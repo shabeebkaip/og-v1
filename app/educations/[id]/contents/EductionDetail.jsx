@@ -18,10 +18,11 @@ const EductionDetail = async ({ educationId }) => {
       <Hero educationDetail={data} />
       <AboutUs educationDetail={data} />
       <ZoomClass educationDetail={data} />
+
       <CourseProgram educationDetail={data} />
-      <Organizer educationDetail={data} />
-      <TakeCourse educationDetail={data} />
-      <AskQuestion educationDetail={data} />
+      {data?.organizerName ? <Organizer educationDetail={data} /> : null}
+      {data?.summaryHeading ? <TakeCourse educationDetail={data} /> : null}
+      {data?.faq?.length ? <AskQuestion educationDetail={data} /> : null}
       {/* <ShareCourse /> */}
       {/* <FooterTop /> */}
     </div>

@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div id="overlays"></div>
         <div id="root"></div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<div></div>}>
         <div className="bg-white">
           <div className="md:hidden" >
             <Mob_Header />

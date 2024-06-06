@@ -6,16 +6,18 @@ import { displayDateFormatShort } from "@/app/constant";
 import Image from 'next/image';
 
 
-const BlogContents = ({blogDetail}) => {
+const BlogContents = ({ blogDetail }) => {
   const midpoint = Math.ceil(blogDetail?.description?.length / 2);
+  const displayedImages = new Set();
 
   const renderDescriptionWithImages = (descriptionArray, startIndex) => {
     return descriptionArray?.map((item, index) => {
       const imageIndex = Math.floor((index + startIndex));
       if (blogDetail?.image?.[imageIndex] && imageIndex % 2 == 0) {
+        displayedImages.add(imageIndex);
         return (
           <div key={index}>
-            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt}  />
+            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
             <p className=" text-[#4C4C4D] font-light text-[24px]  capitalize ">{item.text}</p>
           </div>
         );
@@ -27,9 +29,10 @@ const BlogContents = ({blogDetail}) => {
     return descriptionArray?.map((item, index) => {
       const imageIndex = Math.floor((index + startIndex));
       if (blogDetail?.image?.[imageIndex] && imageIndex % 2 !== 0) {
+        displayedImages.add(imageIndex);
         return (
           <div key={index}>
-            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt}  />
+            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
             <p className=" text-[#4C4C4D] font-light text-[24px] capitalize ">{item.text}</p>
           </div>
         );
@@ -67,10 +70,28 @@ const BlogContents = ({blogDetail}) => {
               </div>
               <div className="flex gap-8 flex-col md:flex-row mt-12 ">
                 <div className="w-full  md:w-1/2 flex flex-col gap-8 xl:text-[24px] text-lg text-[#4C4C4D] font-light capitalize">
-                  {renderDescriptionWithImages(blogDetail?.description?.slice( 0,midpoint), 0)}
+                  {renderDescriptionWithImages(blogDetail?.description?.slice(0, midpoint), 0)}
+                  {
+                    blogDetail?.image?.map((item, index) => (
+                      !displayedImages.has(index) && (index % 2 === 0) && (
+                        <div key={index}>
+                          <Image className="w-full h-[400px] rounded-[23px]" src={item} alt={item?.alt || ''} width={400} height={400} />
+                        </div>
+                      )
+                    ))
+                  }
                 </div>
                 <div className="flex flex-col gap-8 md:w-1/2 xl:text-[24px] text-lg text-[#4C4C4D] w-full font-light capitalize">
                   {renderDescriptionWithImagesRight(blogDetail?.description?.slice(midpoint), 0)}
+                  {
+                    blogDetail?.image?.map((item, index) => (
+                      !displayedImages.has(index) && (index % 2 !== 0) && (
+                        <div key={index}>
+                          <Image className="w-full h-[400px] rounded-[23px]" src={item} alt={item?.alt || ''} width={400} height={400} />
+                        </div>
+                      )
+                    ))
+                  }
                 </div>
               </div>
             </div>

@@ -36,26 +36,15 @@ const ApplyNow = ({ pageContent1, programDetail }) => {
                     <>
                         {
                             token ?
-                                programDetail?.btn_link && programDetail?.btn_link.trim() !== "" ? (
-                                    <a href={programDetail?.btn_link} target='_blank'>
+                                    <a href={programDetail?.btnLink} target='_blank'>
                                         <div className='border-2 border-solid rounded-[45px] lg:px-12 px-8 py-1 text-[#4C4C4D] lg:text-[30px] text-[24px] font-medium' style={{ borderColor: '#FF8500' }}>
                                             Apply now <span className=''>→</span>
                                         </div>
                                     </a>
-                                ) : (
-                                    <button onClick={() => {
-                                        setPopup(true);
-                                        setFormId(programDetail?.form_id);
-
-                                    }} className='border-2 border-solid rounded-[45px] lg:px-12 px-8 py-1 text-[#4C4C4D] lg:text-[30px] text-[24px] font-medium' style={{ borderColor: '#FF8500' }}>
-                                        Apply now <span className=''>→</span>
-                                    </button>
-                                )
                                 :
                                 <button onClick={authenticateUserFn} className='border-2 border-solid rounded-[45px] lg:px-12 px-8 py-1 text-[#4C4C4D] lg:text-[30px] text-[24px] font-medium' style={{ borderColor: '#FF8500' }}>
                                     Apply now <span className=''>→</span>
                                 </button>
-
                         }
                     </>
                     :
@@ -63,9 +52,6 @@ const ApplyNow = ({ pageContent1, programDetail }) => {
                         Application  Closed <span className=''></span>
                     </div>
             }
-
-
-
             <div className='flex justify-center w-full md:pt-28 pt-20'>
                 <div className='md:w-[90%] text-center pb-8 w-full flex justify-center '>
                     {

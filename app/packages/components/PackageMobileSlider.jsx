@@ -14,7 +14,10 @@ const PackageMobileSlider = ({packages}) => {
             swiper.update();
         }
     }, []);
-
+    const getBackgroundColor = (index) => {
+        const colors = ["#d2d7e7", "#fdd8d8", "#f6f4bd"];
+        return colors[index % 3];
+      };
 
     return (
         <div className='flex justify-center w-full'>
@@ -45,8 +48,8 @@ const PackageMobileSlider = ({packages}) => {
                 }}
             >
                 {packages.map((item, index) => (
-                    <SwiperSlide key={index} className='rounded-2xl'>
-                        <div key={index} className='flex w-full gap-[10%] box-shadow drop-shadow-[35px] border-2  flex-col p-5 h-[800px] rounded-[23px]' style={{ backgroundColor: item.bg_color}}>
+                    <SwiperSlide key={index} className='rounded-2xl px-2'>
+                        <div key={index} className='flex w-full gap-[10%] box-shadow drop-shadow-[35px] border-2  flex-col p-5 h-[650px] rounded-[23px]' style={{ backgroundColor: getBackgroundColor(index) }}>
                             <h1 className='uppercase text-[36px] text-[#4C4C4D] font-semibold text-left pl-3'>{item.name}</h1>
                             <div className='px-6' >
                                 <p className='border-2 border-[#92D1FB] bg-white rounded-[45px] text-center font-semibold text-[40px] text-[#4C4C4D]'>{item.price}</p>

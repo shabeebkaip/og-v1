@@ -28,8 +28,10 @@ function Animations() {
     return (
         <>
             {Array.from(new Array(4)).map((_, index) => (
-                <Box key={index} sx={{ width: 300 }}>
-                    <Skeleton />
+                <Box key={index} sx={{ width: 300}}>
+                    <Skeleton  height={300} />
+                    <Skeleton animation="wave" />
+                    <Skeleton animation="wave" />
                     <Skeleton animation="wave" />
                     <Skeleton animation={false} />
                 </Box>
@@ -80,11 +82,13 @@ function Courses({ courseLists }) {
             })
             .catch(error => {
                 setLoading(false);
+                setCourseList("No Data");
                 console.error("Error filtering courses: ", error);
             });
     };
 
     const handleClick = (mode) => {
+        
         filterCourse(mode);
         setMode(mode);
     };
@@ -153,7 +157,7 @@ function Courses({ courseLists }) {
                 </div>
 
             ) : (
-                <LoadMore courseList={courseList} />
+                <LoadMore courseList={courseList} mode={mode}/>
             )}
         </div>
     );

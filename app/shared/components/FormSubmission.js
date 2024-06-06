@@ -9,7 +9,8 @@ import Modal from '@/app/shared/components/Modal';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
-const FormSubmission = ({ name, orderHideHandler, id }) => {
+const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, payment }) => {
+    console.log(handleInitiatePayment, payment);
     const [form, setForm] = useState(null);
     const [data, setData] = useState({
         response: [],
@@ -39,7 +40,7 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
     useEffect(() => {
         getFormApi({ id: id }).then(res => {
             setForm(res);
-            const initialResponses = res.form.map((question, index) => ({
+            const initialResponses = res?.form?.map((question, index) => ({
                 question: question.question,
                 en_answer: question.answer[0]?.answer || ""
             }));
@@ -47,7 +48,7 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
                 ...prevData,
                 response: initialResponses
             }));
-            setQuestionStates(Array(res.form.length).fill(false));
+            setQuestionStates(Array(res?.form?.length).fill(false));
         });
     }, [id]);
 
@@ -103,6 +104,9 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
                     key: id
                 });
                 orderHideHandler();
+                if (payment) {
+                    handleInitiatePayment();
+                }
             } else {
                 enqueueSnackbar('Request failed. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
             }
@@ -111,7 +115,6 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
             enqueueSnackbar('An error occurred. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
-
     return (
         <Modal hideHandler={orderHideHandler} className='relative z-50'>
             <div className="flex item-center justify-center relative z-50">
@@ -189,7 +192,7 @@ const FormSubmission = ({ name, orderHideHandler, id }) => {
                         <input type="email" name="email" placeholder="Enter your email" className="border rounded-full p-2 lg:w-[510px] w-full" value={data.email} onChange={(e) => setData({ ...data, email: e.target.value })} />
                     </div>
                     <div className="flex items-center justify-center mt-10">
-                        <button className="border border-[#FF8500] text-[#4C4C4D] text-[25px] rounded-full px-11" onClick={handleSave}>submit</button>
+                        <button className="border border-[#FF8500] text-[#4C4C4D] text-[25px] rounded-full px-11 capitalize" onClick={handleSave}>{payment ? "Pay Now" : "Submit"}</button>
                     </div>
                 </div>
                 <div className='absolute mt-36 -right-10 h-[300px] w-[300px] md:block hidden -z-10'>

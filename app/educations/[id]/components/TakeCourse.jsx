@@ -3,11 +3,10 @@
 import MobHeroSlider from '@/app/shared/components/MobHeroSlider'
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import Image from 'next/image'
-
 import moment from "moment"
 import { displayDateFormatShort } from '@/app/constant';
 import React, { useEffect, useState } from 'react'
-
+import { authenticateUser } from '@/app/shared/api'
 import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider, useSnackbar } from 'notistack'
 import axios from 'axios'
@@ -15,8 +14,10 @@ import { getUserApi } from '@/app/shared/api'
 
 
 const TakeCourse = ({ educationDetail }) => {
+    console.log(educationDetail.form_id);
     const [popup, setPopup] = useState(false);
     const [userData, setUserData] = useState(null);
+    const courseName = { program_name: educationDetail?.heading, program_id: educationDetail?._id }
 
 
     const hideHandler = () => {
@@ -28,12 +29,13 @@ const TakeCourse = ({ educationDetail }) => {
     ]
     useEffect(() => {
         const token = localStorage.getItem('token');
-        if (token ) {
+        if (token) {
             getUserApi(token).then(res => setUserData(res.data));
 
         }
     }, []);
     const handleInitiatePayment = () => {
+        debugger
         let data = {
             username: userData?.user?.given_name,
             email: userData?.user?.email,
@@ -61,6 +63,12 @@ const TakeCourse = ({ educationDetail }) => {
             });
 
     };
+
+    const token = localStorage.getItem('token');
+
+    const authenticateUserFn = () => {
+        authenticateUser();
+    };
     return (
         <SnackbarProvider>
 
@@ -81,19 +89,39 @@ const TakeCourse = ({ educationDetail }) => {
                         </div>
                         <p className='text-[#4C4C4D] xl:text-[26px]  lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[24px]'>{educationDetail?.summaryDescription}</p>
                         <div className='flex gap-4 md:flex-row flex-col px-6 md:px-0'>
-                            <button className='border lg:h-[54px]  md:h-[40px] h-[60px] rounded-[40px] border-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-lg:px-8 px-4 text-[#FF8500]' onClick={handleInitiatePayment}  >
-                                {educationDetail?.prize}
+                            <div className='border lg:h-[54px] flex items-center  md:h-[40px] h-[60px] rounded-[40px] border-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-lg:px-8 px-4 text-[#FF8500]'   >
+                                {educationDetail?.prize}{" "}
 
                                 {educationDetail?.currency}
 
-                            </button>
-                            <button onClick={() => {
-                                setPopup(true)
-                            }}
-                                className='border xl:h-[54px] lg:h-[40px] md:h-[32px] h-[60px] rounded-[40px] bg-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-white lg:px-8 px-4'  >
-                                Registration
+                            </div>
+                            {
+                                token ?
+                                    educationDetail?.btnLink && educationDetail?.btnLink.trim() !== "" ? (
+                                        <a href={educationDetail?.btnLink} target='_blank'>
+                                            <button
+                                                className='border xl:h-[54px] lg:h-[40px] md:h-[32px] h-[60px] rounded-[40px] bg-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-white lg:px-8 px-4'  >
+                                                Registration
 
-                            </button>
+                                            </button>
+                                        </a>
+                                    ) : (
+                                        <button onClick={() => {
+                                            setPopup(true)
+                                        }}
+                                            className='border xl:h-[54px] lg:h-[40px] md:h-[32px] h-[60px] rounded-[40px] bg-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-white lg:px-8 px-4'  >
+                                            Registration
+
+                                        </button>
+                                    ) :
+                                    <button
+                                        onClick={authenticateUserFn}
+                                        className='border xl:h-[54px] lg:h-[40px] md:h-[32px] h-[60px] rounded-[40px] bg-[#FF8500] xl:text-[20px] lg:text-[18px] md:text-[14px] text-[20px] text-white lg:px-8 px-4'  >
+                                        Registration
+
+                                    </button>
+                            }
+
                         </div>
                     </div>
                 </div>
@@ -108,7 +136,7 @@ const TakeCourse = ({ educationDetail }) => {
 
 
                 </div>
-                {popup && <FormSubmission name={educationDetail?.heading} orderHideHandler={hideHandler} id="education" />}
+                {popup && <FormSubmission name={courseName} orderHideHandler={hideHandler} id={educationDetail.form_id} payment={true} userData={userData} handleInitiatePayment={handleInitiatePayment} />}
 
             </div>
         </SnackbarProvider>

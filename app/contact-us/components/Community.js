@@ -7,6 +7,7 @@ import Threeimage from './ThreeImage';
 import TwoImages from './TwoImage';
 import MotionDiv from '@/app/shared/components/MotionDiv';
 import FormSubmission from '@/app/shared/components/FormSubmission';
+import { authenticateUser } from '@/app/shared/api'
 import { useState } from 'react';
 const Community = ({ mentor }) => {
     const handleNavigate = () => {
@@ -22,11 +23,18 @@ const Community = ({ mentor }) => {
     const Datas = {
         program_name: mentor.heading,
         program_id: mentor._id,
-      };
+    };
 
     const hideHandler = () => {
-      setPopup(false)
+        setPopup(false)
     }
+
+    const token = localStorage.getItem('token');
+
+    const authenticateUserFn = () => {
+        authenticateUser();
+    };
+
 
     return (
         <div className="container relative mx-auto">
@@ -42,22 +50,29 @@ const Community = ({ mentor }) => {
                             <p className="mt-4">{mentor?.description2}</p>
                         </div>
                         <div>
-                            {/* {mentor?.btn_link ? ( */}
-                            {mentor?.btnLink && mentor?.btnLink?.trim() !== "" ? (
-                                <a href={mentor.btnLink} target="_blank" rel="noopener noreferrer">
-                                    <button className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
+                            {
+                                token ?
+                                    mentor?.btnLink && mentor?.btnLink?.trim() !== "" ? (
+                                        <a href={mentor.btnLink} target="_blank" rel="noopener noreferrer">
+                                            <button className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
+                                                {mentor.btnText}
+                                            </button>
+                                        </a>
+                                    ) : (
+                                        <div >
+                                            <button onClick={() => {
+                                                setPopup(true);
+                                            }} className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
+                                                {mentor.btnText}
+                                            </button>
+                                        </div>
+                                    ) :
+                                    <button
+                                        onClick={authenticateUserFn}
+                                        className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
                                         {mentor.btnText}
                                     </button>
-                                </a>
-                            ) : (
-                                <div >
-                                    <button onClick={() => {
-                                        setPopup(true);
-                                    }} className="border px-9 lg:px-14 py-3 lg:py-1 rounded-full border-orange-500 sm:text-[20px] text-[18px] md:text-[30px] xl:text-[30px] lg:text-[25px] text-[#4C4C4D] font-medium">
-                                        {mentor.btnText}
-                                    </button>
-                                </div>
-                            )}
+                            }
                             {popup && <FormSubmission name={Datas} orderHideHandler={hideHandler} id={mentor?.form_id} />}
                         </div>
                     </div>

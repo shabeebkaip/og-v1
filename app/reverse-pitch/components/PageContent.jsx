@@ -39,8 +39,8 @@ const PageContent = ({ pageContent, reverse }) => {
                    
                     {
                         token ?
-                            reverse?.btn_link && reverse?.btn_link.trim() !== "" ? (
-                                <a href={reverse?.btn_link} target='_blank'>
+                            reverse?.btnLink && reverse?.btnLink.trim() !== "" ? (
+                                <a href={reverse?.btnLink} target='_blank'>
                                     <button className='border rounded-[40px] border-[#FF8500] text-[20px] text-[#1C2126] px-6 py-2'>Join hackathon</button>
                                 </a>
                             ) : (
