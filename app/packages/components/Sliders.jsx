@@ -1,15 +1,14 @@
-"use client"; // Ensure this is at the top of the file
+"use client";
 
 import React, { useRef, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { Scrollbar } from "swiper/modules";
 import { getGlobalCookie } from "@/app/utils";
-import Terms_conditions from "./Terms_conditions";
 
-const Slider = ({ packages }) => {
+const Slider = ({ packages, selectedPackage, setSelectedPackage }) => {
 
-  const [selectedPackage, setSelectedPackage] = useState(null);
+
   const swiperRef = useRef(null);
 
   useEffect(() => {
@@ -32,15 +31,14 @@ const Slider = ({ packages }) => {
     return colors[index % 3];
   };
 
-   const selectPackage = (item) => {
-        setSelectedPackage(item);
-        localStorage.setItem('selectedPackage', JSON.stringify(item));
+  const selectPackage = (item) => {
+    setSelectedPackage(item);
 
-        const termsElement = document.getElementById('terms-conditions');
-        if (termsElement) {
-            termsElement.scrollIntoView({ behavior: 'smooth' });
-        }
-    };
+    const termsElement = document.getElementById('terms-conditions');
+    if (termsElement) {
+      termsElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="relative flex justify-center w-full">
@@ -79,11 +77,10 @@ const Slider = ({ packages }) => {
           >
             <div className="relative">
               <div
-                className={`flex w-full gap-[10%] duration-300 ease-in-out flex-col p-5 min-h-[600px] rounded-[23px] ${
-                  selectedPackage === item
+                className={`flex w-full gap-[10%] duration-300 ease-in-out flex-col p-5 min-h-[600px] rounded-[23px] ${selectedPackage === item
                     ? "hover:drop-shadow-lg hover:scale-100 box-shadow"
                     : "hover:scale-95"
-                }`}
+                  }`}
                 style={{
                   backgroundColor: getBackgroundColor(index),
                   border:
@@ -107,15 +104,15 @@ const Slider = ({ packages }) => {
                 <ul className="pl-6 text-left list-disc mt-4">
                   {language === "ar"
                     ? item.ar_planDetails.map((detail, index) => (
-                        <li key={index} className="text-[26px] text-[#4C4C4D]">
-                          {detail}
-                        </li>
-                      ))
+                      <li key={index} className="text-[26px] text-[#4C4C4D]">
+                        {detail}
+                      </li>
+                    ))
                     : item.planDetails.map((detail, index) => (
-                        <li key={index} className="text-[26px] text-[#4C4C4D]">
-                          {detail}
-                        </li>
-                      ))}
+                      <li key={index} className="text-[26px] text-[#4C4C4D]">
+                        {detail}
+                      </li>
+                    ))}
                 </ul>
               </div>
               {selectedPackage && selectedPackage !== item && (

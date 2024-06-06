@@ -6,6 +6,7 @@ import Continue from '../components/Continue'
 import { find } from '@/lib/utils';
 import { unstable_noStore } from 'next/cache';
 import { URLSearchParams } from 'url';
+import Wrapper from '../components/Wrapper';
 
 const fetchHero = async () => {
   try {
@@ -39,9 +40,8 @@ const Packages = async () => {
   return (
     <div className='container  mx-auto overflow-hidden md:px-0'>
       <Hero hero={hero} />
-      <PackagePlans packages={packages} />
-      <Terms_conditions />
-      <Continue packages={packages} />
+      <Wrapper  packages={packages} />
+      
     </div>
   )
 }

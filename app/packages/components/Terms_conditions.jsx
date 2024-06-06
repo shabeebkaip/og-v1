@@ -6,8 +6,8 @@ import { globalGetService } from '@/app/utils/apiServices'
 import { getGlobalCookie } from '@/app/utils'
 
 
-const Terms_conditions = () => {
-    const [checked, setChecked] = useState(false)
+const Terms_conditions = ({checked, setChecked}) => {
+   
     const [terms, setTerms] = useState([])
     useEffect(() => {
         globalGetService('terms')
@@ -18,7 +18,6 @@ const Terms_conditions = () => {
 
     const handleCheck = (e) => {
         setChecked(e.target.checked)
-        localStorage.setItem('checked', e.target.checked)
     }
 
     const language = getGlobalCookie('language')

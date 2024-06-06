@@ -47,7 +47,7 @@ const PackageMobileSlider = ({packages}) => {
                     }
                 }}
             >
-                {packages.map((item, index) => (
+                {packages?.map((item, index) => (
                     <SwiperSlide key={index} className='rounded-2xl px-2'>
                         <div key={index} className='flex w-full gap-[10%] box-shadow drop-shadow-[35px] border-2  flex-col p-5 h-[650px] rounded-[23px]' style={{ backgroundColor: getBackgroundColor(index) }}>
                             <h1 className='uppercase text-[36px] text-[#4C4C4D] font-semibold text-left pl-3'>{item.name}</h1>

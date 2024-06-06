@@ -4,7 +4,7 @@ import axios from 'axios';
 import { baseURL } from '@/app/constant';
 
 
-const PackagePlans = ({packages}) => {
+const PackagePlans = ({ packages, selectedPackage, setSelectedPackage }) => {
   return (
     <>
       <div>
@@ -14,8 +14,8 @@ const PackagePlans = ({packages}) => {
           </p>
         </div>
         <div>
-          <div className='lg:hidden flex'><MobilePackageSlider packages={packages} /> </div>
-          <div className='lg:flex hidden h-full'> <Package packages={packages} /></div>
+          <div className='lg:hidden flex'><MobilePackageSlider packages={packages} selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} /> </div>
+          <div className='lg:flex hidden h-full'> <Package packages={packages} setSelectedPackage={setSelectedPackage} selectedPackage={selectedPackage} /></div>
         </div>
       </div>
     </>

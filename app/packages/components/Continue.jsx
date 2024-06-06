@@ -8,16 +8,9 @@ import { authenticateUser, getUserApi } from '@/app/shared/api';
 import { useSearchParams } from 'next/navigation'
 
 
-const Continue = ({ packages }) => {
-
+const Continue = ({ packages, checked , selectedPackage }) => {
     const params = useSearchParams();
     const code = params.get('code');
-    const [activeLink, setActiveLink] = useState('/packages');
-
-
-    const [checked, setChecked] = useState(false)
-    const checkedConditions = JSON.parse(localStorage.getItem('checked'))
-    const selectedPackage = JSON.parse(localStorage.getItem('selectedPackage'))
     const [pageContent, setPageContent] = useState([])
     const [token, setToken] = useState(null);
     const [userData, setUserData] = useState(null);
@@ -40,12 +33,6 @@ const Continue = ({ packages }) => {
             .then(response => {
                 setPageContent(response.data[0]);
             });
-    }, []);
-
-    // Update checked state based on local storage when component mounts
-    useEffect(() => {
-        const checkedConditions = JSON.parse(localStorage.getItem('checked'));
-        setChecked(checkedConditions);
     }, []);
 
     const text = pageContent?.pageContent?.[0]?.text;
@@ -72,11 +59,11 @@ const Continue = ({ packages }) => {
                     "Access-Control-Allow-Credentials": true
                 }
             })
-            .then(response => {
-                const referenceID = response.data.data.referenceID;
-                const id = response.data.data._id;
-                window.location.href = `/payment-method?ref=${referenceID}&id=${id}`;
-            });
+                .then(response => {
+                    const referenceID = response.data.data.referenceID;
+                    const id = response.data.data._id;
+                    window.location.href = `/payment-method?ref=${referenceID}&id=${id}`;
+                });
         } else {
             alert('Please agree to terms and conditions');
         }
@@ -126,7 +113,6 @@ const Continue = ({ packages }) => {
     };
 
     useEffect(() => {
-        setActiveLink(window.location.pathname);
         if (code) {
             fetchUser();
         }
@@ -135,7 +121,7 @@ const Continue = ({ packages }) => {
     return (
         <div className='relative pb-8'>
             <div className='flex items-center justify-center my-20 cursor-pointer' onClick={handleInitiatePayment}>
-                <p className={`border rounded-[40px] ${checked ? 'hover:bg-[#FF8500] text-[#FF8500]' : 'text-gray-500'} border-[#FF8500] hover:text-white text-[20px] px-16 py-2`}>
+                <p className={`border rounded-[40px] ${checked ? 'hover:bg-[#FF8500] text-[#FF8500] hover:text-white' : 'text-gray-500 border-gray-500' } border-[#FF8500]  text-[20px] px-16 py-2`}>
                     Continue
                 </p>
             </div>
