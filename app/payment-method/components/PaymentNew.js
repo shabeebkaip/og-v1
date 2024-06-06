@@ -9,7 +9,7 @@ import SharedLoader from "@/app/shared/components/sharedLoader"
 const PaymentNew = ({ paymentData, referenceId }) => {
     const [loading, setLoading] = useState(false);
     const paymentActionButton = () => {
-     
+
         setLoading(true);
 
         let payload = {
@@ -38,12 +38,12 @@ const PaymentNew = ({ paymentData, referenceId }) => {
                 window.location.href = response.data.data.redirectURL
             })
             .finally(() => {
-            
+
             });
     }
     return (
         <div className="">
-            {loading ? <SharedLoader/>: null}
+            {loading ? <SharedLoader /> : null}
             <div className="text-[#4C4C4D] bg-white box-shadow rounded-3xl md:p-10 p-5">
                 <p className='xl:text-4xl text-[30px] font-medium xl:w-40%'>Select Payment Method</p>
                 <div className="lg:flex">
@@ -54,19 +54,19 @@ const PaymentNew = ({ paymentData, referenceId }) => {
                                 <label className="flex items-center gap-3">
                                     <input type="radio" className="w-6 h-6 border-[#FF8500] checked:bg-[#FF8500] border text-[#4C4C4D] text-[26px] " checked />
                                     <Image width={1000} height={500} alt="" src={"https://travelmate.net/tmintl/images/paymentmode/KNET.jpg"} className="w-[60px] h-[50px]"></Image>
-                                    <span className="text-[20px] font-normal">Pay pal</span>
+                                    <span className="text-[20px] font-normal">KNET</span>
                                 </label>
                             </div>
                         </div>
                         <div className="py-6 pt-10">
-                        <button
+                            <button
                                 className='border-2 border-[#FF8500] rounded-[45px] lg:px-16 px-10 py-2 md:text-[28px] text-[20px]'
                                 onClick={paymentActionButton}
-                                // disabled={loading}
+                            // disabled={loading}
                             >
-                            Pay Now
+                                Pay Now
                             </button>
-                           
+
                         </div>
                     </div>
 
@@ -109,7 +109,7 @@ const PaymentNew = ({ paymentData, referenceId }) => {
                                 <p className='text-lg pt-2'>Payment Reference: <span className="font-bold">{referenceId}</span></p>
                                 <p className='text-lg font-semibold pt-2'>Total :<span className="font-bold">KWD {paymentData?.selected?.amount}</span></p>
                             </div>
-                          
+
                         </div>
 
                         <div className=' flex gap-6 py-10 '>
