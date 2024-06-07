@@ -39,7 +39,7 @@ const Educations = async () => {
         <CollaborateMobile universities={collaborator} />
       </div>
       <YourGoal findProgram={findProgram} />
-      {/* <ComingSoon courseList={courseList} /> */}
+      <ComingSoon courseList={courseList} />
       <div className="md:hidden flex">
         <MobileProffesionalSlider testimonial={profTestimonials} />
       </div>

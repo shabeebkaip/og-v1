@@ -8,11 +8,6 @@ import { SnackbarProvider } from 'notistack'
 import { authenticateUser } from '@/app/shared/api'
 
 
-
-
-
-
-
 const LoadMore = ({ courseList, mode }) => {
     console.log(mode, "mode hello");
     const [visible, setVisible] = useState(4);
@@ -39,15 +34,13 @@ const LoadMore = ({ courseList, mode }) => {
         authenticateUser();
     };
 
-    console.log(formId);
-
-
-
     return (
         <SnackbarProvider>
             <div className="container mx-auto">
                 <div className="md:grid flex flex-col p-2  md:grid-cols-4 2xl:gap-2 lg:gap-3 lg:p-5 md:p-2 md:gap-2">
-                    {courseList.map((item, index) => (
+
+                    {courseList.filter(item => item.status).map((item, index) => (
+
                         <div key={index} className="p-1 flex flex-col justify-between">
                             <div className="mt-6">
                                 <Image
@@ -71,10 +64,12 @@ const LoadMore = ({ courseList, mode }) => {
                                 </p>
                             </div>
                             <div>
+
+                             
                                 {
                                     token ?
-                                        item?.btn_link && item?.btn_link.trim() !== "" ? (
-                                            <a href={item?.btn_link} target='_blank' rel="noopener noreferrer">
+                                        item?.btnLink && item?.btnLink.trim() !== "" ? (
+                                            <a href={item?.btnLink} target='_blank' rel="noopener noreferrer">
                                                 <button
                                                     className="mt-6 rounded-full w-[165px] h-[39px] md:w-[100px] md:text-[10px] md:h-[28px] lg:w-[165px] lg:h-[39px] lg:text-[12px]"
                                                     style={{
@@ -114,7 +109,25 @@ const LoadMore = ({ courseList, mode }) => {
                                         >
                                             Apply Now<span className="ml-3">&rarr;</span>
                                         </button>
-                                }
+                                    </a>
+                                ) : (
+                                    <button
+                                        onClick={() => {
+                                            setPopup(true);
+                                            setFormId(item?.form_id);
+                                            setCourseName({ program_name: item?.heading, program_id: item?._id });
+                                        }}
+                                        className="mt-6 rounded-full w-[165px] h-[39px] md:w-[100px] md:text-[10px] md:h-[28px] lg:w-[165px] lg:h-[39px] lg:text-[12px]"
+                                        style={{
+                                            backgroundColor: item?.mode === 'Online' ? '#92D1FB' : item?.mode === 'Hybrid' ? '#FF8500' : item?.mode === 'Offline' ? 'white' : 'none',
+                                            border: item?.mode === 'Offline' ? '1px solid orange' : 'none',
+                                            color: item?.mode === 'Offline' ? '#4C4C4D' : 'white'
+                                        }}
+                                    >
+                                        Apply Now<span className="ml-3">&rarr;</span>
+                                    </button>
+                                )}
+
                                 <Link href={`/educations/${item._id}`}>
                                     <button className="px-2 text-orange-500 underline">View</button>
                                 </Link>
@@ -128,12 +141,9 @@ const LoadMore = ({ courseList, mode }) => {
                     )}
                 </div>
                 {popup && <FormSubmission name={courseName} orderHideHandler={hideHandler} id={formId} />}
-
             </div>
         </SnackbarProvider>
-
     )
 }
 
 export default LoadMore
-

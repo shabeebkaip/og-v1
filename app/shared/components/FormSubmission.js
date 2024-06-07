@@ -145,41 +145,54 @@ const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, pay
                                                     <p className='w-full lg:h-auto md:text-[14px] text-[13px] leading-tight p-2 font-bold'>{question.question}</p>
                                                     <p><IoMdArrowDropup onClick={() => closeHandlerOne(questionIndex)} className="h-6 w-6" /></p>
                                                 </div>
-                                                {question.answer.map((ans, ansIndex) => (
-                                                    <div key={ansIndex} className="ml-3 p-2 md:text-[14px] text-[13px]">
-                                                        <div className="font-bold flex items-center gap-4">
-                                                            <input
-                                                                type="radio"
-                                                                name={`question-${questionIndex}`}
-                                                                value={ans.answer}
-                                                                checked={data.response[questionIndex]?.en_answer === ans.answer}
-                                                                onChange={() => handleChange(questionIndex, ansIndex)}
-                                                            />
-                                                            <h3>{ans.answer}</h3>
+                                                {question.answer.length > 0 ? (
+                                                    <>
+                                                        {question.answer.map((ans, ansIndex) => (
+                                                            <div key={ansIndex} className="ml-3 p-2 md:text-[14px] text-[13px]">
+                                                                <div className="font-bold flex items-center gap-4">
+                                                                    <input
+                                                                        type="radio"
+                                                                        name={`question-${questionIndex}`}
+                                                                        value={ans.answer}
+                                                                        checked={data.response[questionIndex]?.en_answer === ans.answer}
+                                                                        onChange={() => handleChange(questionIndex, ansIndex)}
+                                                                    />
+                                                                    <h3>{ans.answer}</h3>
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                        <div className="ml-3 p-2 md:text-[14px] text-[13px]">
+                                                            <div className="font-bold flex items-center gap-4">
+                                                                <input
+                                                                    type="radio"
+                                                                    name={`question-${questionIndex}`}
+                                                                    value={OTHER_OPTION}
+                                                                    checked={data.response[questionIndex]?.en_answer === otherAnswers[questionIndex]}
+                                                                    onChange={() => handleChange(questionIndex, -1)}
+                                                                />
+                                                                <h3>{OTHER_OPTION}</h3>
+                                                            </div>
+                                                            {data.response[questionIndex]?.en_answer === otherAnswers[questionIndex] && (
+                                                                <textarea
+                                                                    type="text"
+                                                                    value={otherAnswers[questionIndex]}
+                                                                    onChange={(e) => handleChange(questionIndex, -1, e.target.value)}
+                                                                    className="border rounded p-2 w-full mt-2"
+                                                                    placeholder="Enter your answer"
+                                                                />
+                                                            )}
                                                         </div>
-                                                    </div>
-                                                ))}
-                                                <div className="ml-3 p-2 md:text-[14px] text-[13px]">
-                                                    <div className="font-bold flex items-center gap-4">
-                                                        <input
-                                                            type="radio"
-                                                            name={`question-${questionIndex}`}
-                                                            value={OTHER_OPTION}
-                                                            checked={data.response[questionIndex]?.en_answer === otherAnswers[questionIndex]}
-                                                            onChange={() => handleChange(questionIndex, -1)}
-                                                        />
-                                                        <h3>{OTHER_OPTION}</h3>
-                                                    </div>
-                                                    {data.response[questionIndex]?.en_answer === otherAnswers[questionIndex] && (
-                                                        <input
-                                                            type="text"
-                                                            value={otherAnswers[questionIndex]}
+                                                    </>
+                                                ) : (
+                                                    <div className="ml-3 p-2 md:text-[14px] text-[13px]">
+                                                        <textarea
+                                                            value={data.response[questionIndex]?.en_answer}
                                                             onChange={(e) => handleChange(questionIndex, -1, e.target.value)}
                                                             className="border rounded p-2 w-full mt-2"
                                                             placeholder="Enter your answer"
                                                         />
-                                                    )}
-                                                </div>
+                                                    </div>
+                                                )}
                                             </div>
                                         )}
                                     </div>
