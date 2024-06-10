@@ -16,7 +16,7 @@ const Joinus = async ({ data }) => {
                 initial="hidden"
                 whileInView={"show"}
                 className='lg:w-[45%]'>
-                <Image src={data?.image} alt='Image' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={1000} height={500} />
+                <Image src={data?.image} alt='Image' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={1000} height={500} />   
             </div>
             <div
                 variants={fadeIn("left", 0.1)}

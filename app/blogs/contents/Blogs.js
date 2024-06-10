@@ -50,7 +50,6 @@ const fetchCategories = async () => {
       console.error('No response from find("categories")');
       return [];
     }
-
     const categories = response.filter(category => category.key === 'news');
     return categories;
   } catch (error) {
@@ -58,6 +57,7 @@ const fetchCategories = async () => {
     return [];
   }
 };
+
 const Blogs = async () => {
   const hero = await fetchBlogHero();
   const blogs = await fetchBlogs();

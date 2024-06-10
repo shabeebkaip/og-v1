@@ -8,7 +8,13 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import SharedLoader from '@/app/shared/components/sharedLoader';
 
+import { useRouter } from 'next/router';
+
+
+
+
 const Header = () => {
+    
     const params = useSearchParams();
     const code = params.get('code');
     const [activeLink, setActiveLink] = useState('/');
@@ -17,9 +23,17 @@ const Header = () => {
     const [selectedLanguage, setSelectedLanguage] = useState('English');
     const [showDropdown, setShowDropdown] = useState(false);
 
+
+
+    // useEffect(() => {
+    //     setActiveLink(window.location.pathname);
+    // }, [activeLink])
+
     useEffect(() => {
         setActiveLink(window.location.pathname);
-    }, [activeLink])
+    }, [window.location.pathname]);
+
+   
 
     const languages = [
         {
@@ -32,9 +46,16 @@ const Header = () => {
         }
     ];
 
+    // const handleClick = (path) => {
+    //     setActiveLink(path);
+    // };
+
     const handleClick = (path) => {
         setActiveLink(path);
+        window.location.href = path;
     };
+
+  
 
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
@@ -130,6 +151,8 @@ const Header = () => {
         localStorage.removeItem('token_id');
         window.location.href = logoutUrl;
     };
+
+    
     return (
         <div className='container flex items-center justify-between h-40 mx-auto' >
             {loader && <SharedLoader />}
@@ -142,6 +165,8 @@ const Header = () => {
                         Home
                     </h3>
                 </div>
+                
+
                 <div onClick={() => window.location.href = "/programs"}>
                     <h3
                         className={`font-normal cursor-pointer lg:text-lg 
@@ -188,10 +213,10 @@ const Header = () => {
                     <h3 className='font-normal lg:text-lg'>Log In</h3>
                 </div>
             )}
-            <div className=' z-[100] relative'>
-                <Link href='/contact-us'>
-                    <button className='px-3 py-3 text-white bg-blue-300 lg:px-5 rounded-3xl ' onClick={() => handleClick('/contact-us')}>CONTACT US</button>
-                </Link>
+            <div className=' z-[100] relative' onClick={() => Window.location.href = "/contact-us"}>
+                {/* <Link href='/contact-us'> */}
+                    <button  className={`px-3 py-3 text-white bg-blue-300 lg:px-5 rounded-3xl ${activeLink.includes('/contact-us') ? 'text-orange-500' : 'text-gray-700'}`}  onClick={() => handleClick('/contact-us')}>CONTACT US</button>
+                {/* </Link> */}
             </div>
         </div>
     );

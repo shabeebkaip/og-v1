@@ -44,7 +44,7 @@ const FooterTop = () => {
         />
         <div className="absolute inset-0 flex justify-center items-center">
         <Link href='/contact-us'>
-          <button className={`rounded-full   md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
+          <button className={`rounded-full  text-[30px]  md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
 
             {buttonText}
           </button></Link>

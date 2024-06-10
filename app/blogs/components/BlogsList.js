@@ -24,7 +24,7 @@ const BlogsList = ({ blogs, categories }) => {
       <div className="flex flex-col ">
         <div className="relative flex flex-row justify-center gap-4 px-10 md:justify-end capitalize">
           <p className={`text-base font-medium cursor-pointer  ${selectedCategoryId === null && 'bg-[#FF8500]  text-white px-3 rounded-xl'}`} onClick={() => handleCategory()}>
-            all
+            all 
           </p>
           {
             newsCategory?.map((item, index) => (

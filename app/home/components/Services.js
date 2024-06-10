@@ -60,10 +60,10 @@ const Services = ({ services, pageContent }) => {
             <MotionDiv direction='right' styles='grid grid-cols-1 gap-4 mt-20 md:grid-cols-3'>
                 {services?.map((item, index) => (
                     <MotionDiv
-                        key={index} styles='flex items-center justify-center w-full box-shadow' inlineStyle={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', borderRadius: '23px', height: '300px' }}>
-                        <div className=' 2xl:w-[80%] w-[90%]'>
+                        key={index} styles='flex items-center justify-center w-full box-shadow' inlineStyle={{ backgroundImage: `url(${item.image})`,  backgroundPosition: 'center', borderRadius: '23px' , backgroundSize:'auto'}}>
+                        <div className=' 2xl:w-[80%] w-[90%] p-4'>
                             <h1 className=' 2xl:text-[30px] text-[25px] font-medium text-[#4C4C4D] w-[80%]'>{item.title}</h1>
-                            <h3 className=' 2xl:text-[26px] text-lg font-light text-[#4C4C4D]'>{item.description}</h3>
+                            <h3 className=' 2xl:text-[26px] text-lg font-light text-[#4C4C4D] mt-1'>{item.description}</h3>
                         </div>
                     </MotionDiv>
                 ))}
