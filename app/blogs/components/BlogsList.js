@@ -8,7 +8,6 @@ import { displayDateFormatShort } from "@/app/constant";
 import Link from "next/link";
 import { SlReload } from "react-icons/sl";
 import { Box, Skeleton } from "@mui/material";
-import LoadMore from "@/app/educations/components/LoadMore";
 
 
 function Animations() {

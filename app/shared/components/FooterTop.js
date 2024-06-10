@@ -2,7 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import StayTouch from '@/app/contact-us/components/StayTouch'
 
 const FooterTop = () => {
   const location = useReducer();
@@ -10,6 +11,21 @@ const FooterTop = () => {
     const url = '/contact-us';
     window.open(url, "_blank");
   }
+
+  useEffect(() => {
+    console.log(document.getElementById("stay-in-touch"));
+  }, []);
+
+  useEffect(() => {
+    // Scroll to the stay-in-touch section if the URL contains the fragment identifier #stay-in-touch
+    const hash = window.location.hash;
+    if (hash === '#stay-in-touch') {
+      const element = document.getElementById('stay-in-touch');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   const getDynamicTextAndStyle = () => {
     const { pathname } = location;
@@ -43,11 +59,12 @@ const FooterTop = () => {
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"
         />
         <div className="absolute inset-0 flex justify-center items-center">
-        <Link href='/contact-us'>
-          <button className={`rounded-full  text-[30px]  md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
+          {/* <Link href='/contact-us/#stay-in-touch'>
+            <button className={`rounded-full  text-[30px]  md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
 
-            {buttonText}
-          </button></Link>
+              {buttonText}
+            </button></Link> */}
+          <StayTouch link={'/contact-us/#stay-in-touch'} text={buttonText} buttonClassName={buttonClassName} />
         </div>
       </div>
     </div>
