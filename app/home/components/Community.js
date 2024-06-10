@@ -4,10 +4,11 @@ import { getGlobalCookie } from '@/app/utils'
 import Link from 'next/link'
 import Image from 'next/image'
 import MotionDiv from '@/app/shared/components/MotionDiv'
+import ExploreMore from '@/app/home/components/ExploreMore'
 
 
 
-const Community =  ({ourCommunity}) => {
+const Community = ({ ourCommunity }) => {
     const language = getGlobalCookie('language')
     return (
         <div className='relative w-full mt-16 md:mt-28 font-Sans'>
@@ -31,9 +32,7 @@ const Community =  ({ourCommunity}) => {
                 </div>
             </div>
             <div className='flex justify-center w-full mt-20'>
-                <Link href='/contact-us'>
-                    <button className='border border-[#FF8500] sm:text-[30px] text-[25px] font-medium px-10 py-2 rounded-[30px] text-[#4C4C4D]' >Explore more</button>
-                </Link>
+                <ExploreMore link={'/contact-us'} page={"Explore more"} />
             </div>
             <div>
                 <div className='absolute -mt-36 left-[28rem] h-[300px] w-[300px] block md:hidden z-[-1]'><OrangeGradient /></div>
