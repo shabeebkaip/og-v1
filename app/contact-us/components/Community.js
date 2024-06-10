@@ -9,7 +9,7 @@ import MotionDiv from '@/app/shared/components/MotionDiv';
 import FormSubmission from '@/app/shared/components/FormSubmission';
 import { authenticateUser } from '@/app/shared/api'
 import { useState } from 'react';
-const Community = ({ mentor }) => {
+const Community = ({ mentor , index }) => {
     const handleNavigate = () => {
         const url = mentor.btnLink;
         if (url) {
@@ -78,7 +78,7 @@ const Community = ({ mentor }) => {
                     </div>
                 </MotionDiv>
                 <MotionDiv direction='left' styles="flex-col hidden w-full gap-4 lg:w-1/2 lg:flex md:p-5 justify-center">
-                    {mentor?.images?.length === 3 && <Threeimage images={mentor.images} />}
+                    {mentor?.images?.length === 3 && <Threeimage images={mentor.images} index={index} />}
                     {mentor?.images?.length === 1 && <Oneimage images={mentor.images} />}
                     {mentor?.images?.length === 2 && <TwoImages images={mentor.images} />}
                     {mentor?.images?.length === 4 && <FourImages images={mentor.images} />}

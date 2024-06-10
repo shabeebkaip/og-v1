@@ -108,11 +108,11 @@ const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, pay
                     handleInitiatePayment();
                 }
             } else {
-                enqueueSnackbar('Request failed. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
             }
         } catch (error) {
             console.log(error);
-            enqueueSnackbar('An error occurred. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+            enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
     return (

@@ -12,7 +12,7 @@ import LeftImge from "./LeftImage"
 
 
 
-const CommunityReverse = ({ mentor }) => {
+const CommunityReverse = ({ mentor , index }) => {
 
     const handleNavigate = () => {
         const url = mentor.btnLink;

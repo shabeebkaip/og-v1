@@ -21,9 +21,9 @@ const ContactUs = async () => {
             <ContactHero data={hero} />
             {communityList?.map((item, index) => (
                 index % 2 === 0 ? (
-                    <Community key={index} mentor={item} />
+                    <Community key={index} mentor={item} index={index} />
                 ) : (
-                    <CommunityReverse key={index} mentor={item} countryCode="jdjdj" />
+                    <CommunityReverse key={index} mentor={item} index={index}  />
                 )
             ))}
             

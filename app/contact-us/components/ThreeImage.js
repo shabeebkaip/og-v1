@@ -1,7 +1,8 @@
 import Image from 'next/image'
 import React from 'react'
 
-const Threeimage = ({ images }) => {
+const Threeimage = ({ images , index }) => {
+    console.log(index, "images")
     return (
         <div className='flex flex-col gap-3'>
 

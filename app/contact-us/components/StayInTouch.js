@@ -61,7 +61,7 @@ const StayInTouch = ({ countryCode }) => {
         })
             .then(response => {
                 if (response.data.success) {
-                    enqueueSnackbar('Request successful!', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                    enqueueSnackbar('Request successfull', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
                     setData({
                         name: "",
                         email: "",
@@ -70,11 +70,11 @@ const StayInTouch = ({ countryCode }) => {
                         message: ""
                     });
                 } else {
-                    enqueueSnackbar('Request failed. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                    enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
                 }
             })
             .catch(error => {
-                enqueueSnackbar('An error occurred. Please try again.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
             });
     }
 
