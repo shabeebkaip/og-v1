@@ -7,12 +7,13 @@ import Link from "next/link";
 import Image from "next/image";
 import axios from 'axios';
 import { find } from '@/lib/utils';
+import FooterLinks from '@/app/shared/components/FooterLinks'
 
 const fetchSocialMediaLinks = async () => {
     try {
         const response = await find('footers');
         return response;
-    }catch(error){
+    } catch (error) {
         console.log(error);
     }
 }
@@ -31,15 +32,16 @@ const Footer = async () => {
 
                         <div className="text-[#4C4C4D] md:text-lg text-lg xl:text-2xl font-normal font-Sans mb-4 md:mb-0">
                             <ul>
-                                <Link href='/'><li className="cursor-pointer font-normal hover:text-[#FF8500]">Home</li></Link>
-                                <Link href='/programs'><li className="cursor-pointer font-normal hover:text-[#FF8500]">Programs</li></Link>
-                                <Link href='/careers'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >Careers</li></Link>
+                                <FooterLinks link={"/"} page={"Home"} />
+                                <FooterLinks link={"/programs"} page={"Programs"} />
+                                <FooterLinks link={'/careers'} page={"Careers"} />
+                                <FooterLinks link={'/educations'} page={"Educations"} />
                             </ul>
                         </div>
                         <div className="text-[#4C4C4D] md:text-lg text-lg xl:text-2xl md:semi-bold font-bold font-Sans mb-4 md:mb-0 ">
                             <ul>
-                                <Link href='/blogs'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >News</li></Link>
-                                <Link href='/contact-us'><li className="cursor-pointer font-normal hover:text-[#FF8500]" >Contact Us</li></Link>
+                                <FooterLinks link={'/blogs'} page={"News"} />
+                                <FooterLinks link={'/contact-us'} page={"Contact Us"} />
 
                             </ul>
                         </div>
@@ -72,11 +74,11 @@ const Footer = async () => {
                     </div>
                     <div className="w-full md:w-[50%] flex flex-col md:flex-row py-3 md:py-5 ">
                         <Link href='/terms-and-condition'>
-                        <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans mb-3 md:mb-0 hover:text-blue-600">General Terms Of Use</p>
+                            <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans mb-3 md:mb-0 hover:text-blue-600">General Terms Of Use</p>
                         </Link>
-                        
+
                         <Link href="/privacy-policy">
-                        <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans ml:0 md:ml-10 hover:text-blue-600 ">Privacy Policy</p>
+                            <p className="text-left md:text-left text-[#4C4C4D] text-lg md:text-base lg:text-xl xl:text-2xl font-normal  font-Sans ml:0 md:ml-10 hover:text-blue-600 ">Privacy Policy</p>
                         </Link>
                     </div>
                 </div>

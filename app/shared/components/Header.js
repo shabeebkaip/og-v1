@@ -8,7 +8,6 @@ import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import SharedLoader from '@/app/shared/components/sharedLoader';
 
-import { useRouter } from 'next/router';
 
 
 
