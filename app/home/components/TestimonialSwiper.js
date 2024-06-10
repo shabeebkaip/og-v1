@@ -43,8 +43,8 @@ const TestimonialSwiper = ({testimonials}) => {
       }}
     >
       {testimonials?.map((item, index) => (
-        <SwiperSlide key={index} className='relative h-full min-h-[700px] rounded-2xl px-10 '>
-          <div className='flex flex-col justify-center gap-5  '>
+        <SwiperSlide key={index} className='relative h-full min-h-[700px] flex items-center rounded-2xl px-10 '>
+          <div className='flex flex-col  gap-5  '>
             <div>
               <p className='text-left text-[#4C4C4D] lg:text-[20px] xl:text-[22px] sm:text-[22px] text-[17px] 2xl:text-[24px]   font-light'>{item.description}</p>
             </div>
