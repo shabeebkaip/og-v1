@@ -34,6 +34,7 @@ export const authenticateUser = () => {
 export const getFormApi = (key) => getData('form',key)
 
 export const getUserApi = async (token) => {
+  debugger
   try {
       const response = await axios.get("https://api-one-global.code-ox.com/api/getUserProfile", {
           headers: {
@@ -42,6 +43,9 @@ export const getUserApi = async (token) => {
       });
       return response.data;
   } catch (error) {
+      localStorage.removeItem('token');
+      localStorage.removeItem('token_id');
+      window.location.href = '/';
       console.error('Error fetching user:', error);
       throw error;
   }

@@ -35,7 +35,7 @@ const Profile = () => {
 
   useEffect(() => {
     if (token) {
-      getUserApi(token).then(res => setUserData(res.data));
+      getUserApi(token).then(res => setUserData(res.data.user));
     }
 
   }, [token]);
@@ -59,7 +59,7 @@ const Profile = () => {
   const handlePageChange = (page) => {
     setActivePage(page);
   };
-
+  console.log('userData', userData);
   return (
     <div>
       <div className="absolute lg:top-[-5%] w-[400px] h-[400px] right-[0px] hidden lg:block   ">
@@ -79,10 +79,10 @@ const Profile = () => {
 
 
         <div className=" container mx-auto px-3 md:px-0">
-          <Hero user={userData?.user} />
+          <Hero user={userData?.data} />
           {/* <UpgradePlan /> */}
 
-          < OrderHistory  orderHistory={orderHistory} totalPages={totalPages} activePage={activePage} handlePageChange={handlePageChange} totalCount={totalCount}/>
+          <OrderHistory  orderHistory={orderHistory} totalPages={totalPages} activePage={activePage} handlePageChange={handlePageChange} totalCount={totalCount}/>
 
         </div>
       </div>
