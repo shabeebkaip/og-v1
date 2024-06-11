@@ -17,8 +17,8 @@ const JoinHub = ({ pageContent }) => {
                                             className="py-2 px-5 border rounded-[23px]"
                                             style={{
                                                 color: 
-                                                    pageContent1.textColor.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                                                        pageContent1.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase() 
+                                                    pageContent1?.textColor.trim().toLowerCase() === pageContent1?.borderText.trim().toLowerCase() ||
+                                                        pageContent1?.textColor_1.trim().toLowerCase() === pageContent1?.borderText_1.trim().toLowerCase() 
                                                         ? '#FF8500'
                                                         : 'inherit',
                                                 borderColor: '#FF8500', // Apply border color based on borderText

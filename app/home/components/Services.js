@@ -7,7 +7,6 @@ import MotionDiv from '@/app/shared/components/MotionDiv';
 const Services = ({ services, pageContent }) => {
     const pageContent1 = pageContent?.pageContent?.[0]
     const text = pageContent1?.text
-    console.log(pageContent1.textColor.split(' '))
 
     return (
         <div className='w-full font-Sans'>
@@ -27,8 +26,8 @@ const Services = ({ services, pageContent }) => {
                                         className="py-2 px-5 border rounded-[23px]"
                                         style={{
                                             color:
-                                                pageContent1.textColor.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                                                    pageContent1.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
+                                                pageContent1?.textColor.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
+                                                    pageContent1?.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
                                                     ? '#FF8500'
                                                     : 'inherit',
                                             borderColor: '#FF8500', // Apply border color based on borderText
@@ -47,8 +46,8 @@ const Services = ({ services, pageContent }) => {
                                                 key={wordIndex}
                                                 style={{
                                                     color:
-                                                        pageContent1.textColor.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                                                        pageContent1.textColor_1.split(' ').includes(word.replace(/[.,]/g, ''))
+                                                        pageContent1?.textColor.split(' ').includes(word.replace(/[.,]/g, '')) ||
+                                                        pageContent1?.textColor_1.split(' ').includes(word.replace(/[.,]/g, ''))
                                                             ? '#FF8500'
                                                             : 'inherit',
                                                     border: 'none', // Remove border from words
@@ -63,8 +62,8 @@ const Services = ({ services, pageContent }) => {
                                                 className="py-2 px-5 border rounded-[23px]"
                                                 style={{
                                                     color:
-                                                        pageContent1.textColor.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase() ||
-                                                            pageContent1.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
+                                                        pageContent1?.textColor.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase() ||
+                                                            pageContent1?.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
                                                             ? '#FF8500'
                                                             : 'inherit',
                                                     borderColor: '#FF8500', // Apply border color based on borderText_1
