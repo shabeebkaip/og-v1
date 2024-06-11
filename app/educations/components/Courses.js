@@ -60,7 +60,6 @@ function Courses({ courseLists }) {
             .then(response => {
                 setCourseList(response.data);
                 setLoading(false);
-                console.log("Courses fetched: ", response.data); // Debug log
             })
             .catch(error => {
                 setLoading(false);
@@ -78,7 +77,6 @@ function Courses({ courseLists }) {
             .then(response => {
                 setCourseList(response.data);
                 setLoading(false);
-                console.log("Filtered courses: ", response.data);
             })
             .catch(error => {
                 setLoading(false);

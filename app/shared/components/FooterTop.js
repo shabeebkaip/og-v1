@@ -11,11 +11,6 @@ const FooterTop = () => {
     const url = '/contact-us';
     window.open(url, "_blank");
   }
-
-  useEffect(() => {
-    console.log(document.getElementById("stay-in-touch"));
-  }, []);
-
   useEffect(() => {
     // Scroll to the stay-in-touch section if the URL contains the fragment identifier #stay-in-touch
     const hash = window.location.hash;

@@ -4,6 +4,7 @@ import OrangeGradientLeft from '@/app/shared/components/OrangeGradientLeft'
 import moment from "moment";
 import { displayDateFormatShort } from "@/app/constant";
 import Image from 'next/image';
+// import BlogsList from '../../components/BlogsList';
 
 
 const BlogContents = ({ blogDetail }) => {
@@ -40,12 +41,13 @@ const BlogContents = ({ blogDetail }) => {
       return <p key={index} className="">{item.text}</p>;
     });
   };
+
+
   return (
     <div className='flex flex-col gap-10 relative '>
-
       <div className='container mx-auto '>
         <div className="md:text-5xl text-3xl relative sm:px-0 px-3 font-medium text-[#656565] text-center py-16">
-          <p className='capitalize'>{blogDetail?.title}</p>
+          <p className='capitalize'>{blogDetail?.title}</p> 
           <div className="absolute lg:top-[24%] md:top-[10%] sm:top-[-40%] top-[-10%]  md:w-[300px] w-[200px] md:h-[300px] h-[200px] lg:right-[10%] hidden lg:block  ">
             <OrangeGradient className="" />
           </div>
@@ -98,6 +100,9 @@ const BlogContents = ({ blogDetail }) => {
           </div>
         </div>
       </div>
+
+  
+
       <div className="absolute lg:w-[300px] w-[200px] lg:h-[300px] h-[200px] right-8 bottom-[-150px] hidden md:block   ">
         <OrangeGradient className="" />
       </div>
@@ -113,3 +118,6 @@ const BlogContents = ({ blogDetail }) => {
 }
 
 export default BlogContents
+
+
+

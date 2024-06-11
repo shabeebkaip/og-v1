@@ -8,7 +8,7 @@ import { authenticateUser, getUserApi } from '@/app/shared/api';
 import { useSearchParams } from 'next/navigation'
 
 
-const Continue = ({ packages, checked , selectedPackage }) => {
+const Continue = ({ packages, checked, selectedPackage }) => {
     const params = useSearchParams();
     const code = params.get('code');
     const [pageContent, setPageContent] = useState([])
@@ -121,7 +121,7 @@ const Continue = ({ packages, checked , selectedPackage }) => {
     return (
         <div className='relative pb-8'>
             <div className='flex items-center justify-center my-20 cursor-pointer' onClick={handleInitiatePayment}>
-                <p className={`border rounded-[40px] ${checked ? 'hover:bg-[#FF8500] text-[#FF8500] hover:text-white' : 'text-gray-500 border-gray-500' } border-[#FF8500]  text-[20px] px-16 py-2`}>
+                <p className={`border rounded-[40px] ${checked ? 'hover:bg-[#FF8500] text-[#FF8500] hover:text-white' : 'text-gray-500 border-gray-500'} border-[#FF8500]  text-[20px] px-16 py-2`}>
                     Continue
                 </p>
             </div>
@@ -133,15 +133,19 @@ const Continue = ({ packages, checked , selectedPackage }) => {
                                 <div key={index} style={{ display: 'inline' }}>
                                     {index > 0 && (
                                         <span
-                                            className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
-                                            style={{
-                                                color: pageContent?.textColor?.trim().toLowerCase() === pageContent?.borderText?.trim().toLowerCase()
+                                        className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
+                                        style={{
+                                            color:
+                                                pageContent.textColor.trim().toLowerCase() === pageContent.borderText.trim().toLowerCase() ||
+                                                    pageContent.textColor_1.trim().toLowerCase() === pageContent.borderText_1.trim().toLowerCase()
                                                     ? '#FF8500'
                                                     : 'inherit',
-                                            }}
-                                        >
-                                            {pageContent?.borderText}
-                                        </span>
+                                            borderColor: '#FF8500', // Apply border color based on borderText
+                                            borderWidth: '1px',
+                                        }}
+                                    >
+                                        {pageContent?.borderText}
+                                    </span>
                                     )}
                                     {splitText?.split(' ').map((word, innerIndex) => (
                                         <span
@@ -161,6 +165,8 @@ const Continue = ({ packages, checked , selectedPackage }) => {
                                     ))}
                                 </div>
                             ))}
+
+                         
                         </h3>
                     </div>
                     <div className='md:w-[200px] absolute h-[250px] top-[40%] left-[10%] md:block hidden'><BlueGradient /></div>

@@ -8,7 +8,6 @@ import Link from 'next/link'
 
 const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
     const language = getGlobalCookie('language')
-    console.log(hackathon);
     return (
         <>
             <div className='w-full mt-16 font-Sans md:mt-28'>

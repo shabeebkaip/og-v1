@@ -9,7 +9,7 @@ const Hero = ({ programDetail }) => {
     return (
         <div className='container  relative flex flex-col w-full px-3 mx-auto lg:flex-row md:gap-4 font-Sans md:px-0 overflow-hidden pb-8'>
             <MotionDiv styles='lg:w-1/2 '>
-                <Image src={programDetail?.heroImage} alt='Image' blurDataURL='lazy' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={200} height={200} />
+                <Image src={programDetail?.heroImage} alt='Image' blurDataURL='lazy' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={1000} height={1000} />
             </MotionDiv>
             <MotionDiv styles='relative z-40 flex lg:w-1/2 '>
                 <div className='flex flex-col w-full rounded-[23px] justify-center items-center xl:py-8  bg-white ' style={{ boxShadow: '0px 4px 20px 0px #00000026' }}>

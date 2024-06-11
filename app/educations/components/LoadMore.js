@@ -37,11 +37,6 @@ const LoadMore = ({ courseList, mode }) => {
     const authenticateUserFn = () => {
         authenticateUser();
     };
-
-    console.log(formId);
-
-
-
     return (
         <SnackbarProvider>
             <div className="container mx-auto">

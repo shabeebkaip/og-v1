@@ -14,7 +14,6 @@ import { getUserApi } from '@/app/shared/api'
 
 
 const TakeCourse = ({ educationDetail }) => {
-    console.log(educationDetail.form_id);
     const [popup, setPopup] = useState(false);
     const [userData, setUserData] = useState(null);
     const courseName = { program_name: educationDetail?.heading, program_id: educationDetail?._id }
