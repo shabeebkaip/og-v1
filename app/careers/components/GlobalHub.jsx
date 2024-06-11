@@ -1,6 +1,7 @@
 
 import BlueGradient from '@/app/shared/components/BlueGradient'
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
+import PageContents from '@/app/shared/components/PageContents'
 
 const GlobalHub = async ({ data }) => {
     const pageContent = data
@@ -12,64 +13,7 @@ const GlobalHub = async ({ data }) => {
             <div className='relative flex justify-center w-full mt-6 md:mt-28 mb-6 '>
                 <div className='w-[20%] absolute md:h-full h-[100px] top-[10%] left-[10%] md:block hidden '><BlueGradient /></div>
                 <h3 className='2xl:text-[50px] xl:text-[40px] md:text-[30px] text-center 2xl:w-[63%] text-[25px]  font-medium text-gray-500 bg-white p-5 rounded-3xl w-full'>
-                    
-
-                    {text?.split(pageContent1?.borderText).map((splitText, index) => (
-                        <div key={index} style={{ display: 'inline' }}>
-                            {index > 0 && (
-                                <span
-                                    className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
-                                    style={{
-                                        color:
-                                            pageContent1.textColor.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                                                pageContent1.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                                                ? '#FF8500'
-                                                : 'inherit',
-                                        borderColor: '#FF8500', // Apply border color based on borderText
-                                        borderWidth: '1px',
-                                    }}
-                                >
-                                    {pageContent1?.borderText}
-                                </span>
-                            )}
-                            {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
-                                <span key={innerIndex}>
-                                    {innerSplitText.split(' ').map((word, wordIndex) => (
-                                        <span
-                                            key={wordIndex}
-                                            style={{
-                                                color:
-                                                    pageContent1.textColor.trim().toLowerCase() === word.trim().toLowerCase() ||
-                                                        pageContent1.textColor_1.trim().toLowerCase() === word.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                border: 'none', // Remove border from words
-                                            }}
-                                        >
-                                            {word}
-                                            {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                                        </span>
-                                    ))}
-                                    {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
-                                        <span
-                                            className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
-                                            style={{
-                                                color:
-                                                    pageContent1.textColor.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase() ||
-                                                        pageContent1.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                borderColor: '#FF8500', // Apply border color based on borderText_1
-                                                borderWidth: '1px',
-                                            }}
-                                        >
-                                            {pageContent1?.borderText_1}
-                                        </span>
-                                    )}
-                                </span>
-                            ))}
-                        </div>
-                    ))}
+                    <PageContents text={text} pageContent1={pageContent1} />
 
                 </h3>
                 <div className='w-[20%] absolute md:h-full h-[100px] right-[5%] top-[-10%] md:block hidden'><OrangeGradient /></div>

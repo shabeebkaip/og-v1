@@ -13,7 +13,9 @@ const fetchHero = async () => {
     const response = await find('heros');
     const hero = response.find(hero => hero.key === 'package');
     unstable_noStore();
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -24,7 +26,9 @@ const fetchPackages = async () => {
   try {
     const response = await find('packages');
     unstable_noStore();
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;

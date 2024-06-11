@@ -2,6 +2,7 @@
 import OrangeGradient from '@/app/shared/components/OrangeGradient';
 import BlueGradient from '@/app/shared/components/BlueGradient';
 import MotionDiv from '@/app/shared/components/MotionDiv';
+import PageContents from '@/app/shared/components/PageContents';
 
 
 const Services = ({ services, pageContent }) => {
@@ -18,66 +19,7 @@ const Services = ({ services, pageContent }) => {
                 <div className='w-[50%] absolute h-[100%] top-[68%]  block md:hidden left-0 '><BlueGradient /></div>
                 <div className='w-[40%] absolute h-[100%] top-[-30%]  block md:hidden right-0 '><OrangeGradient /></div>
                 <h3 className='2xl:text-[50px] xl:leading-[70px] lg:leading-[60px] xl:text-[35px] md:text-[30px] text-center 2xl:w-[79%] text-[25px] xl:w-[70%]  font-medium text-gray-500   p-5 rounded-3xl md:z-[100] break-words  z-0'>
-                    <span>
-                        {text?.split(pageContent1?.borderText).map((splitText, index) => (
-                            <div key={index} style={{ display: 'inline' }}>
-                                {index > 0 && (
-                                    <span
-                                        className="py-2 px-5 border rounded-[23px]"
-                                        style={{
-                                            color:
-                                                pageContent1?.textColor.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                                                    pageContent1?.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                                                    ? '#FF8500'
-                                                    : 'inherit',
-                                            borderColor: '#FF8500', // Apply border color based on borderText
-                                            borderWidth: '1px',
-                                        }}
-                                    >
-                                        {pageContent1?.borderText}
-                                    </span>
-                                )}
-                                {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
-
-                                    <span key={innerIndex}>
-
-                                        {innerSplitText.split(' ').map((word, wordIndex) => (
-                                            <span
-                                                key={wordIndex}
-                                                style={{
-                                                    color:
-                                                        pageContent1?.textColor.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                                                        pageContent1?.textColor_1.split(' ').includes(word.replace(/[.,]/g, ''))
-                                                            ? '#FF8500'
-                                                            : 'inherit',
-                                                    border: 'none', // Remove border from words
-                                                }}
-                                            >
-                                                {word}
-                                                {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                                            </span>
-                                        ))}
-                                        {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
-                                            <span
-                                                className="py-2 px-5 border rounded-[23px]"
-                                                style={{
-                                                    color:
-                                                        pageContent1?.textColor.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase() ||
-                                                            pageContent1?.textColor_1.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                                                            ? '#FF8500'
-                                                            : 'inherit',
-                                                    borderColor: '#FF8500', // Apply border color based on borderText_1
-                                                    borderWidth: '1px',
-                                                }}
-                                            >
-                                                {pageContent1?.borderText_1}
-                                            </span>
-                                        )}
-                                    </span>
-                                ))}
-                            </div>
-                        ))}
-                    </span>
+                    <PageContents text={text} pageContent1={pageContent1} />
                 </h3>
                 <div className='w-[20%] absolute h-full right-[5%] top-[-10%] lg:block hidden'><OrangeGradient /></div>
             </div>

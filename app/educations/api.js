@@ -6,7 +6,9 @@ export const fetchEducationHero = async () => {
     noStore();
     const response = await find('heros');
     const hero = response.find(hero => hero.key === 'education');
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -17,7 +19,9 @@ export const fetchCourseList = async () => {
   try {
     noStore();
     const response = await find('courses');
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -42,7 +46,9 @@ export const fetchCollaboratorList = async () => {
   try {
     noStore();
     const response = await find('universities');
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -51,7 +57,9 @@ export const fetchCollaboratorList = async () => {
 export const fetchFindProgram = async () => {
   try {
     const response = await findOne('find programmes');
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -63,7 +71,9 @@ export const fetchprofTestList = async () => {
   try {
     const response = await find('graducatedtestimonials');
     noStore();
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -75,7 +85,9 @@ export const fetchPageContentEducation = async () => {
     const response = await find('pagecontents');
     const hero = response.find(hero => hero.key === 'education');
     noStore();
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error(error);
     return null;

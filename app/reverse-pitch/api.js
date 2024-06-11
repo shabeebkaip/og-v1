@@ -6,7 +6,9 @@ export const fetchHero = async () => {
     const response = await find('heros');
     const hero = response.find(hero => hero.key === 'reverse');
     unstable_noStore();
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -17,7 +19,9 @@ export const fetchReversePitch = async () => {
   try {
     const response = await findOne('hackathonresverses');
     unstable_noStore();
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error(error);
     return null;
@@ -30,7 +34,9 @@ export const fetchPageContentReversePitch = async () => {
     const response = await find('heros');
     const hero = response.find(hero => hero.key === 'reverse_page');
     unstable_noStore();
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error(error);
     return null;

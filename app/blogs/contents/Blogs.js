@@ -19,7 +19,9 @@ const fetchBlogHero = async () => {
       return null;
     }
 
-    return hero;
+    // return hero;
+    return JSON.parse(JSON.stringify(hero));
+
   } catch (error) {
     console.error('Error fetching hero:', error);
     return null;
@@ -35,7 +37,9 @@ const fetchBlogs = async () => {
       return [];
     }
 
-    return response;
+    // return response;
+    return JSON.parse(JSON.stringify(response));
+
   } catch (error) {
     console.error('Error fetching blogs:', error);
     return [];
@@ -51,7 +55,9 @@ const fetchCategories = async () => {
       return [];
     }
     const categories = response.filter(category => category.key === 'news');
-    return categories;
+    // return categories;
+    return JSON.parse(JSON.stringify(categories));
+
   } catch (error) {
     console.error('Error fetching categories:', error);
     return [];
