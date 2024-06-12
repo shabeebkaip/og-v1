@@ -143,7 +143,7 @@ const StayInTouch = ({ countryCode }) => {
                         <input
                             type="text"
                             placeholder={error.name ? error.name : 'Your name*'}
-                            className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name && 'placeholder:text-red-500'} `}
+                            className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={data.name}
                             onChange={handleNameChange}
                             onFocus={() => setError({ ...error, name: '' })}
@@ -152,7 +152,7 @@ const StayInTouch = ({ countryCode }) => {
                     <input
                         type="email"
                         placeholder={error.email ? error.email : 'Your email*'}
-                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} `}
+                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]` }
                         value={error.email ? "" : data.email}
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                         onFocus={() => setError({ ...error, email: '' })}
@@ -177,7 +177,7 @@ const StayInTouch = ({ countryCode }) => {
                         <input
                             type="text"
                             placeholder={error.number ? error.number : 'Your phone*'}
-                            className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'}`}
+                            className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={error.number ? "" : data.number}
                             onChange={handleNumberChange}
                             onFocus={() => setError({ ...error, number: '' })}
@@ -188,19 +188,19 @@ const StayInTouch = ({ countryCode }) => {
                         <select
                             name="search"
                             id="search"
-                            className='border-none outline-none w-full lg:h-auto text-sm sm:text-base sm:p-1 sm:h-6'
+                            className='border-none outline-none w-full lg:h-auto text-sm sm:text-base sm:p-1 sm:h-6 text-[#4C4C4D] font-bold capitalize'
                             value={data.whatAreYouLookingFor} // Use data.whatAreYouLookingFor here
                             onChange={handleSelectChange} // Use the custom handler for onChange
                         >
                             {
                                 dropDown?.map((item, index) => (
-                                    <option key={index} value={item.contact_list}>{item.contact_list}</option>
+                                    <option key={index} value={item.contact_list}className='font-bold text-[#4C4C4D] ' >{item.contact_list}</option>
                                 ))
                             }
                         </select>
                     </div>
                     <div className='flex flex-col mb-4 lg:w-[50%] w-full'>
-                        <label htmlFor="subject" className='text-[16px] lg:mt-4'>Message</label>
+                        <label htmlFor="subject" className='text-[16px] lg:mt-4 font-bold text-[#4C4C4D]'>Message</label>
                         <textarea name="subject" id="subject" placeholder='' className='border-b  test-[20px] border-b-[#242222] mt-2 w-full focus:outline-none'
                             value={data.message}
                             onChange={(e) => setData({ ...data, message: e.target.value })}
