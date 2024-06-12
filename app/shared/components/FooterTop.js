@@ -43,9 +43,8 @@ const FooterTop = () => {
   };
 
   const { buttonText, buttonClassName, footertop } = getDynamicTextAndStyle();
-
   return (
-    <div className={` h-[60vh] mt-4 pb-10 sm-min-h-screen flex justify-center px-4 md:px-0 items-center container  mx-auto  ${footertop}`}>
+    <div className={`${window.location.pathname === "/contact-us" ? "hidden" :'flex' }  h-[60vh] mt-4 pb-10 sm-min-h-screen  justify-center px-4 md:px-0 items-center container  mx-auto  ${footertop}`}>
       <div className="relative  w-full h-full px-3">
         <Image
           width={1000} height={500}
