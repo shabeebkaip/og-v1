@@ -14,7 +14,7 @@ function Animations() {
   return (
     <>
       {Array.from(new Array(4)).map((_, index) => (
-        <Box key={index} sx={{ width: 300 }}>
+        <Box key={index} >
           <Skeleton height={300} />
           <Skeleton animation="wave" />
           <Skeleton animation="wave" />
@@ -54,24 +54,9 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
       // 'All' category
       setNewsList(blogs);
       setNoNewsFound(false);
+      getBlogsListAPI({ page: 1 }, "skeleton")
     } else {
-
-
-      // Specific category
       getBlogsListAPI({ category: id, page: 1 }, "skeleton")
-      //   .then((res) => {
-      //     if (res.data.length === 0) {
-      //       setNoNewsFound(true);
-      //     } else {
-      //       setNewsList(res.data);
-      //       setNoNewsFound(false);
-      //     }
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error fetching news:", error);
-      //     setNoNewsFound(true);
-      //   })
-      //   .finally(() => setLoading(false));
     }
   };
 
@@ -106,36 +91,35 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
         setNoNewsFound(true)
       })
   }
-  console.log(pagination, "pagination")
-  console.log(newsList, "news ")
   return (
     <div className="container mx-auto pb-8">
+      <div className="relative flex flex-row justify-center gap-4 px-10 md:justify-end capitalize">
+        <p
+          className={`text-base font-medium cursor-pointer ${selectedCategoryId === null &&
+            "bg-[#FF8500] text-white px-3 rounded-xl"
+            }`}
+          onClick={() => handleCategory(null)}
+        >
+          all
+        </p>
+        {newsCategory?.map((item, index) => (
+          <button
+            className={`text-black px-3 rounded-xl ${selectedCategoryId === item._id ? "bg-[#FF8500] text-white" : ""
+              }`}
+            key={index}
+            onClick={() => handleCategory(item._id)}
+          >
+            {item.name}
+          </button>
+        ))}
+      </div>
       {loading ? (
         <div className="grid grid-cols-4 gap-5">
           <Animations />
         </div>
       ) : (
         <div className="flex flex-col">
-          <div className="relative flex flex-row justify-center gap-4 px-10 md:justify-end capitalize">
-            <p
-              className={`text-base font-medium cursor-pointer ${selectedCategoryId === null &&
-                "bg-[#FF8500] text-white px-3 rounded-xl"
-                }`}
-              onClick={() => handleCategory(null)}
-            >
-              all
-            </p>
-            {newsCategory?.map((item, index) => (
-              <button
-                className={`text-black px-3 rounded-xl ${selectedCategoryId === item._id ? "bg-[#FF8500] text-white" : ""
-                  }`}
-                key={index}
-                onClick={() => handleCategory(item._id)}
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
+
           <div className="">
             {noNewsFound ? (
               <p className="mt-8 flex justify-around text-red-500 text-[20px]">
@@ -154,9 +138,7 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
                         style={{ backgroundImage: `url(${item?.image?.[0]})` }}
                       ></div>
                       <h3 className="text-[16px] 2xl:text-[16px] md:text-[12px] lg:text-[14px] leading-[18.77px] 2xl:leading-[18.77px] font-normal mt-9">
-                        {item?.createdAt
-                          ? moment(item?.createdAt).format(displayDateFormatShort)
-                          : ""}
+                        {item?.createdAt ? moment(item?.createdAt).format(displayDateFormatShort) : ""}
                       </h3>
                       <h2 className="uppercase font-medium sm:text-[30px] text-[25px] lg:text-[25px] 2xl:text-[30px] sm:leading-[35.19px] text-[#4C4C4D] md:text-[20px] md:leading-tight leading-7 sm:mt-0 mt-2 ">
                         {item?.title}

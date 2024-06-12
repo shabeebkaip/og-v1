@@ -1,12 +1,9 @@
-
+"use client"
 import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import MobHeroSlider from '@/app/shared/components/MobHeroSlider'
 import { getGlobalCookie } from '@/app/utils'
 import Image from 'next/image'
-import Link from 'next/link'
-import axios from 'axios'
 import MotionDiv from '@/app/shared/components/MotionDiv'
-import { baseURL } from '@/app/constant'
 
 
 
@@ -81,12 +78,12 @@ const Hero = ({ data }) => {
           </div>
         </div>
         <div className='ml-[15%] pb-5  '>
-          <Link href="/programs">
+          <div onClick={() => window.location.href = "/programs"}>
             <button className='border px-9 py-3 rounded-[40px] border-[#FF8500] text-[20px] text-[#1C2126]'>
               Our Programs
               <span className='pl-4'>&rarr;</span>
             </button>
-          </Link>
+          </div>
         </div>
 
       </MotionDiv>
