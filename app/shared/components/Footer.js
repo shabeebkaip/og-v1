@@ -35,7 +35,6 @@ const Footer = async () => {
                                 <FooterLinks link={"/"} page={"Home"} />
                                 <FooterLinks link={"/programs"} page={"Programs"} />
                                 <FooterLinks link={'/careers'} page={"Careers"} />
-                                <FooterLinks link={'/educations'} page={"Educations"} />
                             </ul>
                         </div>
                         <div className="text-[#4C4C4D] md:text-lg text-lg xl:text-2xl md:semi-bold font-bold font-Sans mb-4 md:mb-0 ">
