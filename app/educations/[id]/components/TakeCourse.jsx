@@ -29,15 +29,14 @@ const TakeCourse = ({ educationDetail }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            getUserApi(token).then(res => setUserData(res.data));
+            getUserApi(token).then(res => setUserData(res.data?.user));
 
         }
     }, []);
     const handleInitiatePayment = () => {
-        debugger
         let data = {
-            username: userData?.user?.given_name,
-            email: userData?.user?.email,
+            username: userData?.data?.given_name,
+            email: userData?.data?.email,
             selected: {
                 package_id: educationDetail?._id,
                 package_name: "Education",

@@ -26,10 +26,10 @@ const Services = ({ services, pageContent }) => {
             <MotionDiv direction='right' styles='grid grid-cols-1 gap-4 mt-20 md:grid-cols-3'>
                 {services?.map((item, index) => (
                     <MotionDiv
-                        key={index} styles='flex items-center justify-center w-full box-shadow' inlineStyle={{ backgroundImage: `url(${item.image})`, backgroundPosition: 'center', borderRadius: '23px', backgroundSize: 'auto' }}>
+                        key={index} styles='flex items-center justify-center w-full box-shadow' inlineStyle={{ backgroundImage: `url(${item.image})`, backgroundPosition: 'right', borderRadius: '23px', backgroundSize: 'cover' }}>
                         <div className=' 2xl:w-[80%] w-[90%] p-4'>
-                            <h1 className=' 2xl:text-[30px] text-[23px] font-medium text-[#4C4C4D] w-[85%] uppercase'>{item.title}</h1>
-                            <h3 className=' 2xl:text-[26px] text-lg font-light text-[#4C4C4D] mt-1'>{item.description}</h3>
+                            <h1 className={` 2xl:text-[26px] text-[23px] font-medium ${item.title.includes('Educational') ? "text-white" : "text-[#4C4C4D]"}  text-[#4C4C4D] w-[85%] uppercase`}>{item.title}</h1>
+                            <h3 className={` 2xl:text-[20px] text-lg font-light ${item.title.includes('Educational') ? "text-white" : "text-[#4C4C4D]"} `}>{item.description}</h3>
                         </div>
                     </MotionDiv>
                 ))}

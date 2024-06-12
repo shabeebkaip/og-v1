@@ -14,11 +14,12 @@ const Continue = ({ packages, checked, selectedPackage }) => {
     const [pageContent, setPageContent] = useState([])
     const [token, setToken] = useState(null);
     const [userData, setUserData] = useState(null);
+    console.log('userData', userData);
 
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token) {
-            getUserApi(token).then(res => setUserData(res.data));
+            getUserApi(token).then(res => setUserData(res.data?.user));
 
         }
         else {
@@ -40,8 +41,8 @@ const Continue = ({ packages, checked, selectedPackage }) => {
     const handleInitiatePayment = () => {
         if (checked) { // Use checked directly
             let data = {
-                username: userData?.user?.given_name,
-                email: userData?.user?.email,
+                username: userData?.data?.given_name,
+                email: userData?.data?.email,
                 selected: {
                     package_id: selectedPackage?._id,
                     package_name: selectedPackage?.name,
@@ -71,17 +72,14 @@ const Continue = ({ packages, checked, selectedPackage }) => {
 
     const fetchUser = async () => {
         try {
-            const currentUrl = new URL(window.location.href);
-            const params = new URLSearchParams(currentUrl.search);
-            params.delete('code');
-            let redirectUri = `${currentUrl.origin}${currentUrl.pathname}`;
-            if (redirectUri.endsWith('/')) {
-                redirectUri = redirectUri.slice(0, -1);
+            let redirect_uri = window.location.origin;
+            if (redirect_uri.endsWith('/')) {
+                redirect_uri = redirect_uri.slice(0, -1);
             }
-
+            setLoader(true);
             const response = await axios.post("https://api-one-global.code-ox.com/api/userInfo", {
                 code: code,
-                redirect_uri: redirectUri
+                redirect_uri: redirect_uri
             });
 
             if (response.data.success) {
@@ -100,15 +98,25 @@ const Continue = ({ packages, checked, selectedPackage }) => {
                             Authorization: `Bearer ${saveResponse.data.token}`
                         }
                     });
+                    if (userProfileResponse.data.status) {
+                        setUserData(userProfileResponse.data?.user?.user);
+                        setLoader(false);
+                    } else {
+                        setLoader(false);
+                    }
 
-                    setUserData(userProfileResponse.data);
-
-                    const url = `${currentUrl.origin}${currentUrl.pathname}`;
+                    const url = `${window.location.origin}${window.location.pathname}`;
                     window.location.href = url;
+                } else {
+                    setLoader(false);
                 }
             }
+
+            else {
+                setLoader(false);
+            }
         } catch (error) {
-            console.error('Error fetching user:', error);
+            setLoader(false);
         }
     };
 
@@ -133,19 +141,19 @@ const Continue = ({ packages, checked, selectedPackage }) => {
                                 <div key={index} style={{ display: 'inline' }}>
                                     {index > 0 && (
                                         <span
-                                        className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
-                                        style={{
-                                            color:
-                                                pageContent.textColor.trim().toLowerCase() === pageContent.borderText.trim().toLowerCase() ||
-                                                    pageContent.textColor_1.trim().toLowerCase() === pageContent.borderText_1.trim().toLowerCase()
-                                                    ? '#FF8500'
-                                                    : 'inherit',
-                                            borderColor: '#FF8500', // Apply border color based on borderText
-                                            borderWidth: '1px',
-                                        }}
-                                    >
-                                        {pageContent?.borderText}
-                                    </span>
+                                            className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
+                                            style={{
+                                                color:
+                                                    pageContent.textColor.trim().toLowerCase() === pageContent.borderText.trim().toLowerCase() ||
+                                                        pageContent.textColor_1.trim().toLowerCase() === pageContent.borderText_1.trim().toLowerCase()
+                                                        ? '#FF8500'
+                                                        : 'inherit',
+                                                borderColor: '#FF8500', // Apply border color based on borderText
+                                                borderWidth: '1px',
+                                            }}
+                                        >
+                                            {pageContent?.borderText}
+                                        </span>
                                     )}
                                     {splitText?.split(' ').map((word, innerIndex) => (
                                         <span
@@ -166,7 +174,7 @@ const Continue = ({ packages, checked, selectedPackage }) => {
                                 </div>
                             ))}
 
-                         
+
                         </h3>
                     </div>
                     <div className='md:w-[200px] absolute h-[250px] top-[40%] left-[10%] md:block hidden'><BlueGradient /></div>

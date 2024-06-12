@@ -15,6 +15,7 @@ const StayInTouch = ({ countryCode }) => {
     const [dropDown, setDropDown] = useState([])
     const { enqueueSnackbar } = useSnackbar();
     const [emailError, setEmailError] = useState('');
+    const [error, setError] = useState('')
 
     const [data, setData] = useState({
         name: "",
@@ -36,7 +37,7 @@ const StayInTouch = ({ countryCode }) => {
     }, [])
 
 
- 
+
 
     const handleNumberChange = (e) => {
         const value = e.target.value;
@@ -69,52 +70,57 @@ const StayInTouch = ({ countryCode }) => {
 
 
     const handleSave = () => {
+        let validateInput = {
+            name: data.name ? '' : 'Please enter your name',
+            email: data.email ? '' : 'Please enter your email',
+            number: data.number ? '' : 'Please enter your phone number',
+        }
+        if (Object.values(validateInput).every((value) => value === "")) {
+            const jsonData = {
+                name: data.name,
+                email: data.email,
+                number: data.number,
+                whatAreYouLookingFor: data.whatAreYouLookingFor || dropDown[0]?.contact_list,
+                message: data.message,
+                code: data.code
+            };
+            axios.post("https://api-one-global.code-ox.com/api/queries", jsonData, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "*",
+                    "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+                    "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
+                    "Access-Control-Allow-Credentials": true
+                }
+            })
+                .then(response => {
+                    if (response.data.success) {
+                        enqueueSnackbar('Request successfull', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                        setData({
+                            name: "",
+                            email: "",
+                            number: "",
+                            whatAreYouLookingFor: dropDown[0]?.contact_list || "",
+                            message: "",
+                            code: "+965"
+                        });
+                    } else {
+                        enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                    }
+                })
+                .catch(error => {
+                    enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                });
+        } else {
+        }
 
         const isEmailValid = emailRegex.test(data.email);
         setEmailError(isEmailValid ? '' : 'Please enter a valid email address');
-    
+
         if (!isEmailValid) {
-            enqueueSnackbar('Please enter a valid email address', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
-            return;
+            setError(validateInput)
         }
-        const jsonData = {
-            name: data.name,
-            email: data.email,
-            number: data.number,
-            whatAreYouLookingFor: data.whatAreYouLookingFor || dropDown[0]?.contact_list,
-            message: data.message,
-            code: data.code
-        };
 
-      
-
-        axios.post("https://api-one-global.code-ox.com/api/queries", jsonData, {
-            headers: {
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-                "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token",
-                "Access-Control-Allow-Credentials": true
-            }
-        })
-            .then(response => {
-                if (response.data.success) {
-                    enqueueSnackbar('Request successfull', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
-                    setData({
-                        name: "",
-                        email: "",
-                        number: "",
-                        whatAreYouLookingFor: dropDown[0]?.contact_list || "",
-                        message: "",
-                        code:"+965"
-                    });
-                } else {
-                    enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
-                }
-            })
-            .catch(error => {
-                enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
-            });
     }
 
     return (
@@ -133,20 +139,24 @@ const StayInTouch = ({ countryCode }) => {
                 </div>
 
                 <div className='flex flex-col mt-10 lg:p-6 w-full items-center'>
-                    <input
-                        type="text"
-                        placeholder="Your name*"
-                        className="w-full lg:w-[50%] sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4"
-                        value={data.name}
-                        onChange={handleNameChange}
-                    />
+                    <div className='w-full flex flex-col items-center justify-start'>
+                        <input
+                            type="text"
+                            placeholder={error.name ? error.name : 'Your name*'}
+                            className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name && 'placeholder:text-red-500'} `}
+                            value={data.name}
+                            onChange={handleNameChange}
+                            onFocus={() => setError({ ...error, name: '' })}
+                        />
+                    </div>
                     <input
                         type="email"
-                        placeholder="Your email*"
-                        className="w-full lg:w-[50%] sm:h-16 h-10 border rounded-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4"
+                        placeholder={emailError ? emailError : 'Your email*'}
+                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} `}
                         value={data.email}
                         onChange={(e) => setData({ ...data, email: e.target.value })}
-                        />
+                        onFocus={() => setError({ ...error, email: '' })}
+                    />
 
                     <div className="flex w-full lg:w-[50%]  sm:h-16 h-10 sm:gap-2 sm:flex-row flex-col   ">
 
@@ -166,39 +176,13 @@ const StayInTouch = ({ countryCode }) => {
 
                         <input
                             type="text"
-                            placeholder="Your phone*"
-                            className="sm:w-[70%] sm:h-16 h-10 border rounded-full border-[#4C4C4D] pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2"
+                            placeholder={error.number ? error.number : 'Your phone*'}
+                            className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'}`}
                             value={data.number}
                             onChange={handleNumberChange}
+                            onFocus={() => setError({ ...error, number: '' })}
                         />
                     </div>
-
-
-                    {/* <div className="flex w-full lg:w-[50%]  sm:h-16 h-10">
-                        <FormControl className="w-[20%] sm:h-16 h-10 border rounded-l-full border-[#242222] pl-2 pr-7 font-medium text-[#4C4C4D] mb-4 custom-select ">
-                            <InputLabel id="country-label"></InputLabel>
-                            <Select
-                                labelId="country-label"
-                                value={data.country}
-                                onChange={(e) => setData({ ...data, country: e.target.value })}
-                            >
-                                {countryCode.map((item, index) => (
-                                    <MenuItem key={index} value={item.value}>{item.dial_code} </MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                        <TextField
-                            type="text"
-                            placeholder="Your phone*"
-                            className='w-[80%]   sm:h-16 h-10 border rounded-r-full border-[#242222] pl-7 font-medium text-[#4C4C4D] mb-4'
-                            value={data.number}
-                            onChange={(e) => setData({ ...data, number: e.target.value })}
-                        />
-                    </div> */}
-
-
-
-
 
                     <div className='w-full lg:w-[50%] sm:mt-4 mt-[68px] sm:h-16 h-10 border rounded-full border-[#242222] pl-1 lg:pl-2 lg:pr-2 md:pr-1 pr-1 font-medium text-[#4C4C4D] flex md:justify-start justify-center items-center text-[19px] mb-4 sm:text-base'>
                         <select
@@ -216,15 +200,15 @@ const StayInTouch = ({ countryCode }) => {
                         </select>
                     </div>
                     <div className='flex flex-col mb-4 lg:w-[50%] w-full'>
-                        <label htmlFor="subject" className='text-[16px] lg:mt-4'>Subject</label>
-                        <textarea name="subject" id="subject" placeholder='' className='border-b border-solid border-b-[#242222] mt-2 w-full'
+                        <label htmlFor="subject" className='text-[16px] lg:mt-4'>Message</label>
+                        <textarea name="subject" id="subject" placeholder='' className='border-b  test-[20px] border-b-[#242222] mt-2 w-full focus:outline-none'
                             value={data.message}
                             onChange={(e) => setData({ ...data, message: e.target.value })}
                         />
                     </div>
                     <div className='flex justify-center items-center mt-7 lg:w-full'>
                         <button className='border px-9 lg:px-13 py-2 lg:py-1 lg:text-[25px] rounded-full border-orange-500 text-[20px] md:text-[30px] text-[#4C4C4D] font-medium lg:w-[30%]' onClick={handleSave}  >
-                            Your message
+                            Submit
                         </button>
                     </div>
                 </div>

@@ -96,7 +96,6 @@ const Header = () => {
             });
 
             if (response.data.success) {
-                debugger
                 setUserData(response.data.data);
                 localStorage.setItem('token_id', response.data.token_id);
 
@@ -116,7 +115,6 @@ const Header = () => {
                         setUserData(userProfileResponse.data?.user?.user);
                         setLoader(false);
                     } else {
-                        debugger
                         setLoader(false);
                     }
 
@@ -132,7 +130,6 @@ const Header = () => {
             }
         } catch (error) {
             setLoader(false);
-            // handleLogout()
         }
     }, [code]);
 
@@ -159,8 +156,6 @@ const Header = () => {
         localStorage.removeItem('token_id');
         window.location.href = logoutUrl;
     };
-
-    console.log('userData', userData);
     return (
         <div className='container flex items-center justify-between h-40 mx-auto' >
             {loader && <SharedLoader />}
@@ -198,7 +193,7 @@ const Header = () => {
                 <div className='relative'>
                     <div className='flex items-center justify-center gap-3 px-3 py-3 bg-white box-shadow rounded-3xl lg:px-7 cursor-pointer' onClick={toggleDropdown}>
                         <Image width={1000} height={500} className='w-6 h-6 ' src="/profile.jpeg" alt="profile" />
-                        <h3 className='font-normal lg:text-lg'>{userData?.data?.given_name}</h3>
+                        <h3 className='font-normal lg:text-lg capitalize'>{userData?.data?.given_name}</h3>
                     </div>
                     {showDropdown && (
                         <div className='absolute left-0 z-10 w-full py-2 mt-2 bg-white border rounded-3xl shadow-lg'>

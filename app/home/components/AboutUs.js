@@ -9,8 +9,8 @@ const AboutUs = ({ aboutus }) => {
     return (
         <div className='relative grid w-full grid-cols-1 gap-5 mt-16 lg:grid-cols-2 font-Sans'>
             <MotionDiv styles='grid w-full grid-cols-1 gap-4 md:grid-cols-2'>
-                <Image className='w-full rounded-[23px] box-shadow mt-3 h-full object-cover  hidden md:block' src={aboutus?.image} alt="" width={1000} height={200} />
-                <Image className='w-full rounded-[23px] box-shadow mt-3 h-full  object-cover' src={aboutus?.image1} alt="" width={1000} height={200} />
+                <Image className='w-full rounded-[23px] box-shadow mt-3 h-full object-cover  hidden md:block' src={aboutus?.image} alt="" width={1000} height={1000} />
+                <Image className='w-full rounded-[23px] box-shadow mt-3 h-full  object-cover' src={aboutus?.image1} alt="" width={1000} height={1000} />
             </MotionDiv>
             <MotionDiv styles='w-full md:bg-white md:box-shadow md:rounded-[23px] flex flex-col justify-center md:items-center box-shadow '>
                 <div className='flex flex-col md:w-[80%] w-full xl:gap-7 gap-3  py-5 px-3 md:px-0'>

@@ -60,23 +60,26 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                         ))
                     }
 
-                        {/* educations */}
+                    {/* educations */}
                     {
                         courses?.length ?
                             <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#FF8500' }}>
                                     <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Education Courses </h3>
                                 </div>
-                                <div className='flex flex-col items-center justify-center w-full px-10 p-3'>
+                                <ul className='flex flex-col items-center  justify-between w-full px-2 p-3'>
                                     {
-                                        courses?.map((item, index) => (
-                                            <Link href={`/educations/${item?._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500 text-center cursor-pointer hover:text-blue-600 flex gap-2 items-center' key={index}>{item.heading}
+                                        courses?.slice(0, 5).map((item, index) => (
+                                            <li key={index} className='flex items-center justify-between w-full hover:bg-stone-50 p-2 rounded-lg' >
+                                                <Link href={`/educations/${item?._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500  cursor-pointer hover:text-blue-600 flex gap-2 items-center' >{item.heading}
+                                                </Link>
+
                                                 <Image className='w-8 h-8' width={40} height={40} src={"/Home/shareIcon.png"} alt="" />
-                                            </Link>
+                                            </li>
 
                                         ))
                                     }
-                                </div>
+                                </ul>
                                 <div className='px-6 bg-gray-200 w-full text-center rounded-lg '>
                                     <div className='font-bold text-[#4C4C4D] sm:text-[28px] text-[20px] flex justify-between p-4'>
                                         <h4 className=''>
@@ -131,7 +134,7 @@ const ProgramList = async ({ programs, hackathon, courses, reversePitch }) => {
                     {/* {Reverse Pitch} */}
                     {
                         reversePitch && reversePitch?.status && Object.keys(reversePitch).length ?
-                        <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
+                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
                                     <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Reverse Pitch</h3>
                                 </div>

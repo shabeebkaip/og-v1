@@ -34,7 +34,6 @@ export const authenticateUser = () => {
 export const getFormApi = (key) => getData('form',key)
 
 export const getUserApi = async (token) => {
-  debugger
   try {
       const response = await axios.get("https://api-one-global.code-ox.com/api/getUserProfile", {
           headers: {

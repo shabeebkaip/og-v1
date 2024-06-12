@@ -17,13 +17,10 @@ const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [orderHistory, setOrderHistory] = useState(null);
   const [token, setToken] = useState(null);
-
   const [activePage, setActivePage] = useState(1);
   const [totalPages, setTotalPages] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
-
-
-  const email = userData?.user?.email
+  const email = userData?.data?.email
 
   useEffect(() => {
     // Check if we are on the client side
@@ -59,7 +56,6 @@ const Profile = () => {
   const handlePageChange = (page) => {
     setActivePage(page);
   };
-  console.log('userData', userData);
   return (
     <div>
       <div className="absolute lg:top-[-5%] w-[400px] h-[400px] right-[0px] hidden lg:block   ">
