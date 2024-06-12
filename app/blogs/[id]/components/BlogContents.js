@@ -18,7 +18,7 @@ const BlogContents = ({ blogDetail }) => {
         displayedImages.add(imageIndex);
         return (
           <div key={index}>
-            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
+            <Image blurDataURL='lazy' width={1000} height={500} className=" object-contain rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
             <p className=" text-[#4C4C4D] font-light text-[24px]  capitalize ">{item.text}</p>
           </div>
         );
@@ -33,7 +33,7 @@ const BlogContents = ({ blogDetail }) => {
         displayedImages.add(imageIndex);
         return (
           <div key={index}>
-            <Image blurDataURL='lazy' width={1000} height={500} className="xl:h-[370px] h-[250px] object-cover rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
+            <Image blurDataURL='lazy' width={1000} height={500} className=" object-contain rounded-3xl" src={blogDetail.image[imageIndex]} alt={blogDetail.image[imageIndex].alt} />
             <p className=" text-[#4C4C4D] font-light text-[24px] capitalize ">{item.text}</p>
           </div>
         );
@@ -77,7 +77,7 @@ const BlogContents = ({ blogDetail }) => {
                     blogDetail?.image?.map((item, index) => (
                       !displayedImages.has(index) && (index % 2 === 0) && (
                         <div key={index}>
-                          <Image className="w-full h-[400px] rounded-[23px]" src={item} alt={item?.alt || ''} width={400} height={400} />
+                          <Image className="w-full h-[400px] rounded-[23px] object-contain" src={item} alt={item?.alt || ''} width={400} height={400} />
                         </div>
                       )
                     ))
@@ -89,7 +89,7 @@ const BlogContents = ({ blogDetail }) => {
                     blogDetail?.image?.map((item, index) => (
                       !displayedImages.has(index) && (index % 2 !== 0) && (
                         <div key={index}>
-                          <Image className="w-full h-[400px] rounded-[23px]" src={item} alt={item?.alt || ''} width={400} height={400} />
+                          <Image className="w-full h-[400px] rounded-[23px] object-contain" src={item} alt={item?.alt || ''} width={400} height={400} />
                         </div>
                       )
                     ))

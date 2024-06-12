@@ -2,7 +2,7 @@ import OrangeGradient from '@/app/shared/components/OrangeGradient'
 import BlueGradient from '@/app/shared/components/BlueGradient'
 import { getGlobalCookie } from '@/app/utils'
 import moment from 'moment'
-import { baseURL, displayDateFormatShort } from '@/app/constant'
+import { displayDateFormatShort } from '@/app/constant'
 import Image from 'next/image'
 import Link from 'next/link'
 
