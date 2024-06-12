@@ -72,8 +72,8 @@ const StayInTouch = ({ countryCode }) => {
     const handleSave = () => {
         let validateInput = {
             name: data.name ? '' : 'Please enter your name',
-            email: data.email ? '' : 'Please enter your email',
-            number: data.number ? '' : 'Please enter your phone number',
+            email: data.email ? emailRegex.test(data.email) ? "" : "Please enter a valid email" : 'Please enter your email',
+            number: data.number ? data.number.length >= 7 && data.number.length <= 15 ? "" : "Please enter a valid mobile number" : 'Please enter your phone number',
         }
         if (Object.values(validateInput).every((value) => value === "")) {
             const jsonData = {
@@ -151,9 +151,9 @@ const StayInTouch = ({ countryCode }) => {
                     </div>
                     <input
                         type="email"
-                        placeholder={emailError ? emailError : 'Your email*'}
+                        placeholder={error.email ? error.email : 'Your email*'}
                         className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} `}
-                        value={data.email}
+                        value={error.email ? "" : data.email}
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                         onFocus={() => setError({ ...error, email: '' })}
                     />
@@ -178,7 +178,7 @@ const StayInTouch = ({ countryCode }) => {
                             type="text"
                             placeholder={error.number ? error.number : 'Your phone*'}
                             className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'}`}
-                            value={data.number}
+                            value={error.number ? "" : data.number}
                             onChange={handleNumberChange}
                             onFocus={() => setError({ ...error, number: '' })}
                         />

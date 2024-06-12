@@ -2,12 +2,12 @@
 import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
-import { Pagination, Scrollbar } from 'swiper/modules';
+import { Scrollbar } from 'swiper/modules';
 import Image from 'next/image';
 
-const ZoomClass = ({educationDetail}) => {
-  return (
-    <div className="mt-14 container mx-auto">
+const ZoomClass = ({ educationDetail }) => {
+    return (
+        <div className="mt-14 container mx-auto">
             <div className="leading-[70px] uppercase md:text-[50px] text-[30px] font-medium text-[#4C4C4D]  text-center  md:p-2">
                 <p className='hidden md:block'> The course will be held</p>
                 <div className='block leading-tight md:hidden'>
@@ -21,18 +21,15 @@ const ZoomClass = ({educationDetail}) => {
             <div className="flex justify-center p-2 mt-8 pb-16 ">
                 <p className=" border rounded-full border-[#4C4C4D] p-1 px-4 text-center md:text-[50px] text-[30px] uppercase text-[#4C4C4D] ">course<span className="text-[#92D1FB]">&nbsp;experts</span></p>
             </div>
-
-
             <Swiper
                 spaceBetween={15}
                 modules={[Scrollbar]}
                 scrollbar={{ draggable: true }}
                 className="flex justify-center px-2 py-10 pb-32 custom-scrollbar"
-                style={{paddingBottom:'80px',paddingTop:'40px',paddingLeft:'10px',paddingRight:'10px'}}
+                style={{ paddingBottom: '80px', paddingTop: '40px', paddingLeft: '10px', paddingRight: '10px' }}
                 autoplay={{ delay: 3000 }}
                 initialSlide={1}
                 breakpoints={{
-
                     1024: {
                         slidesPerView: 3
                     },
@@ -66,12 +63,8 @@ const ZoomClass = ({educationDetail}) => {
                     </SwiperSlide>
                 ))}
             </Swiper>
-
-            {/* <div className='absolute  sm:h-[350px] sm:w-[350px] w-[300px] h-[300pX] block md:hidden top-[60px] right-0  '><BlueGradientRight /></div> */}
-
-            
         </div>
-  )
+    )
 }
 
 export default ZoomClass

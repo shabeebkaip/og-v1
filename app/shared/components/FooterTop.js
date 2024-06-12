@@ -53,11 +53,6 @@ const FooterTop = () => {
           className="absolute inset-0 w-full h-full object-cover rounded-3xl"
         />
         <div className="absolute inset-0 flex justify-center items-center">
-          {/* <Link href='/contact-us/#stay-in-touch'>
-            <button className={`rounded-full  text-[30px]  md:w-96 px-4 w-72 md:h-20 h-16 font-medium  ${buttonClassName}`}>
-
-              {buttonText}
-            </button></Link> */}
           <StayTouch link={'/contact-us/#stay-in-touch'} text={buttonText} buttonClassName={buttonClassName} />
         </div>
       </div>
