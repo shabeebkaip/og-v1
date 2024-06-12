@@ -8,6 +8,7 @@ import { displayDateFormatShort } from "@/app/constant";
 import Link from "next/link";
 import { SlReload } from "react-icons/sl";
 import { Box, Skeleton } from "@mui/material";
+import { rejects } from "assert";
 
 function Animations() {
   return (
@@ -25,74 +26,88 @@ function Animations() {
   );
 }
 
+
+
 const BlogsList = ({ blogs, categories, removeBlogId }) => {
   const [newsList, setNewsList] = useState([]);
   const [newsCategory, setNewsCategory] = useState(categories || []);
+  const [pagination, setPagination] = useState({})
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const [visibleItems, setVisibleItems] = useState({ null: 4 }); // Initialize with 4 items for 'all'
   const [noNewsFound, setNoNewsFound] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [loadMoreLoader, setLoadMoreLoader] = useState(false)
 
   useEffect(() => {
-    setLoading(true);
-    setNewsList(blogs);
-    setVisibleItems((prev) => ({
-      ...prev,
-      null: 4, // Initialize visible items for 'all' to 4
-    }));
-    setLoading(false);
+    getBlogsListAPI({ page: 1 }, "skeleton")
   }, [blogs]);
 
   useEffect(() => {
-    if(removeBlogId){
+    if (removeBlogId) {
       setNewsList(blogs.filter(item => item._id !== removeBlogId))
     }
   }, [removeBlogId, blogs])
 
   const handleCategory = (id) => {
-    setLoading(true);
+
     setSelectedCategoryId(id);
     if (id === null) {
       // 'All' category
       setNewsList(blogs);
       setNoNewsFound(false);
-      setVisibleItems((prev) => ({
-        ...prev,
-        null: 4, // Reset visible items for 'all' to 4
-      }));
-      setLoading(false);
     } else {
+
+
       // Specific category
-      globalGetService('news', { category: id })
-        .then((res) => {
-          if (res.data.length === 0) {
-            setNoNewsFound(true);
-          } else {
-            setNewsList(res.data);
-            setNoNewsFound(false);
-            setVisibleItems((prev) => ({
-              ...prev,
-              [id]: 4, // Initialize visible items for this category to 4
-            }));
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching news:", error);
-          setNoNewsFound(true);
-        })
-        .finally(() => setLoading(false));
+      getBlogsListAPI({ category: id, page: 1 }, "skeleton")
+      //   .then((res) => {
+      //     if (res.data.length === 0) {
+      //       setNoNewsFound(true);
+      //     } else {
+      //       setNewsList(res.data);
+      //       setNoNewsFound(false);
+      //     }
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error fetching news:", error);
+      //     setNoNewsFound(true);
+      //   })
+      //   .finally(() => setLoading(false));
     }
   };
 
   const loadMore = () => {
-    setVisibleItems((prev) => ({
-      ...prev,
-      [selectedCategoryId]: (prev[selectedCategoryId] || 4) + 4, // Increment by 4
-    }));
+    if (selectedCategoryId) {
+      getBlogsListAPI({ page: pagination.nextPage, category: selectedCategoryId }, "loadMore")
+    } else {
+      getBlogsListAPI({ page: pagination.nextPage }, "loadMore")
+
+    }
   };
 
-  const visibleCount = visibleItems[selectedCategoryId] || 4;
+  const getBlogsListAPI = (query, loaderType) => {
+    loaderType === "skeleton" ? setLoading(true) : setLoadMoreLoader(true)
+    globalGetService("news", query)
+      .then(response => {
+        loaderType === "skeleton" ? setLoading(false) : setLoadMoreLoader(false)
+        if (response.success) {
+          query.page == 1 ? setNewsList(response.data) : setNewsList([...newsList, ...response.data])
+          setPagination(response.pagination)
+          setNoNewsFound(false)
+        } else {
+          loaderType === "skeleton" ? setLoading(false) : setLoadMoreLoader(false)
+          setNewsList([])
+          setNoNewsFound(true);
 
+        }
+      })
+      .catch(err => {
+        loaderType === "skeleton" ? setLoading(false) : setLoadMoreLoader(false)
+        setNewsList([])
+        setNoNewsFound(true)
+      })
+  }
+  console.log(pagination, "pagination")
+  console.log(newsList, "news ")
   return (
     <div className="container mx-auto pb-8">
       {loading ? (
@@ -103,19 +118,17 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
         <div className="flex flex-col">
           <div className="relative flex flex-row justify-center gap-4 px-10 md:justify-end capitalize">
             <p
-              className={`text-base font-medium cursor-pointer ${
-                selectedCategoryId === null &&
+              className={`text-base font-medium cursor-pointer ${selectedCategoryId === null &&
                 "bg-[#FF8500] text-white px-3 rounded-xl"
-              }`}
+                }`}
               onClick={() => handleCategory(null)}
             >
               all
             </p>
             {newsCategory?.map((item, index) => (
               <button
-                className={`text-black px-3 rounded-xl ${
-                  selectedCategoryId === item._id ? "bg-[#FF8500] text-white" : ""
-                }`}
+                className={`text-black px-3 rounded-xl ${selectedCategoryId === item._id ? "bg-[#FF8500] text-white" : ""
+                  }`}
                 key={index}
                 onClick={() => handleCategory(item._id)}
               >
@@ -130,7 +143,7 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
               </p>
             ) : (
               <div className="flex-col p-2 md:grid md:grid-cols-4 2xl:gap-2 lg:gap-3 lg:p-5 md:p-2 md:gap-2">
-                {newsList?.slice(0, visibleCount).map((item, index) => (
+                {newsList?.map((item, index) => (
                   <div
                     key={index}
                     className="w-full p-1 mt-4 flex flex-col justify-between"
@@ -164,12 +177,13 @@ const BlogsList = ({ blogs, categories, removeBlogId }) => {
           </div>
           {!noNewsFound && (
             <div className="flex flex-row items-center justify-center pt-8">
-              {visibleCount < newsList?.length && (
+              {pagination.currentPage === pagination.totalPages ? null : (
                 <button
                   onClick={loadMore}
                   className="text-[26px] font-light leading-[30.44px] flex gap-5 lg:text-[25px] 2xl:text-[30px] md:text-[20px]"
                 >
-                  Load More{" "}
+                  {loadMoreLoader ? 'Loading...' : "Load More "}
+
                   <span className="text-[#FF8500] w-[27.22px] h-[30.01px] md:mt-1">
                     <SlReload />
                   </span>

@@ -66,7 +66,6 @@ const fetchCategories = async () => {
 
 const Blogs = async () => {
   const hero = await fetchBlogHero();
-  const blogs = await fetchBlogs();
   const categories = await fetchCategories();
   return (
     <div className=" overflow-hidden pb-8">
@@ -74,7 +73,7 @@ const Blogs = async () => {
         <Hero hero={hero} />
       </div>
       <div className="">
-        <BlogsList blogs={blogs} categories={categories} />
+        <BlogsList categories={categories} />
       </div>
     </div>
   )
