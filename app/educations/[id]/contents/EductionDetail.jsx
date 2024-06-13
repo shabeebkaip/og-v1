@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-import { fetchCourseDetails, } from '@/app/educations/api'
+import { fetchCourseDetails, fetchPageContentEducation, } from '@/app/educations/api'
 
 
 const Hero = dynamic(() => import('@/app/educations/[id]/components/Hero'))
@@ -13,11 +13,13 @@ const AskQuestion = dynamic(() => import('@/app/educations/[id]/components/AskQu
 
 const EductionDetail = async ({ educationId }) => {
   const data = await fetchCourseDetails(educationId)
+  const pagecontent = await fetchPageContentEducation();
+
   return (
     <div className=' px-3 md:px-0 overflow-hidden'>
       <Hero educationDetail={data} />
       <AboutUs educationDetail={data} />
-      <ZoomClass educationDetail={data} />
+      <ZoomClass educationDetail={data} pageContent={pagecontent}/>
 
       <CourseProgram educationDetail={data} />
       {data?.organizerName ? <Organizer educationDetail={data} /> : null}

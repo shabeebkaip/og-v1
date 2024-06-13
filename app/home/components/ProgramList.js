@@ -8,8 +8,10 @@ import { displayDateFormatShort } from '@/app/constant'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const ProgramList = ({ programs, hackathon, courses, reversePitch }) => {
+const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }) => {
     const language = getGlobalCookie('language')
+    const pageContent1 = pageContent.pageContent?.[2]
+    const text = pageContent1?.text
     return (
         <>
             <div className='w-full mt-16 font-Sans md:mt-28'>
@@ -19,8 +21,68 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch }) => {
                     <div className='absolute  w-[20%] h-[90%] right-[2%] hidden md:block'><OrangeGradient /></div>
 
 
-                    <h3 className=' text-[#FF8500] font-medium md:text-[50px] sm:text-[40px] text-[24px] border rounded-[60px] px-3 border-gray-500'>Experience the Best </h3>
-                    <h3 className=' font-medium md:text-[50px] sm:text-[40px] text-[24px] text-gray-500 text-center'>of Ongoing Programs with One Global Hub</h3>
+                    <h3 className=' font-medium md:text-[50px] sm:text-[40px] text-[24px] px-3 border-gray-500  flex justify-center text-center'>
+                        {text?.split(pageContent1?.borderText).map((splitText, index) => (
+                            <div key={index} style={{ display: 'inline' }}>
+                                {index > 0 && (
+                                    <span
+                                        className="py-2 px-5 border rounded-[53px]"
+                                        style={{
+                                            color:
+                                                pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
+                                                    pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
+                                                    ? '#FF8500'
+                                                    : 'inherit',
+                                            borderColor: '#6D6E71', // Apply border color based on borderText
+                                            borderWidth: '1px',
+                                        }}
+                                    >
+                                        {pageContent1?.borderText}
+                                    </span>
+                                    
+                                )}
+                                <br/>
+                                {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
+
+                                    <span key={innerIndex}>
+
+                                        {innerSplitText.split(' ').map((word, wordIndex) => (
+                                            <span
+                                                key={wordIndex}
+                                                style={{
+                                                    color:
+                                                        pageContent1?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
+                                                            pageContent1?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
+                                                            ? '#FF8500'
+                                                            : 'inherit',
+                                                    border: 'none', // Remove border from words
+                                                }}
+                                            >
+                                                {word}
+                                                {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
+                                            </span>
+                                        ))}
+                                        {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
+                                            <span
+                                                className="py-2 px-5 border rounded-[53px]"
+                                                style={{
+                                                    color:
+                                                        pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase() ||
+                                                            pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase()
+                                                            ? '#FF8500'
+                                                            : 'inherit',
+                                                    borderColor: '#6D6E71', // Apply border color based on borderText_1
+                                                    borderWidth: '1px',
+                                                }}
+                                            >
+                                                {pageContent1?.borderText_1}
+                                            </span>
+                                        )}
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
+                    </h3>
                 </div>
                 <div className='grid w-full h-full grid-cols-1 gap-5 mt-20 lg:grid-cols-3'>
                     {
