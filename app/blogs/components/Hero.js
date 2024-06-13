@@ -52,7 +52,7 @@ const Hero = ({hero}) => {
                             key={innerIndex}
                             style={{
                               color:
-                                hero?.textColor.trim().toLowerCase() === word.trim().toLowerCase()
+                                hero?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) 
                                   ? '#FF8500'
                                   : 'inherit',
                               border:
