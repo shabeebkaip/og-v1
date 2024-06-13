@@ -23,7 +23,7 @@ const ProgramDetails = async ({ programId }) => {
       <div className='md:hidden'>
         {programDetails && <MobEligibilityCriteria programDetail={programDetails} />}
       </div>
-      {pageContentProgram && <ApplyNow pageContent1={pageContentProgram} programDetail={programDetails} />}
+      {pageContentProgram && <ApplyNow pageContent={pageContentProgram} programDetail={programDetails} />}
 
       {/* {programEndDate < currentDate && pageContentProgram && (
                 <ApplyNow pageContent1={pageContentProgram} programDetail={programDetails} />

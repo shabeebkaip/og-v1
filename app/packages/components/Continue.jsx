@@ -32,11 +32,11 @@ const Continue = ({ packages, checked, selectedPackage }) => {
     useEffect(() => {
         globalGetService('page_content', { key: "package" })
             .then(response => {
-                setPageContent(response.data[0]);
+                setPageContent(response.data);
             });
     }, []);
-
-    const text = pageContent?.pageContent?.[0]?.text;
+    const pageContent1 = pageContent[0]?.pageContent?.[0]
+    const text = pageContent1?.text
 
     const handleInitiatePayment = () => {
         if (checked) { // Use checked directly
@@ -137,42 +137,64 @@ const Continue = ({ packages, checked, selectedPackage }) => {
                 <div className='flex justify-center w-full mt-16 '>
                     <div className='md:w-[78%]'>
                         <h3 className='2xl:text-[50px] flex flex-col items-center xl:text-[40px] md:text-[30px] text-center text-[25px] font-medium text-gray-500 bg-white lg:p-5 '>
-                            {text?.split(pageContent?.borderText).map((splitText, index) => (
-                                <div key={index} style={{ display: 'inline' }}>
-                                    {index > 0 && (
-                                        <span
-                                            className="py-2 px-5 border-2 border-gray-500 rounded-[53px]"
-                                            style={{
-                                                color:
-                                                    pageContent.textColor.trim().toLowerCase() === pageContent.borderText.trim().toLowerCase() ||
-                                                        pageContent.textColor_1.trim().toLowerCase() === pageContent.borderText_1.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                borderColor: '#FF8500', // Apply border color based on borderText
-                                                borderWidth: '1px',
-                                            }}
-                                        >
-                                            {pageContent?.borderText}
-                                        </span>
-                                    )}
-                                    {splitText?.split(' ').map((word, innerIndex) => (
-                                        <span
-                                            key={innerIndex}
-                                            style={{
-                                                color: pageContent?.textColor?.trim().toLowerCase() === word.trim().toLowerCase()
+                        {text?.split(pageContent1?.borderText).map((splitText, index) => (
+                            <div key={index} style={{ display: 'inline' }}>
+                                {index > 0 && (
+                                    <span
+                                        className="py-2 px-5 border rounded-[53px]"
+                                        style={{
+                                            color:
+                                                pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
+                                                    pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
                                                     ? '#FF8500'
                                                     : 'inherit',
-                                                border: pageContent?.borderText?.trim().toLowerCase() === word.trim().toLowerCase()
-                                                    ? '2px solid '
-                                                    : 'none',
-                                            }}
-                                        >
-                                            {word}
-                                            {innerIndex < splitText?.split(' ').length - 1 && ' '}
-                                        </span>
-                                    ))}
-                                </div>
-                            ))}
+                                            borderColor: '#6D6E71', // Apply border color based on borderText
+                                            borderWidth: '1px',
+                                        }}
+                                    >
+                                        {pageContent1?.borderText}
+                                    </span>
+                                )}
+                                {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
+
+                                    <span key={innerIndex}>
+
+                                        {innerSplitText.split(' ').map((word, wordIndex) => (
+                                            <span
+                                                key={wordIndex}
+                                                style={{
+                                                    color:
+                                                        pageContent1?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
+                                                            pageContent1?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
+                                                            ? '#FF8500'
+                                                            : 'inherit',
+                                                    border: 'none', // Remove border from words
+                                                }}
+                                            >
+                                                {word}
+                                                {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
+                                            </span>
+                                        ))}
+                                        {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
+                                            <span
+                                                className="py-2 px-5 border rounded-[53px]"
+                                                style={{
+                                                    color:
+                                                        pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase() ||
+                                                            pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase()
+                                                            ? '#FF8500'
+                                                            : 'inherit',
+                                                    borderColor: '#6D6E71', // Apply border color based on borderText_1
+                                                    borderWidth: '1px',
+                                                }}
+                                            >
+                                                {pageContent1?.borderText_1}
+                                            </span>
+                                        )}
+                                    </span>
+                                ))}
+                            </div>
+                        ))}
 
 
                         </h3>

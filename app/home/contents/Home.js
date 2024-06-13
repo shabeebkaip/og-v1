@@ -58,7 +58,7 @@ const MainHome = async ({ req }) => {
           <div className='absolute top-[84px] right-0 h-[300px] w-[500px] block md:hidden z-[-1]'>
             <OrangeGradientLeft />
           </div>
-          <ProgramList programs={programs} hackathon={hackathon} courses={courses} reversePitch={reversePitch}/>
+          <ProgramList programs={programs} hackathon={hackathon} courses={courses} reversePitch={reversePitch} pageContent={pageContentHome}/>
           <Community ourCommunity={ourCommunity} />
           <CommunityList communityList={communityList} pageContent={pageContentHome} />
           <ProgramHub programs={programs} pageContent={pageContentHub} />

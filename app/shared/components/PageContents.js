@@ -7,14 +7,14 @@ const PageContents = ({ pageContent1, text }) => {
         <div key={index} style={{ display: 'inline' }}>
           {index > 0 && (
             <span
-              className="py-2 px-5 border rounded-[23px]"
+              className="py-2 px-5 border rounded-[53px]"
               style={{
                 color:
                   pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
                     pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
                     ? '#FF8500'
                     : 'inherit',
-                borderColor: '#FF8500', // Apply border color based on borderText
+                borderColor: '#6D6E71', // Apply border color based on borderText
                 borderWidth: '1px',
               }}
             >
@@ -43,14 +43,14 @@ const PageContents = ({ pageContent1, text }) => {
               ))}
               {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
                 <span
-                  className="py-2 px-5 border rounded-[23px]"
+                  className="py-2 px-5 border rounded-[53px]"
                   style={{
                     color:
                       pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase() ||
                         pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase()
                         ? '#FF8500'
                         : 'inherit',
-                    borderColor: '#FF8500', // Apply border color based on borderText_1
+                    borderColor: '#6D6E71', // Apply border color based on borderText_1
                     borderWidth: '1px',
                   }}
                 >

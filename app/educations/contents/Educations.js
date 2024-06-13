@@ -31,20 +31,20 @@ const Educations = async () => {
   return (
     <div className='flex flex-col gap-2 mx-auto pb-10 '>
       <EducationHero hero={hero} />
-      <Courses courseLists={courseList} />
+      <Courses courseLists={courseList} pageContent={pagecontent}/>
       <div className='hidden lg:block'>
-        <Collaborate universities={collaborator} />
+        <Collaborate universities={collaborator} pageContent={pagecontent} />
       </div>
       <div className='lg:hidden'>
-        <CollaborateMobile universities={collaborator} />
+        <CollaborateMobile universities={collaborator} pageContent={pagecontent} />
       </div>
       <YourGoal findProgram={findProgram} />
       <ComingSoon courseList={courseList} />
       <div className="md:hidden flex">
-        <MobileProffesionalSlider testimonial={profTestimonials} />
+        <MobileProffesionalSlider testimonial={profTestimonials} pageContent={pagecontent} />
       </div>
       <div className="md:flex hidden">
-        <Professionals testimonial={profTestimonials} />
+        <Professionals testimonial={profTestimonials} pageContent={pagecontent} />
       </div>
       <SupportTeam data={pagecontent} />
       {/* <FooterTop /> */}
