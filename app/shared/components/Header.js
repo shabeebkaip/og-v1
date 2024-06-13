@@ -118,8 +118,8 @@ const Header = () => {
                         setLoader(false);
                     }
 
-                    const url = `${window.location.origin}${window.location.pathname}`;
-                    window.location.href = url;
+                    // const url = `${window.location.origin}${window.location.pathname}`;
+                    // window.location.href = url;
                 } else {
                     setLoader(false);
                 }
@@ -197,12 +197,12 @@ const Header = () => {
                     </div>
                     {showDropdown && (
                         <div className='absolute left-0 z-10 w-full py-2 mt-2 bg-white border rounded-3xl shadow-lg'>
-                            <Link href="/profile" >
+                            <div onClick={() =>  window.location.href ="/profile"} >
                                 <div className='px-4 py-2 flex items-center justify-around text-gray-800 cursor-pointer hover:bg-gray-100' onClick={closeDropdown}>
                                     <Image width={1000} height={500} className='w-6 h-6 ' src="/profile.jpeg" alt="profile" />
                                     <h3 className='font-normal lg:text-lg'>Profile</h3>
                                 </div>
-                            </Link>
+                            </div>
                             <div className='px-4 py-2 flex items-center justify-around text-gray-800 cursor-pointer hover:bg-gray-100' onClick={handleLogout}>
                                 <Image width={1000} height={500} className='w-6 h-6 ' src="/Logout.png" alt="profile" />
                                 <h3 className='font-normal lg:text-lg'>Logout</h3>
