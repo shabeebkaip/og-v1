@@ -8,10 +8,10 @@ import { getGlobalCookie } from '@/app/utils'
 
 
 
-const ProgramCard = ({item, index}) => {
+const ProgramCard = ({ item, index }) => {
   const language = getGlobalCookie('language')
   return (
-    <div  className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer ' onClick={() =>  window.location.href = `/programs/${item._id}`} >
+    <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer ' onClick={() => window.location.href = `/programs/${item._id}`} >
       <div className={`w-full  p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: moment() > moment(item.end_date) ? '#efefef' : index % 2 === 0 ? '#FF8500' : '#92D1FB' }}>
         <h3 className={` sm:text-[40px] text-2xl font-medium text-center break-words  ${moment() > moment(item.end_date) ? 'text-[#B0ABAB]' : 'text-white'}  `} >{language === "ar" ? item.ar_programName : item.programName}</h3>
       </div>
@@ -39,9 +39,9 @@ const ProgramCard = ({item, index}) => {
         {item.disabled ? (
           <Image className=' h-10' width={40} height={40} src={"/Home/shareIcon.png"} alt="" />
         ) : (
-          <Link href={`/programs/${item._id}`}>
+          <div onClick={() => window.location.href = `/programs/${item._id}`} >
             <Image width={40} height={40} className=' h-10 object-contain' src={"/Home/shareIcon.png"} alt="" />
-          </Link>
+          </div>
         )}
       </div>
     </div>
