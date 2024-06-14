@@ -1,11 +1,31 @@
+"use client"
 import OrangeGradient from '@/app/shared/components/OrangeGradient';
 import BlueGradient from '@/app/shared/components/BlueGradient';
 import { getGlobalCookie } from '@/app/utils';
 import MotionDiv from '@/app/shared/components/MotionDiv';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
 
 const ApplicationProcess = ({ programDetail }) => {
   const language = getGlobalCookie('language')
+  const [chunkedCourses, setChunkedCourses] = useState([]);
+
+
+  useEffect(() => {
+    const chunkArray = (array, chunkSize) => {
+      const chunks = [];
+      for (let i = 0; i < array.length; i += chunkSize) {
+        chunks.push(array.slice(i, i + chunkSize));
+      }
+      return chunks;
+    };
+
+    const chunks = chunkArray(programDetail?.steps, 2);
+    setChunkedCourses(chunks);
+  }, [programDetail]);
+
+  console.log(chunkedCourses);
 
   return (
     <div className='container relative px-6 py-32 mx-auto md:px-0 '>
@@ -27,16 +47,52 @@ const ApplicationProcess = ({ programDetail }) => {
 
       <MotionDiv
         styles='flex flex-col gap-8  mt-16'>
-        <div className="grid gap-8 md:grid-cols-2">
-          {programDetail?.steps && programDetail?.steps.map((item, index) => (
-            <div key={index} className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-              <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
-                <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{index + 1}.</h3>
-                <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item?.ar_text : item?.text}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {chunkedCourses.map((item, index) => (
+          <div className={`grid gap-8 ${index % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`} key={index}>
+            {index % 2 === 0 ? (
+              <>
+                {item[0] ? (
+                  <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[0]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 1 }.</h3>
+                      <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[0]?.ar_text : item[0]?.text}</p>
+                    </div>
+                  </div>
+                ) : null}
+                {item[1] ? (
+                  <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[1]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2)+ 2 }.</h3>
+                      <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[1]?.ar_text : item[1]?.text}</p>
+                    </div>
+                  </div>
+                ) : null}
+              </>
+            ) : (
+              <>
+                <div>
+                  <Image src="/orange.png" className='w-full rounded-2xl' alt='' width={300} height={100} />
+                </div>
+                {item[0] ? (
+                  <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[0]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 1 }</h3>
+                      <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[0]?.ar_text : item[0]?.text}</p>
+                    </div>
+                  </div>
+                ) : null}
+                {item[1] ? (
+                  <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[1]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 2}.</h3>
+                      <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[1]?.ar_text : item[1]?.text}</p>
+                    </div>
+                  </div>
+                ) : null}
+              </>
+            )}
+          </div>
+        ))}
       </MotionDiv>
     </div>
   );
