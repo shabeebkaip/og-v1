@@ -12,8 +12,8 @@ const ProgramCard = ({ item, index }) => {
   const language = getGlobalCookie('language')
   return (
     <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer ' onClick={() => window.location.href = `/programs/${item._id}`} >
-      <div className={`w-full  p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: moment() > moment(item.end_date) ? '#efefef' : index % 2 === 0 ? '#FF8500' : '#92D1FB' }}>
-        <h3 className={` sm:text-[40px] text-2xl font-medium text-center break-words  ${moment() > moment(item.end_date) ? 'text-[#B0ABAB]' : 'text-white'}  `} >{language === "ar" ? item.ar_programName : item.programName}</h3>
+      <div className={`w-full  p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: moment() > moment(item?.reg_end_date) ? '#efefef' : index % 2 === 0 ? '#FF8500' : '#92D1FB' }}>
+        <h3 className={` sm:text-[40px] text-2xl font-medium text-center break-words  ${moment() > moment(item?.reg_end_date) ? 'text-[#B0ABAB]' : 'text-white'}  `} >{language === "ar" ? item.ar_programName : item.programName}</h3>
       </div>
       <div className='flex items-baseline justify-center w-full px-10'>
         <h5 className=' sm:text-[30px] text-[18px] font-normal text-gray-500 text-center'>{language === "ar" ? item.ar_shortDescription : item.shortDescription}</h5>
@@ -21,17 +21,17 @@ const ProgramCard = ({ item, index }) => {
       <div className='mt-[15%] flex justify-between pb-8 items-end px-3'>
         <div className='pl-10 '>
           <h3 className=' text-[#4C4C4D]  font-bold sm:text-[28px] text-[19px]'>{item.dateDesc}</h3>
-          {item?.start_date ?
+          {item?.reg_st_date ?
             <h4 className='font-bold text-[#4C4C4D] sm:text-[24px] text-[16px]'>
-              <span className={`${moment() > moment(item.end_date) ? "text-[#B0ABAB]" : ''}`}>
-                {moment() > moment(item.end_date) ? 'Applications are closed' :
-                  `Applications are open from  ${moment(item.start_date).format(displayDateFormatShort)} to ${moment(item.end_date).format(displayDateFormatShort)}`
+              <span className={`${moment() > moment(item?.reg_end_date) ? "text-[#B0ABAB]" : ''}`}>
+                {moment() > moment(item?.reg_end_date) ? 'Applications are closed' :
+                  `Applications are open from  ${moment(item?.reg_st_date).format(displayDateFormatShort)} to ${moment(item?.reg_end_date).format(displayDateFormatShort)}`
                 }
               </span>
             </h4> :
             <h4 className='font-bold text-[#4C4C4D] sm:text-[28px] text-[20px]'>
               <span className=''>
-                Applications are open until{moment(item.end_date).format(displayDateFormatShort)}
+                Applications are open until{moment(item?.reg_end_date).format(displayDateFormatShort)}
               </span>
             </h4>
           }
