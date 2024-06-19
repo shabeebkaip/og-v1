@@ -1,7 +1,7 @@
 "use client"
 import BlueGradient from '@/app/shared/components/BlueGradient';
 import OrangeGradient from '@/app/shared/components/OrangeGradient';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaAward } from 'react-icons/fa6';
 import { TfiWorld } from 'react-icons/tfi';
 import moment from "moment"
@@ -10,30 +10,39 @@ import Image from 'next/image';
 import MotionDiv from '@/app/shared/components/MotionDiv';
 import FormSubmission from '@/app/shared/components/FormSubmission';
 import { SnackbarProvider } from 'notistack'
-import { authenticateUser } from '@/app/shared/api'
+import { authenticateUser, getUserApi } from '@/app/shared/api'
+import { globalGetService } from '@/app/utils/apiServices';
 
 
-
-
-
-const Hero = ({ educationDetail }) => {
+const Hero = ({ educationDetail, educationId }) => {
     const [popup, setPopup] = useState(false);
     const [courseName, setCourseName] = useState(null)
-
-
+    const [userData, setUserData] = useState(null);
+    const [orderHistory, setOrderHistory] = useState(null);
+    const email = userData?.data?.email
+    const token = localStorage.getItem('token');
+    useEffect(() => {
+        if (token) {
+            getUserApi(token).then(res => setUserData(res.data.user));
+        }
+    }, [token])
+    useEffect(() => {
+        if (email) {
+            globalGetService('get-payment-history', { email: email, status: true, })
+                .then(response => {
+                    setOrderHistory(response.data?.map(item => item?.selected?.program_id));
+                });
+        }
+    }, [email]);
+    const enrollCheck = orderHistory?.find((order) => order === educationId)
     const hideHandler = () => {
         setPopup(false)
     }
-
-    const token = localStorage.getItem('token');
-
     const authenticateUserFn = () => {
         authenticateUser();
     };
-
     return (
         <SnackbarProvider>
-
             <div className='relative flex flex-col w-full xl:w-full lg:flex-row md:gap-4 font-Sans  p-1 container mx-auto'>
                 <MotionDiv
                     styles='lg:w-1/2 '>
@@ -41,16 +50,14 @@ const Hero = ({ educationDetail }) => {
                 </MotionDiv>
                 <MotionDiv
                     styles='relative flex lg:w-1/2 '>
-                    <div className='flex flex-col w-full rounded-[23px] justify-center items-center md:py-8 bg-white   ' style={{ boxShadow: '0px 4px 20px 0px #00000026' }}>
-
+                    <div className='flex flex-col w-full rounded-[23px] justify-center items-center  bg-white   ' style={{ boxShadow: '0px 4px 20px 0px #00000026' }}>
                         <div className='md:absolute -right-8 top-[-14%] w-[25%] h-[50%] hidden'><BlueGradient /></div>
-
                         <Image width={1000} height={500} src={educationDetail?.image} alt='Image' className='w-full rounded-[23px] md:hidden block ' />
                         <div className='flex flex-col justify-start w-full xl:gap-10 gap-5 p-4 py-1' >
                             <div className='flex flex-wrap text-[#4C4C4D] gap-3 py-3 '>
-                                <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.st_date ? moment(educationDetail?.st_date).format(displayDateFormatShort) : ""}</button>
-                                <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px] '>{educationDetail?.end_date ? moment(educationDetail?.end_date).format(displayDateFormatShort) : ""}</button>
-                                <button className='border border-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px]'>{educationDetail?.time}hours</button>
+                                <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px]  '>Start Date: {educationDetail?.st_date ? moment(educationDetail?.st_date).format(displayDateFormatShort) : ""}</button>
+                                <button className=' bg-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px]  '>End Date: {educationDetail?.end_date ? moment(educationDetail?.end_date).format(displayDateFormatShort) : ""}</button>
+                                <button className='border border-[#92D1FB] rounded-full md:px-4 px-1 lg:h-[33px] lg:w-[135px]'>{educationDetail?.time}</button>
                                 {educationDetail?.license ? (
                                     <button className="rounded-full md:px-4 px-1 border border-[#FF8500] lg:h-[33px] lg:w-[135px]">Licence</button>
                                 ) : null}
@@ -64,7 +71,7 @@ const Hero = ({ educationDetail }) => {
                             <p className='text-[#4C4C4D] xl:text-[26px] lg:text-[20px] text-[20px] leading-[30px] font-normal  -mt-4'>{educationDetail?.description}</p>
                             <div className='flex text-center'>
                                 {
-                                    token ?
+                                    token ? enrollCheck ? null :
                                         educationDetail?.btnLink && educationDetail?.btnLink.trim() !== "" ? (
                                             <a href={educationDetail?.btnLink} target='_blank'>
                                                 <button

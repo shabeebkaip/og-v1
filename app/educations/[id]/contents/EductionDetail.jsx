@@ -17,7 +17,7 @@ const EductionDetail = async ({ educationId }) => {
 
   return (
     <div className=' px-3 md:px-0 overflow-hidden'>
-      <Hero educationDetail={data} />
+      <Hero educationDetail={data} educationId={educationId} />
       <AboutUs educationDetail={data} />
       <ZoomClass educationDetail={data} pageContent={pagecontent}/>
 

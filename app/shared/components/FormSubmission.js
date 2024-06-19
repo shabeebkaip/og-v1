@@ -10,7 +10,6 @@ import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, payment }) => {
-    console.log(name, orderHideHandler, id, handleInitiatePayment, payment);
     const [form, setForm] = useState(null);
     const [userData, setUserData] = useState(null);
     const [data, setData] = useState({
