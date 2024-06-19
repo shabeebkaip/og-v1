@@ -101,10 +101,8 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                                 <ul className='flex flex-col items-center  justify-between w-full px-2 p-3'>
                                     {
                                         courses?.slice(0, 5).map((item, index) => (
-                                            <li key={index} className='flex items-center justify-between w-full hover:bg-stone-50 p-2 rounded-lg' >
-                                                <Link href={`/educations/${item?._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500  cursor-pointer hover:text-blue-600 flex gap-2 items-center' >{item.heading}
-                                                </Link>
-
+                                            <li key={index} className='flex items-center justify-between w-full hover:bg-stone-50 p-2 rounded-lg cursor-pointer' onClick={() => window.location.href = `/educations/${item?._id}` } >
+                                                <div  className=' sm:text-[24px] text-[16px] font-normal text-gray-500  cursor-pointer hover:text-blue-600 flex gap-2 items-center' >{item.heading}</div>
                                                 <Image className='w-8 h-8' width={40} height={40} src={"/Home/shareIcon.png"} alt="" />
                                             </li>
 
