@@ -1,14 +1,34 @@
 "use client"
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import MobHeroSlider from '@/app/shared/components/MobHeroSlider'
 import Image from 'next/image'
 import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider } from 'notistack'
-import { authenticateUser } from '@/app/shared/api'
+import { authenticateUser, getUserApi } from '@/app/shared/api'
+import { globalGetService } from '@/app/utils/apiServices'
 
 
 const JoinHackathon = ({ hackathonData, pageContent }) => {
   const [popup, setPopup] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [orderHistory, setOrderHistory] = useState(null);
+  const email = userData?.data?.email
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    if (token) {
+      getUserApi(token).then(res => setUserData(res.data.user));
+    }
+  }, [token])
+  useEffect(() => {
+    if (email) {
+      globalGetService('get-payment-history', { email: email, status: true, })
+        .then(response => {
+          setOrderHistory(response.data?.map(item => item?.selected?.program_id));
+        });
+    }
+  }, [email]);
+  const enrollCheck = orderHistory?.find((order) => order === hackathonData?._id)
+
 
 
   const hideHandler = () => {
@@ -24,11 +44,6 @@ const JoinHackathon = ({ hackathonData, pageContent }) => {
     program_name: hackathonData.name,
     program_id: hackathonData._id,
   };
-
-
-
-  const token = localStorage.getItem('token');
-
   const authenticateUserFn = () => {
     authenticateUser();
   };
@@ -38,7 +53,7 @@ const JoinHackathon = ({ hackathonData, pageContent }) => {
         <div className='flex items-center justify-center my-20 '>
 
           {
-            token ?
+            token ? enrollCheck ? null :
               hackathonData?.btnLink && hackathonData?.btnLink.trim() !== "" ? (
                 <a href={hackathonData?.btnLink} target='_blank'>
                   <button className='border rounded-[40px] border-[#FF8500] text-[20px] text-[#1C2126] px-6 py-2'>Join hackathon</button>
