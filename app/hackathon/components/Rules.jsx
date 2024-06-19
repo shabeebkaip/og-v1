@@ -75,12 +75,13 @@ const Rules = ({ hackathonData }) => {
                     {
                         remainingDays > 0 &&
                         <div className='flex flex-wrap gap-4 p-5 '>
-                            <button className='border border-[#92D1FB] rounded-[40px] text-[16px] 2xl:p-3 p-2 hover:text-white hover:bg-[#FF8500] px-5'>{remainingDays}more days to deadline</button>
+                            <button className='border border-[#92D1FB] rounded-[40px] text-[16px] 2xl:p-3 p-2 hover:text-white hover:bg-[#FF8500] px-5'>{remainingDays} more days to deadline</button>
                         </div>
                     }
                     <div className='flex flex-col p-5'>
                         <p className='text-[16px] text-[#000000] font-medium'>Deadline</p>
-                        <p>{hackathonData?.end_date ? moment(hackathonData?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{hackathonData?.time}  ‎ </p>
+                        <p>{hackathonData?.end_date ? moment(hackathonData?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{hackathonData?.time}  ‎ {hackathonData?.timezone}</p>
+                       {console.log(hackathonData)}
                     </div>
                     <div className='flex gap-20 p-5'>
                         <div className='flex gap-2' >
