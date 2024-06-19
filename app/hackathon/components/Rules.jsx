@@ -102,7 +102,7 @@ const Rules = ({ hackathonData }) => {
                         <p className='text-[16px] border border-[#4C4C4D] rounded-[40px] px-5'>{hackathonData?.host}</p>
                     </div>
                     <div className='flex gap-2 p-5'>
-                        <div className='pt-3 w-[90px]'>
+                        <div className='pt-3 w-[55px]'>
                             <Image className="w-6 h-6" src="/hackathone/pin.png" alt="" width={200} height={200} />
 
                         </div>
