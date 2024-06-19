@@ -11,12 +11,31 @@ import FormSubmission from '@/app/shared/components/FormSubmission'
 import { SnackbarProvider, useSnackbar } from 'notistack'
 import axios from 'axios'
 import { getUserApi } from '@/app/shared/api'
+import { globalGetService } from '@/app/utils/apiServices'
 
 
 const TakeCourse = ({ educationDetail }) => {
     const [popup, setPopup] = useState(false);
-    const [userData, setUserData] = useState(null);
     const courseName = { program_name: educationDetail?.heading, program_id: educationDetail?._id }
+    const [userData, setUserData] = useState(null);
+    const [orderHistory, setOrderHistory] = useState(null);
+    const email = userData?.data?.email
+    const token = localStorage.getItem('token');
+    useEffect(() => {
+        if (token) {
+            getUserApi(token).then(res => setUserData(res.data.user));
+        }
+    }, [token])
+    useEffect(() => {
+        if (email) {
+            globalGetService('get-payment-history', { email: email, status: true, })
+                .then(response => {
+                    setOrderHistory(response.data?.map(item => item?.selected?.program_id));
+                });
+        }
+    }, [email]);
+    const enrollCheck = orderHistory?.find((order) => order === educationDetail?._id)
+
 
 
     const hideHandler = () => {
@@ -27,7 +46,6 @@ const TakeCourse = ({ educationDetail }) => {
         educationDetail?.summary_image_2
     ]
     useEffect(() => {
-        const token = localStorage.getItem('token');
         if (token) {
             getUserApi(token).then(res => setUserData(res.data?.user));
 
@@ -61,9 +79,6 @@ const TakeCourse = ({ educationDetail }) => {
             });
 
     };
-
-    const token = localStorage.getItem('token');
-
     const authenticateUserFn = () => {
         authenticateUser();
     };
@@ -94,7 +109,7 @@ const TakeCourse = ({ educationDetail }) => {
 
                             </div>
                             {
-                                token ?
+                                token ? enrollCheck ? null :
                                     educationDetail?.btnLink && educationDetail?.btnLink.trim() !== "" ? (
                                         <a href={educationDetail?.btnLink} target='_blank'>
                                             <button
