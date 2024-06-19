@@ -133,7 +133,7 @@ const StayInTouch = ({ countryCode }) => {
             </div>
             <div className='container mx-auto flex justify-center items-center flex-col rounded-[23px] box-shadow max-w-[95%] sm:max-w-none sm:w-full mt-8 sm:p-4 p-2 bg-white'>
                 <div>
-                    <button className='border px-9 lg:px-13 py-2 lg:py-1 lg:text-[25px] rounded-full border-orange-500 text-[20px] md:text-[30px] text-[#4C4C4D] font-medium uppercase lg:mt-28'>
+                    <button className='border px-9 lg:px-13 py-2 lg:py-1 lg:text-[25px] rounded-full border-orange-500 text-[20px] md:text-[30px] text-orange-500 font-medium uppercase lg:mt-28'>
                         Stay in touch
                     </button>
                 </div>
@@ -145,16 +145,16 @@ const StayInTouch = ({ countryCode }) => {
                             placeholder={error.name ? error.name : 'Your name*'}
                             className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={data.name}
-                            onChange={handleNameChange}
+                            onChange={(e) => e.target.value.length <= 255 ? handleNameChange(e) : e.preventDefault()}
                             onFocus={() => setError({ ...error, name: '' })}
                         />
                     </div>
                     <input
                         type="email"
                         placeholder={error.email ? error.email : 'Your email*'}
-                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]` }
+                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                         value={error.email ? "" : data.email}
-                        onChange={(e) => setData({ ...data, email: e.target.value })}
+                        onChange={(e) => e.target.value.length <= 255 ? setData({ ...data, email: e.target.value }) : e.preventDefault()}
                         onFocus={() => setError({ ...error, email: '' })}
                     />
 
@@ -179,7 +179,7 @@ const StayInTouch = ({ countryCode }) => {
                             placeholder={error.number ? error.number : 'Your phone*'}
                             className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={error.number ? "" : data.number}
-                            onChange={handleNumberChange}
+                            onChange={() => e.target.value.length <= 15 ? handleNumberChange(e) : e.preventDefault()}
                             onFocus={() => setError({ ...error, number: '' })}
                         />
                     </div>
@@ -194,7 +194,7 @@ const StayInTouch = ({ countryCode }) => {
                         >
                             {
                                 dropDown?.map((item, index) => (
-                                    <option key={index} value={item.contact_list}className='font-bold text-[#4C4C4D] ' >{item.contact_list}</option>
+                                    <option key={index} value={item.contact_list} className='font-bold text-[#4C4C4D] ' >{item.contact_list}</option>
                                 ))
                             }
                         </select>
@@ -203,7 +203,7 @@ const StayInTouch = ({ countryCode }) => {
                         <label htmlFor="subject" className='text-[16px] lg:mt-4 font-bold text-[#4C4C4D]'>Message</label>
                         <textarea name="subject" id="subject" placeholder='' className='border-b  test-[20px] border-b-[#242222] mt-2 w-full focus:outline-none'
                             value={data.message}
-                            onChange={(e) => setData({ ...data, message: e.target.value })}
+                            onChange={(e) =>  setData({ ...data, message: e.target.value })}
                         />
                     </div>
                     <div className='flex justify-center items-center mt-7 lg:w-full'>
