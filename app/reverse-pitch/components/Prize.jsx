@@ -21,7 +21,6 @@ const Prize = ({ reversePitch }) => {
         setPrizes(chunks);
     }, [reversePitch]);
 
-    console.log(prizes);
 
     return (
         <div className='font-Sans px-3'>
@@ -64,7 +63,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-3 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>
                                         }
                                         {
@@ -93,7 +92,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-4 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>
                                         }
                                         {
@@ -122,7 +121,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-4 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>
                                         }
                                     </>
@@ -153,7 +152,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-4 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>}
                                         {
                                             item[1] ? (
@@ -180,7 +179,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-4 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>}
                                         {
                                             item[2] ? (
@@ -207,7 +206,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-3 h-full'>
-                                                    <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                                                 </div>}
                                     </>
                             }

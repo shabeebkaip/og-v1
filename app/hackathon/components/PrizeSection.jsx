@@ -18,7 +18,6 @@ const Prize = ({ hackathonData }) => {
     setPrizes(chunks);
   }, [hackathonData]);
 
-  console.log(prizes);
   return (
     <div className='font-Sans px-3 '>
       <div className='text-[50px] font-medium flex flex-col justify-center items-center gap-4'>
@@ -58,7 +57,7 @@ const Prize = ({ hackathonData }) => {
                       )
                         :
                         <div className=' col-span-3 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>
                     }
                     {
@@ -87,7 +86,7 @@ const Prize = ({ hackathonData }) => {
                       )
                         :
                         <div className=' col-span-4 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>
                     }
                     {
@@ -116,7 +115,7 @@ const Prize = ({ hackathonData }) => {
                       )
                         :
                         <div className=' col-span-4 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>
                     }
                   </>
@@ -147,7 +146,7 @@ const Prize = ({ hackathonData }) => {
                         </div>
                       )
                         : <div className=' col-span-4 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>}
                     {
                       item[1] ? (
@@ -174,7 +173,7 @@ const Prize = ({ hackathonData }) => {
                         </div>
                       )
                         : <div className=' col-span-4 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>}
                     {
                       item[2] ? (
@@ -201,7 +200,7 @@ const Prize = ({ hackathonData }) => {
                         </div>
                       )
                         : <div className=' col-span-3 h-full'>
-                          <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                          <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                         </div>}
                   </>
               }
