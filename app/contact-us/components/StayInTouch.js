@@ -154,7 +154,7 @@ const StayInTouch = ({ countryCode }) => {
                         placeholder={error.email ? error.email : 'Your email*'}
                         className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                         value={error.email ? "" : data.email}
-                        onChange={(e) => e.target.value.length <= 255 ? setData({ ...data, email: e.target.value }) : e.preventDefault()}
+                        onChange={(e) => e.target.value.length <= 70 ? setData({ ...data, email: e.target.value }) : e.preventDefault()}
                         onFocus={() => setError({ ...error, email: '' })}
                     />
 
@@ -179,7 +179,7 @@ const StayInTouch = ({ countryCode }) => {
                             placeholder={error.number ? error.number : 'Your phone*'}
                             className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={error.number ? "" : data.number}
-                            onChange={() => e.target.value.length <= 15 ? handleNumberChange(e) : e.preventDefault()}
+                            onChange={(e) => e.target.value.length <= 15 ? handleNumberChange(e) : e.preventDefault()}
                             onFocus={() => setError({ ...error, number: '' })}
                         />
                     </div>
