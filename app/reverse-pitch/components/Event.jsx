@@ -71,11 +71,11 @@ const Event =  ({reversePitch}) => {
     <div className='md:w-[45%]'>
         <div className='box-shadow rounded-[23px] flex flex-col justify-center md:p-5'>
             <div className='flex flex-wrap gap-4 p-5 '>
-                <button className='border border-[#92D1FB] rounded-[40px] text-[16px] 2xl:p-3 p-2 hover:text-white hover:bg-[#FF8500] px-5'>{remainingDays}more days to deadline</button>
+                <button className='border border-[#92D1FB] rounded-[40px] text-[16px] 2xl:p-3 p-2 hover:text-white hover:bg-[#FF8500] px-5'>{remainingDays} more days to deadline</button>
             </div>
             <div className='flex flex-col p-5'>
                 <p className='text-[16px] text-[#000000] font-medium'>Deadline</p>
-                <p>{reversePitch?.end_date ? moment(reversePitch?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{reversePitch?.time}  ‎ </p>
+                <p>{reversePitch?.end_date ? moment(reversePitch?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{reversePitch?.time}  ‎ {reversePitch?.timezone}</p>
 
             </div>
             <div className='flex gap-20 p-5'>
@@ -97,7 +97,7 @@ const Event =  ({reversePitch}) => {
                 <p className='text-[16px] border border-[#4C4C4D] rounded-[40px] px-5'>{reversePitch?.host}</p>
             </div>
             <div className='flex gap-2 p-5'>
-                <div className='pt-3 w-[90px]'>
+                <div className='pt-3 w-[55px]'>
                     <Image className="w-6 h-6" src="/hackathone/pin.png" alt="" width={200} height={200} />
 
                 </div>
