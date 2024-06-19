@@ -4,13 +4,15 @@ import BlueGradient from './BlueGradient';
 import OrangeGradient from './OrangeGradient';
 import Image from 'next/image';
 import { IoMdArrowDropdown, IoMdArrowDropup } from 'react-icons/io';
-import { getFormApi } from '../api';
+import { getFormApi, getUserApi } from '../api';
 import Modal from '@/app/shared/components/Modal';
 import axios from 'axios';
 import { enqueueSnackbar } from 'notistack';
 
 const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, payment }) => {
+    console.log(name, orderHideHandler, id, handleInitiatePayment, payment);
     const [form, setForm] = useState(null);
+    const [userData, setUserData] = useState(null);
     const [data, setData] = useState({
         response: [],
         email: "",
@@ -21,8 +23,24 @@ const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, pay
     const [otherAnswers, setOtherAnswers] = useState([]);
     const [questionStates, setQuestionStates] = useState([]);
     const OTHER_OPTION = "Other";
+    const token = localStorage.getItem('token');
+    useEffect(() => {
+        if (token) {
+            getUserApi(token).then(res => setUserData(res.data.user));
+        }
 
+    }, [token]);
 
+    useEffect(() => {
+
+            if (userData) {
+                setData(prevData => ({
+                    ...prevData,
+                    email: userData?.data?.email,
+                    username: userData?.data?.given_name
+                }));
+            }
+    }, [userData]);
 
     const clickHandlerOne = (questionIndex) => {
         const updatedStates = [...questionStates];
@@ -114,6 +132,7 @@ const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, pay
             enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
+    console.log(userData);
     return (
         <Modal hideHandler={orderHideHandler} className='relative z-50'>
             <div className="flex item-center justify-center relative z-50">
