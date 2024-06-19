@@ -39,9 +39,9 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                                     >
                                         {pageContent1?.borderText}
                                     </span>
-                                    
+
                                 )}
-                                <br/>
+                                <br />
                                 {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
 
                                     <span key={innerIndex}>
@@ -94,17 +94,15 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                     {/* educations */}
                     {
                         courses?.length ?
-                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between '>
+                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between hover:scale-105 duration-300 '>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#FF8500' }}>
                                     <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Education Courses </h3>
                                 </div>
                                 <ul className='flex flex-col items-center  justify-between w-full px-2 p-3'>
                                     {
                                         courses?.slice(0, 5).map((item, index) => (
-                                            <li key={index} className='flex items-center justify-between w-full hover:bg-stone-50 p-2 rounded-lg' >
-                                                <Link href={`/educations/${item?._id}`} className=' sm:text-[24px] text-[16px] font-normal text-gray-500  cursor-pointer hover:text-blue-600 flex gap-2 items-center' >{item.heading}
-                                                </Link>
-
+                                            <li key={index} className='flex items-center justify-between w-full hover:bg-stone-50 p-2 rounded-lg cursor-pointer' onClick={() => window.location.href = `/educations/${item?._id}` } >
+                                                <div  className=' sm:text-[24px] text-[16px] font-normal text-gray-500  cursor-pointer hover:text-blue-600 flex gap-2 items-center' >{item.heading}</div>
                                                 <Image className='w-8 h-8' width={40} height={40} src={"/Home/shareIcon.png"} alt="" />
                                             </li>
 
@@ -127,23 +125,23 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                     {/* hackathon */}
                     {
                         hackathon && hackathon?.status && Object.keys(hackathon).length ?
-                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer ' onClick={() => window.location.href = "/hackathon"}>
+                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer hover:scale-105 duration-300 ' onClick={() => window.location.href = "/hackathon"}>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
                                     <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Hackathon</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
-                                    s                                <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? hackathon?.ar_short_desc : hackathon?.short_desc}</h5>
+                                    <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? hackathon?.ar_short_desc : hackathon?.short_desc}</h5>
                                 </div>
-                                <div className='flex  items-center justify-between w-full px-10 p-3'>
+                                <div className='grid grid-cols-10 gap-1  items-center justify-between w-full px-10 p-3'>
                                     {hackathon?.start_date ?
-                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[24px] text-[20px]'>
+                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[24px] text-[20px] col-span-9'>
                                             <span className={`${moment() > moment(hackathon?.end_date) ? "text-[#B0ABAB]" : ''}`}>
                                                 {moment() > moment(hackathon?.end_date) ? 'Applications are closed' :
                                                     `Applications are open from  ${moment(hackathon?.start_date).format(displayDateFormatShort)} to ${moment(hackathon?.end_date).format(displayDateFormatShort)}`
                                                 }
                                             </span>
                                         </h4> :
-                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[28px] text-[20px]'>
+                                        <h4 className='font-semibold text-[#4C4C4D] sm:text-[24px] text-[20px] col-span-9'>
 
                                             <span className={`${moment() > moment(hackathon?.end_date) ? "text-[#B0ABAB]" : ''}`}>
                                                 {
@@ -154,9 +152,9 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                                             </span>
                                         </h4>
                                     }
-                                    <Link href='/hackathon'>
+                                    <div className='col-span-1 flex justify-end' >
                                         <Image width={40} height={40} className=' h-10 object-contain' src={"/Home/shareIcon.png"} alt="" />
-                                    </Link>
+                                    </div>
                                 </div>
 
                             </div> : null
@@ -165,23 +163,23 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                     {/* {Reverse Pitch} */}
                     {
                         reversePitch && reversePitch?.status && Object.keys(reversePitch).length ?
-                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer ' onClick={() => window.location.href = "/reverse-pitch"}>
+                            <div className='bg-white rounded-[23px] box-shadow w-full h-full flex flex-col justify-between cursor-pointer hover:scale-105 duration-300 ' onClick={() => window.location.href = "/reverse-pitch"}>
                                 <div className={`w-full   p-4 flex justify-center items-center rounded-t-[23px] z-10 h-[130px]`} style={{ backgroundColor: '#92D1FB' }}>
                                     <h3 className={` sm:text-[40px] text-2xl font-medium text-center w-[70%] text-white  `} >Reverse Pitch</h3>
                                 </div>
                                 <div className='flex items-baseline justify-center w-full px-10'>
                                     <h5 className=' sm:text-[30px] text-[16px] font-normal text-gray-500 text-center'>{language === "ar" ? reversePitch.ar_short_desc : reversePitch?.short_desc}</h5>
                                 </div>
-                                <div className='flex  items-center justify-between w-full px-10 p-3'>
+                                <div className='grid grid-cols-10 gap-1  items-center justify-between w-full px-10 p-3'>
                                     {reversePitch?.st_date ?
-                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[24px] text-[20px]'>
+                                        <h4 className='font-semibold text-[#4C4C4D] sm:text-[24px] text-[20px] col-span-9'>
                                             <span className={`${moment() > moment(reversePitch?.end_date) ? "text-[#B0ABAB]" : ''}`}>
                                                 {moment() > moment(reversePitch?.end_date) ? 'Applications are closed' :
                                                     `Applications are open from  ${moment(reversePitch?.st_date).format(displayDateFormatShort)} to ${moment(reversePitch?.end_date).format(displayDateFormatShort)}`
                                                 }
                                             </span>
                                         </h4> :
-                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[28px] text-[20px]'>
+                                        <h4 className='font-bold text-[#4C4C4D] sm:text-[24px] text-[20px]'>
 
                                             <span className={`${moment() > moment(reversePitch.end_date) ? "text-[#B0ABAB]" : ''}`}>
                                                 {
@@ -192,7 +190,7 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                                             </span>
                                         </h4>
                                     }
-                                    <Link href='/reverse-pitch'>
+                                    <Link href='/reverse-pitch' className='col-span-1 flex justify-end' >
                                         <Image width={40} height={40} className=' h-10 object-contain' src={"/Home/shareIcon.png"} alt="" />
                                     </Link>
                                 </div>
