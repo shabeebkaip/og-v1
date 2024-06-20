@@ -8,12 +8,14 @@ import { unstable_noStore } from 'next/cache';
 import { URLSearchParams } from 'url';
 import Wrapper from '../components/Wrapper';
 
+
 const fetchHero = async () => {
   try {
     const response = await find('heros');
     const hero = response.find(hero => hero.key === 'package');
     unstable_noStore();
     // return hero;
+
     return JSON.parse(JSON.stringify(hero));
 
   } catch (error) {
@@ -22,12 +24,19 @@ const fetchHero = async () => {
   }
 };
 
-const fetchPackages = async () => {
+const fetchPackages = async (query) => {
+    
+  console.log(query ,"lll");
   try {
-    const response = await find('packages');
-    unstable_noStore();
-    // return response;
-    return JSON.parse(JSON.stringify(response));
+    const response = await find('packages', query);
+    console.log(response ,"lll");
+    unstable_noStore(); 
+    let data 
+ 
+        data = JSON.parse(JSON.stringify(response));
+    
+    
+     return data;
 
   } catch (error) {
     console.error(error);
@@ -35,11 +44,11 @@ const fetchPackages = async () => {
   }
 };
 
-const Packages = async () => {
-  const hero = await fetchHero();
-  const packages = await fetchPackages();
 
-  
+const Packages = async ({query}) => {
+  const hero = await fetchHero();
+  const packages = await fetchPackages({'program.name':query});
+  console.log(query,"kkkk");
   
   return (
     <div className='container  mx-auto overflow-hidden md:px-0'>

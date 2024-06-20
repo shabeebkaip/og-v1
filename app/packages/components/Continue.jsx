@@ -12,6 +12,7 @@ import PageContents from '@/app/shared/components/PageContents'
 const Continue = ({ packages, checked, selectedPackage }) => {
     const params = useSearchParams();
     const code = params.get('code');
+    
     const [pageContent, setPageContent] = useState([])
     const [token, setToken] = useState(null);
     const [userData, setUserData] = useState(null);

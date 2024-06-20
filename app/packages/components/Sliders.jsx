@@ -64,8 +64,8 @@ const Slider = ({ packages, selectedPackage, setSelectedPackage }) => {
         loop={true}
         loopAdditionalSlides={2}
         onSlideChange={(swiper) => {
-          const activeIndex = swiper.activeIndex;
-          const selectedPackage = packages[activeIndex];
+          const activeIndex = swiper?.activeIndex;
+          const selectedPackage = packages?.[activeIndex];
           setSelectedPackage(selectedPackage);
         }}
       >
@@ -121,7 +121,11 @@ const Slider = ({ packages, selectedPackage, setSelectedPackage }) => {
             </div>
           </SwiperSlide>
         ))}
+        
       </Swiper>
+      {!packages&&<div className="w-full  flex justify-center text-orange-500"> 
+          <p className="text-3xl  ">No Packages found</p>
+          </div>}
     </div>
   );
 };

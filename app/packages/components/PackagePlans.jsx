@@ -1,10 +1,13 @@
+"use client";
 import Package from './Sliders'
 import MobilePackageSlider from './PackageMobileSlider'
 import axios from 'axios';
 import { baseURL } from '@/app/constant';
+import { useSearchParams } from 'next/navigation';
 
 
 const PackagePlans = ({ packages, selectedPackage, setSelectedPackage }) => {
+
   return (
     <>
       <div>

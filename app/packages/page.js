@@ -1,9 +1,11 @@
 import Packages from './contents/package'
 
-const page = () => {
+const page = ({searchParams}) => {
+  const {name} = searchParams
+  console.log(name, "sss")
   return (
     <div>
-      <Packages />
+      <Packages query={name} />
     </div>
 
   )
