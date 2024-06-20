@@ -7,7 +7,6 @@ import Continue from './Continue'
 const Wrapper = ({ packages }) => {
   const [selectedPackage, setSelectedPackage] = useState(null);
   const [checked, setChecked] = useState(false)
-  console.log(selectedPackage)
   return (
     <>
       <PackagePlans selectedPackage={selectedPackage} setSelectedPackage={setSelectedPackage} packages={packages} />

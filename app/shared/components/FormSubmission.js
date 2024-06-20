@@ -131,7 +131,6 @@ const FormSubmission = ({ name, orderHideHandler, id, handleInitiatePayment, pay
             enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
-    console.log(userData);
     return (
         <Modal hideHandler={orderHideHandler} className='relative z-50'>
             <div className="flex item-center justify-center relative z-50">

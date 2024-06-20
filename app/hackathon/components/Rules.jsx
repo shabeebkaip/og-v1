@@ -81,7 +81,6 @@ const Rules = ({ hackathonData }) => {
                     <div className='flex flex-col p-5'>
                         <p className='text-[16px] text-[#000000] font-medium'>Deadline</p>
                         <p>{hackathonData?.end_date ? moment(hackathonData?.end_date).format(displayDateFormatShort) : "--"} ‎  ‎ ‎{hackathonData?.time}  ‎ {hackathonData?.timezone}</p>
-                       {console.log(hackathonData)}
                     </div>
                     <div className='flex gap-20 p-5'>
                         <div className='flex gap-2' >

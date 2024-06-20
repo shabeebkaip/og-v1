@@ -25,7 +25,6 @@ const ApplicationProcess = ({ programDetail }) => {
     setChunkedCourses(chunks);
   }, [programDetail]);
 
-  console.log(chunkedCourses);
 
   return (
     <div className='container relative px-6 py-32 mx-auto md:px-0 '>

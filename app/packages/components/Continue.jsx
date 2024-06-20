@@ -14,7 +14,6 @@ const Continue = ({ packages, checked, selectedPackage }) => {
     const [pageContent, setPageContent] = useState([])
     const [token, setToken] = useState(null);
     const [userData, setUserData] = useState(null);
-    console.log('userData', userData);
 
     useEffect(() => {
         const token = localStorage.getItem('token');

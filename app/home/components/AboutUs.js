@@ -6,7 +6,6 @@ import MotionDiv from "@/app/shared/components/MotionDiv";
 
 const AboutUs = ({ aboutus }) => {
     const language = getGlobalCookie('language')
-    console.log(aboutus, "sss")
     return (
         <div className='relative grid w-full grid-cols-1 gap-5 mt-16 lg:grid-cols-2 font-Sans'>
             <MotionDiv styles='grid w-full grid-cols-1 gap-4 md:grid-cols-2'>
