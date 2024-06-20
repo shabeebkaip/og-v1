@@ -22,9 +22,9 @@ const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }
                     <div className='absolute  w-[20%] h-[90%] right-[2%] hidden md:block'><OrangeGradient /></div>
 
 
-                    <h3 className=' font-medium md:text-[50px] sm:text-[40px] text-[24px] px-3 border-gray-500  flex justify-center text-center'>
-                        <PageContents item={pageContent1} index="2" />
-                    </h3>
+                    <div className=' font-medium md:text-[50px] sm:text-[40px] text-[24px] px-3 border-gray-500  flex justify-center text-center'>
+                        <PageContents item={pageContent1} index="2" head={true} />
+                    </div>
                 </div>
                 <div className='grid w-full h-full grid-cols-1 gap-5 mt-20 lg:grid-cols-3'>
                     {

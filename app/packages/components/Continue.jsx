@@ -89,7 +89,6 @@ const Continue = ({ packages, checked, selectedPackage }) => {
                 const saveResponse = await axios.post("https://api-one-global.code-ox.com/api/saveUser", {
                     user: response.data.data
                 });
-
                 if (saveResponse.data.status) {
                     localStorage.setItem('token', saveResponse.data.token);
 

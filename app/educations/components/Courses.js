@@ -124,7 +124,7 @@ function Courses({ courseLists, pageContent }) {
                     </div>
                     <div className="font-normal md:text-[50px] text-[#4C4C4D] text-center mt-10 md:leading-[50px] lg:leading-[75px] hidden md:block w-[80%]">
                         <p>
-                            <PageContents item={pageContent1} index="1" />
+                            <PageContents item={pageContent2} index="2" />
                         </p>
                     </div>
                     <div className="font-normal text-[#4C4C4D] text-center mt-10 block md:hidden text-[34px] leading-[44px]">
