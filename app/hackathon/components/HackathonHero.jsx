@@ -7,7 +7,7 @@ const HackathonHero = ({hero}) => {
   return (
     <div className='relative flex flex-col w-full my-10 lg:flex-row md:gap-4 font-Sans mb-28 md:p-3 '>
     <div className='lg:w-[45%] '>
-      <Image src={hero?.image} alt='Image' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={200} height={200} />
+      <Image src={hero?.image} alt='Image' className='w-full h-full rounded-[23px] hidden md:block object-cover' width={1000} height={1000} />
     </div>
     <div className='relative z-40  flex lg:w-[55%] '>
       <div className='flex flex-col w-full rounded-[23px] justify-center md:items-center xl:py-8   box-shadow  bg-white' >
