@@ -1,6 +1,7 @@
 import React from 'react'
 
-const PageContents = ({ item,index }) => {
+const PageContents = ({ item,index,head }) => {
+ 
 
   const borderColor = '#4C4C4D';
   const textColor = '#FF8500'; // Adjust this to your desired color
@@ -29,6 +30,7 @@ const PageContents = ({ item,index }) => {
       const isBorderText = borderTexts.some(text => part.toLowerCase() === text.toLowerCase());
       const isTextColor = textColors.some(text => part.toLowerCase() === text.toLowerCase());
       return (
+        <>
         <span
           key={index}
           style={{
@@ -40,6 +42,11 @@ const PageContents = ({ item,index }) => {
         >
           {part}
         </span>
+        {
+          head ? <br/>:null
+        }
+        
+        </>
       );
     });
   };
