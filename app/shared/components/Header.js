@@ -216,7 +216,7 @@ const Header = () => {
                     <h3 className='font-normal lg:text-lg'>Log In</h3>
                 </div>
             )}
-            <div className=' z-[100] relative' onClick={() => Window.location.href = "/contact-us"}>
+            <div className=' z-[100] relative' onClick={() => window.location.href="/contact-us"}>
                 {/* <Link href='/contact-us'> */}
                 <button className={`px-3 py-3 text-white bg-blue-300 lg:px-5 rounded-3xl ${activeLink.includes('/contact-us') ? 'text-orange-500' : 'text-gray-700'}`} onClick={() => handleClick('/contact-us')}>CONTACT US</button>
                 {/* </Link> */}

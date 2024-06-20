@@ -7,15 +7,12 @@ import { globalGetService, globalPostService } from '@/app/utils/apiServices'
 import axios from "axios"
 import { SnackbarProvider, useSnackbar } from 'notistack'
 
-
-
-
-
 const StayInTouch = ({ countryCode }) => {
     const [dropDown, setDropDown] = useState([])
     const { enqueueSnackbar } = useSnackbar();
     const [emailError, setEmailError] = useState('');
     const [error, setError] = useState('')
+    const [messageError, setMessageError] = useState('')
 
     const [data, setData] = useState({
         name: "",
@@ -36,45 +33,41 @@ const StayInTouch = ({ countryCode }) => {
             })
     }, [])
 
-
-
-
     const handleNumberChange = (e) => {
         const value = e.target.value;
         if (/^\d*$/.test(value) || value === "") {
             setData({ ...data, number: value });
         } else {
-            // Display an error message or perform any other desired action
             enqueueSnackbar('Phone number should contain only digits', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
 
     const nameRegex = /^[a-zA-Z\s]+$/;
 
-
     const handleNameChange = (e) => {
         const value = e.target.value;
         if (nameRegex.test(value) || value === "") {
             setData({ ...data, name: value });
         } else {
-            // Display an error message or perform any other desired action
             enqueueSnackbar('Name should contain only letters and spaces', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
         }
     };
+
     const handleSelectChange = (e) => {
         const selectedValue = e.target.value;
         setData({ ...data, whatAreYouLookingFor: selectedValue });
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+    const emailRegex = /^[a-zA-Z0-9]+([._][a-zA-Z0-9]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})+$/;
 
     const handleSave = () => {
         let validateInput = {
             name: data.name ? '' : 'Please enter your name',
             email: data.email ? emailRegex.test(data.email) ? "" : "Please enter a valid email" : 'Please enter your email',
             number: data.number ? data.number.length >= 7 && data.number.length <= 15 ? "" : "Please enter a valid mobile number" : 'Please enter your phone number',
+            message: data.message ? '' : 'Please enter your message',
         }
+        
         if (Object.values(validateInput).every((value) => value === "")) {
             const jsonData = {
                 name: data.name,
@@ -95,7 +88,7 @@ const StayInTouch = ({ countryCode }) => {
             })
                 .then(response => {
                     if (response.data.success) {
-                        enqueueSnackbar('Request successfull', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
+                        enqueueSnackbar('Request successful', { variant: 'success', anchorOrigin: { vertical: "top", horizontal: "right" } });
                         setData({
                             name: "",
                             email: "",
@@ -104,6 +97,7 @@ const StayInTouch = ({ countryCode }) => {
                             message: "",
                             code: "+965"
                         });
+                        setMessageError('');
                     } else {
                         enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
                     }
@@ -112,6 +106,10 @@ const StayInTouch = ({ countryCode }) => {
                     enqueueSnackbar('Please fill in all required fields.', { variant: 'error', anchorOrigin: { vertical: "top", horizontal: "right" } });
                 });
         } else {
+            setError(validateInput);
+            if (!data.message) {
+                setMessageError('Please enter your message');
+            }
         }
 
         const isEmailValid = emailRegex.test(data.email);
@@ -120,7 +118,6 @@ const StayInTouch = ({ countryCode }) => {
         if (!isEmailValid) {
             setError(validateInput)
         }
-
     }
 
     return (
@@ -143,7 +140,7 @@ const StayInTouch = ({ countryCode }) => {
                         <input
                             type="text"
                             placeholder={error.name ? error.name : 'Your name*'}
-                            className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
+                            className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.name ? "border-red-500 placeholder:text-red-500" : "border-[#242222]"}  pl-7 font-medium text-[#4C4C4D] mb-4 ${error.name ? 'placeholder-red-500' : ''} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={data.name}
                             onChange={(e) => e.target.value.length <= 255 ? handleNameChange(e) : e.preventDefault()}
                             onFocus={() => setError({ ...error, name: '' })}
@@ -152,7 +149,7 @@ const StayInTouch = ({ countryCode }) => {
                     <input
                         type="email"
                         placeholder={error.email ? error.email : 'Your email*'}
-                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
+                        className={`w-full lg:w-[50%] sm:h-16 h-10 border rounded-full ${error.email ? "border-red-500 placeholder:text-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 ${error.email ? 'placeholder-red-500' : ''} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                         value={error.email ? "" : data.email}
                         onChange={(e) => e.target.value.length <= 70 ? setData({ ...data, email: e.target.value }) : e.preventDefault()}
                         onFocus={() => setError({ ...error, email: '' })}
@@ -169,15 +166,12 @@ const StayInTouch = ({ countryCode }) => {
                             {countryCode.map((item, index) => (
                                 <option className='' key={index} value={item.value} style={{ backgroundColor: '#f0f0f0', border: '1px solid #ccc' }}>{item.dial_code} </option>
                             ))}
-
-
-
                         </select>
 
                         <input
                             type="text"
-                            placeholder={error.number ? error.number : 'Your phone*'}
-                            className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500" : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number && 'placeholder:text-red-500'} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
+                            placeholder={error.number ? error.number : 'Your phone number*'}
+                            className={`sm:w-[70%] sm:h-16 h-10 border rounded-full ${error.number ? "border-red-500 placeholder:text-red-500 " : "border-[#242222]"} pl-7 font-medium text-[#4C4C4D] mb-4 p-4 sm:p-2 ${error.number ? 'placeholder-red-500' : ''} placeholder:font-bold  placeholder:text-[#4C4C4D] placeholder:text-[16px]`}
                             value={error.number ? "" : data.number}
                             onChange={(e) => e.target.value.length <= 15 ? handleNumberChange(e) : e.preventDefault()}
                             onFocus={() => setError({ ...error, number: '' })}
@@ -200,10 +194,11 @@ const StayInTouch = ({ countryCode }) => {
                         </select>
                     </div>
                     <div className='flex flex-col mb-4 lg:w-[50%] w-full'>
-                        <label htmlFor="subject" className='text-[16px] lg:mt-4 font-bold text-[#4C4C4D]'>Message</label>
-                        <textarea name="subject" id="subject" placeholder='' className='border-b  test-[20px] border-b-[#242222] mt-2 w-full focus:outline-none'
+                        <label htmlFor="subject" className={`text-[16px] lg:mt-4 font-bold ${messageError ? 'text-red-500' : 'text-[#4C4C4D]'}`}>Message</label>
+                        <textarea name="subject" id="subject" placeholder={messageError ? messageError : ''} className={`border-b ${messageError ? 'border-red-500' : 'border-b-[#242222]'} test-[20px] mt-2 w-full focus:outline-none ${messageError ? 'placeholder-red-500' : ''}`}
                             value={data.message}
-                            onChange={(e) =>  setData({ ...data, message: e.target.value })}
+                            onChange={(e) => setData({ ...data, message: e.target.value })}
+                            onFocus={() => setMessageError('')}
                         />
                     </div>
                     <div className='flex justify-center items-center mt-7 lg:w-full'>
