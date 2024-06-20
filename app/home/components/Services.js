@@ -19,7 +19,7 @@ const Services = ({ services, pageContent }) => {
                 <div className='w-[50%] absolute h-[100%] top-[68%]  block md:hidden left-0 '><BlueGradient /></div>
                 <div className='w-[40%] absolute h-[100%] top-[-30%]  block md:hidden right-0 '><OrangeGradient /></div>
                 <h3 className='2xl:text-[50px] xl:leading-[70px] lg:leading-[60px] xl:text-[35px] md:text-[30px] text-center 2xl:w-[79%] text-[25px] xl:w-[70%]  font-medium text-gray-500   p-5 rounded-3xl md:z-[100] break-words  z-0'>
-                    <PageContents text={text} pageContent1={pageContent1} />
+                    <PageContents text={text} item={pageContent1} index="0" />
                 </h3>
                 <div className='w-[20%] absolute h-full right-[5%] top-[-10%] lg:block hidden'><OrangeGradient /></div>
             </div>

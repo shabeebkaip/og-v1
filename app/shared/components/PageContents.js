@@ -1,66 +1,52 @@
 import React from 'react'
 
-const PageContents = ({ pageContent1, text }) => {
+const PageContents = ({ item,index }) => {
+
+  const borderColor = '#4C4C4D';
+  const textColor = '#FF8500'; // Adjust this to your desired color
+
+  const escapeRegExp = (string) => {
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+  };
+
+  const getMatchingText = (text, list) => {
+    if (!list) return [];
+    return Array.isArray(list) ? list : [list];
+  };
+
+  const matchingBorderTexts = getMatchingText(item?.text, item?.borderText).filter(Boolean);
+  const matchingTextColors = getMatchingText(item?.text, item?.textColor).filter(Boolean);
+
+  const getTextWithStyles = (text, borderTexts, textColors) => {
+    if (!borderTexts.length && !textColors.length) return text;
+
+    const escapedBorderTexts = borderTexts.map(escapeRegExp).join('|');
+    const escapedTextColors = textColors.map(escapeRegExp).join('|');
+    const combinedPattern = `${escapedBorderTexts}|${escapedTextColors}`;
+    const parts = text.split(new RegExp(`(${combinedPattern})`, 'gi'));
+
+    return parts.map((part, index) => {
+      const isBorderText = borderTexts.some(text => part.toLowerCase() === text.toLowerCase());
+      const isTextColor = textColors.some(text => part.toLowerCase() === text.toLowerCase());
+      return (
+        <span
+          key={index}
+          style={{
+            border: isBorderText ? `2px solid ${borderColor}` : 'none',
+            color: isTextColor ? textColor : 'inherit',
+            borderRadius:isBorderText ? `53px` : 'none',
+            padding:isBorderText ? `7px` : 'none'
+          }}
+        >
+          {part}
+        </span>
+      );
+    });
+  };
   return (
     <span>
-      {text?.split(pageContent1?.borderText).map((splitText, index) => (
-        <div key={index} style={{ display: 'inline' }}>
-          {index > 0 && (
-            <span
-              className="py-2 px-5 border rounded-[53px]"
-              style={{
-                color:
-                  pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                    pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                    ? '#FF8500'
-                    : 'inherit',
-                borderColor: '#6D6E71', // Apply border color based on borderText
-                borderWidth: '1px',
-              }}
-            >
-              {pageContent1?.borderText}
-            </span>
-          )}
-          {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
+      {getTextWithStyles(item?.text, matchingBorderTexts, matchingTextColors)}
 
-            <span key={innerIndex}>
-
-              {innerSplitText.split(' ').map((word, wordIndex) => (
-                <span
-                  key={wordIndex}
-                  style={{
-                    color:
-                      pageContent1?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                        pageContent1?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
-                        ? '#FF8500'
-                        : 'inherit',
-                    border: 'none', // Remove border from words
-                  }}
-                >
-                  {word}
-                  {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                </span>
-              ))}
-              {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
-                <span
-                  className="py-2 px-5 border rounded-[53px]"
-                  style={{
-                    color:
-                      pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase() ||
-                        pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase()
-                        ? '#FF8500'
-                        : 'inherit',
-                    borderColor: '#6D6E71', // Apply border color based on borderText_1
-                    borderWidth: '1px',
-                  }}
-                >
-                  {pageContent1?.borderText_1}
-                </span>
-              )}
-            </span>
-          ))}
-        </div>
-      ))}
     </span>
   )
 }
