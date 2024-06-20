@@ -51,8 +51,7 @@ const ApplyNow = ({ pageContent, programDetail }) => {
         }
 
     }, [email]);
-    console.log(orderHistory)
-    console.log(programDetail._id)
+    
     return (
         <MotionDiv
             styles='relative flex flex-col items-center justify-center pt-16 px-3 container mx-auto '>
@@ -82,7 +81,7 @@ const ApplyNow = ({ pageContent, programDetail }) => {
                 <div className='md:w-[90%] text-center pb-8 w-full flex justify-center '>
 
                     <h3 className='2xl:text-[50px] xl:leading-[70px] lg:leading-[60px] xl:text-[35px] md:text-[30px] text-center 2xl:w-[90%] text-[25px] xl:w-[70%]  font-medium text-gray-500 bg-white box-shadows p-5 rounded-3xl z-100 break-words '>
-                        <PageContents text={text} pageContent1={pageContent1} />
+                        <PageContents text={text} item={pageContent1} index="0" />
 
                     </h3>
                 </div>
