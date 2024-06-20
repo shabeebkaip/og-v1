@@ -16,7 +16,7 @@ const SupportTeam = ({ data }) => {
             <div className='flex justify-center w-full mt-16 '>
                 <div className='md:w-[78%]'>
                     <h3 className='2xl:text-[50px] flex flex-col items-center xl:text-[40px] md:text-[30px] text-center text-[25px] font-medium text-gray-500 bg-white lg:p-5 '>
-                        <PageContents text={text} pageContent1={pageContent1} />
+                        <PageContents text={text} item={pageContent1} index="0" />
                     </h3>
                 </div>
                 <div className='md:w-[200px] absolute h-[250px] top-[40%] left-[10%] md:block hidden'><BlueGradient /></div>
