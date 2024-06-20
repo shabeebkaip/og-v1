@@ -45,14 +45,14 @@ const ApplicationProcess = ({ programDetail }) => {
       </div>
 
       <MotionDiv
-        styles='flex flex-col gap-8  mt-16'>
+        styles='flex flex-col gap-5 mt-16'>
         {chunkedCourses.map((item, index) => (
-          <div className={`grid gap-8 ${index % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-8'}`} key={index}>
+          <div className={`grid gap-5 ${index % 2 === 0 ? 'md:grid-cols-2' : 'md:grid-cols-8'}`} key={index}>
             {index % 2 === 0 ? (
               <>
                 {item[0] ? (
                   <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[0]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-9 flex justify-center flex-col lg:gap-8 gap-4 py-5'>
                       <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 1 }.</h3>
                       <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[0]?.ar_text : item[0]?.text}</p>
                     </div>
@@ -60,7 +60,7 @@ const ApplicationProcess = ({ programDetail }) => {
                 ) : null}
                 {item[1] ? (
                   <div className="rounded-[23px] box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[1]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-9 flex justify-center flex-col lg:gap-8 gap-4 py-5'>
                       <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2)+ 2 }.</h3>
                       <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[1]?.ar_text : item[1]?.text}</p>
                     </div>
@@ -69,20 +69,20 @@ const ApplicationProcess = ({ programDetail }) => {
               </>
             ) : (
               <>
-                <div className=' col-span-2 h-full'>
+                <div className=' md:col-span-2 h-full hidden md:block'>
                   <Image src="/orange.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
                 </div>
                 {item[0] ? (
                   <div className="rounded-[23px] col-span-3 box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[0]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
-                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 1 }</h3>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-9 flex justify-center flex-col lg:gap-8 gap-4 py-5'>
+                      <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 1 }.</h3>
                       <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[0]?.ar_text : item[0]?.text}</p>
                     </div>
                   </div>
                 ) : null}
                 {item[1] ? (
                   <div className="rounded-[23px] col-span-3 box-shadow w-full backdrop-blur-sm flex-col flex justify-center items-center" style={{ backgroundImage: `url(${item[1]?.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-14 flex justify-center flex-col lg:gap-8 gap-4 py-10'>
+                    <div className='w-[85%] text-[#4C4C4D] h-full lg:py-9 flex justify-center flex-col lg:gap-8 gap-4 py-5'>
                       <h3 className='lg:text-[44px] text-[36px] font-semibold lg:leading-[56px]'>{(index*2) + 2}.</h3>
                       <p className='font-normal lg:text-[26px] text-[20px] lg:leading-[35px]'>{language === "ar" ? item[1]?.ar_text : item[1]?.text}</p>
                     </div>
