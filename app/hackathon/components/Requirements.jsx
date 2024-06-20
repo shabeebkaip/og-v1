@@ -13,7 +13,7 @@ const Requirements = ({ requirements }) => {
           requirements?.slice(0, 1).map((item, index) => (
             <div className='grid-cols-8 md:grid ' key={index}>
               <div className='col-span-2'>
-                <Image src={item?.image_1} className='rounded-[23px] h-full w-full object-cover' alt="" width={200} height={200} />
+                <Image src={item?.image_1} className='rounded-[23px] h-full w-full object-cover' alt="" width={1000} height={1000} />
               </div>
               <div className='flex flex-col justify-center col-span-4 py-6 md:px-14 px-7 md:py-0'>
                 <h3 className='text-[#FF8500] xl:text-[40px] lg:text-[40px] text-[30px]  font-normal'>{item?.text}</h3>
@@ -26,7 +26,7 @@ const Requirements = ({ requirements }) => {
                 </ul>
               </div>
               <div className='col-span-2'>
-                <Image src={item?.image_2} className='rounded-[23px] h-full w-full object-cover' alt="" width={200} height={200} />
+                <Image src={item?.image_2} className='rounded-[23px] h-full w-full object-cover' alt="" width={1000} height={1000} />
               </div>
             </div>
           ))
@@ -37,10 +37,10 @@ const Requirements = ({ requirements }) => {
               <div className='flex col-span-5 gap-4'>
 
                 <div className='col-span-2'>
-                  <Image src={item?.image_1} className='rounded-[23px] h-full w-full md:block hidden object-cover' alt="" width={200} height={200} />
+                  <Image src={item?.image_1} className='rounded-[23px] h-full w-full md:block hidden object-cover' alt="" width={1000} height={1000} />
                 </div>
                 <div className='col-span-3'>
-                  <Image src={item?.image_2} className='rounded-[23px] h-full w-full md:block hidden object-cover' alt="" width={200} height={200} />
+                  <Image src={item?.image_2} className='rounded-[23px] h-full w-full md:block hidden object-cover' alt="" width={1000} height={1000} />
 
                 </div>
               </div>
@@ -54,7 +54,7 @@ const Requirements = ({ requirements }) => {
                       ))}
                   </ul>
                 </div>
-                <Image src={item?.image_2} className='rounded-[23px] h-full w-full block md:hidden ' alt="" width={200} height={200} />
+                <Image src={item?.image_2} className='rounded-[23px] h-full w-full block md:hidden ' alt="" width={1000} height={1000} />
               </div>
             </div>
           ))
