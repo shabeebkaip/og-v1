@@ -7,10 +7,6 @@ import ViewFullRules from '@/app/shared/components/ViewFullRules'
 
 const Rules = ({ hackathonData }) => {
     const [remainingDays, setRemainingDays] = useState(null);
-
-
-
-
     useEffect(() => {
         if (hackathonData && hackathonData.end_date) {
             const endDate = new Date(hackathonData.end_date);
