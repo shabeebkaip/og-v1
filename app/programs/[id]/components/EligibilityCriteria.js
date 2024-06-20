@@ -18,7 +18,7 @@ const EligibilityCriteria = ({ programDetail }) => {
                     </div>
                     <div className=' col-span-3 flex flex-col gap-4 w-full'>
                         <Image className='w-[80%] h-[40%]  rounded-3xl object-cover' src={programDetail?.eligibility_image_1} alt="" width={1000} height={1000} />
-                        <Image className='w-full h-[50%]  rounded-2xl object-fit' src={programDetail?.eligibility_image_2} alt="" width={1000} height={1000} />
+                        <Image className='w-full h-[50%]  rounded-3xl object-fit' src={programDetail?.eligibility_image_2} alt="" width={1000} height={1000} />
 
                     </div>
                     <div className=' col-span-6 w-full flex flex-col justify-around gap-4 pl-7'>
