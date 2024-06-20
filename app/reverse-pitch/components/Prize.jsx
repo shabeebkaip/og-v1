@@ -63,7 +63,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-3 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>
                                         }
                                         {
@@ -92,7 +92,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-4 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>
                                         }
                                         {
@@ -121,7 +121,7 @@ const Prize = ({ reversePitch }) => {
                                             )
                                                 :
                                                 <div className=' col-span-4 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>
                                         }
                                     </>
@@ -152,7 +152,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-4 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>}
                                         {
                                             item[1] ? (
@@ -179,7 +179,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-4 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>}
                                         {
                                             item[2] ? (
@@ -206,7 +206,7 @@ const Prize = ({ reversePitch }) => {
                                                 </div>
                                             )
                                                 : <div className=' col-span-3 h-full'>
-                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={300} height={100} />
+                                                    <Image src="/prize.png" className='w-full rounded-2xl h-full' alt='' width={1000} height={1000} />
                                                 </div>}
                                     </>
                             }
