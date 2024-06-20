@@ -78,11 +78,11 @@ const JoinHackathon = ({ hackathonData, pageContent }) => {
           <div className='hidden gap-5 lg:flex lg:w-1/2 '>
 
             <div className='flex flex-col items-center justify-center gap-[20px] '>
-              <Image src={pageContent?.image} className='rounded-[23px] w-full h-[50%] object-cover' width={200} height={200} alt=''></Image>
-              <Image src={pageContent?.image_1} className='rounded-[23px] w-full h-[50%] object-cover' width={200} height={200} alt=''></Image>
+              <Image src={pageContent?.image} className='rounded-[23px] w-full h-[50%] object-cover' width={1000} height={1000} alt=''></Image>
+              <Image src={pageContent?.image_1} className='rounded-[23px] w-full h-[50%] object-cover' width={1000} height={1000} alt=''></Image>
             </div>
             <div className='flex items-center justify-center'>
-              <Image src={pageContent?.image_2} className='rounded-[23px]  lg:h-full w-full  h-[50%] object-cover ' width={200} height={200} alt=''></Image>
+              <Image src={pageContent?.image_2} className='rounded-[23px]  lg:h-full w-full  h-[50%] object-cover ' width={1000} height={1000} alt=''></Image>
             </div>
 
 
