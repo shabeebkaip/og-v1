@@ -7,6 +7,7 @@ import { globalGetService } from "@/app/utils/apiServices";
 import LoadMore from "./LoadMore";
 import Box from '@mui/material/Box';
 import Skeleton from '@mui/material/Skeleton';
+import PageContents from "@/app/shared/components/PageContents";
 
 function useDebounce(value, delay) {
     const [debouncedValue, setDebouncedValue] = useState(value);
@@ -117,188 +118,18 @@ function Courses({ courseLists, pageContent }) {
                 <div className="flex flex-col container mx-auto justify-center items-center">
                     <div className="uppercase font-normal text-[30px] md:text-[50px] text-[#4C4C4D] text-center leading-[44px] lg:leading-[70px] md:leading-[50px] w-[70%]">
                         <p className="text-center">
-                            {text?.split(pageContent1?.borderText).map((splitText, index) => (
-                                <div key={index} style={{ display: 'inline' }}>
-                                    {index > 0 && (
-                                        <span
-                                            className="py-2 px-5 border rounded-[53px]"
-                                            style={{
-                                                color:
-                                                    pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText.trim().toLowerCase() ||
-                                                        pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                borderColor: '#6D6E71', // Apply border color based on borderText
-                                                borderWidth: '1px',
-                                            }}
-                                        >
-                                            {pageContent1?.borderText}
-                                        </span>
-                                    )}
-                                    {splitText.split(pageContent1?.borderText_1).map((innerSplitText, innerIndex) => (
+                            <PageContents item={pageContent1} index="1" />
 
-                                        <span key={innerIndex}>
-
-                                            {innerSplitText.split(' ').map((word, wordIndex) => (
-                                                <span
-                                                    key={wordIndex}
-                                                    style={{
-                                                        color:
-                                                            pageContent1?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                                                                pageContent1?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        border: 'none', // Remove border from words
-                                                    }}
-                                                >
-                                                    {word}
-                                                    {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                                                </span>
-                                            ))}
-                                            {innerIndex < splitText.split(pageContent1?.borderText_1).length - 1 && (
-                                                <span
-                                                    className="py-2 px-5 border rounded-[53px]"
-                                                    style={{
-                                                        color:
-                                                            pageContent1?.textColor?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase() ||
-                                                                pageContent1?.textColor_1?.trim().toLowerCase() === pageContent1.borderText_1?.trim().toLowerCase()
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        borderColor: '#6D6E71', // Apply border color based on borderText_1
-                                                        borderWidth: '1px',
-                                                    }}
-                                                >
-                                                    {pageContent1?.borderText_1}
-                                                </span>
-                                            )}
-                                        </span>
-                                    ))}
-                                </div>
-                            ))}
                         </p>
                     </div>
                     <div className="font-normal md:text-[50px] text-[#4C4C4D] text-center mt-10 md:leading-[50px] lg:leading-[75px] hidden md:block w-[80%]">
                         <p>
-                            {text1?.split(pageContent2?.borderText).map((splitText, index) => (
-                                <div key={index} style={{ display: 'inline' }}>
-                                    {index > 0 && (
-                                        <span
-                                            className="py-2 px-5 border rounded-[53px]"
-                                            style={{
-                                                color:
-                                                    pageContent2?.textColor?.trim().toLowerCase() === pageContent2.borderText.trim().toLowerCase() ||
-                                                        pageContent2?.textColor_1?.trim().toLowerCase() === pageContent2.borderText_1.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                borderColor: '#6D6E71', // Apply border color based on borderText
-                                                borderWidth: '1px',
-                                            }}
-                                        >
-                                            {pageContent2?.borderText}
-                                        </span>
-                                    )}
-                                    {splitText.split(pageContent2?.borderText_1).map((innerSplitText, innerIndex) => (
-
-                                        <span key={innerIndex}>
-
-                                            {innerSplitText.split(' ').map((word, wordIndex) => (
-                                                <span
-                                                    key={wordIndex}
-                                                    style={{
-                                                        color:
-                                                            pageContent2?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                                                                pageContent2?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        border: 'none', // Remove border from words
-                                                    }}
-                                                >
-                                                    {word}
-                                                    {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                                                </span>
-                                            ))}
-                                            {innerIndex < splitText.split(pageContent2?.borderText_1).length - 1 && (
-                                                <span
-                                                    className="py-2 px-5 border rounded-[53px]"
-                                                    style={{
-                                                        color:
-                                                            pageContent2?.textColor?.trim().toLowerCase() === pageContent2.borderText_1?.trim().toLowerCase() ||
-                                                                pageContent2?.textColor_1?.trim().toLowerCase() === pageContent2.borderText_1?.trim().toLowerCase()
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        borderColor: '#6D6E71', // Apply border color based on borderText_1
-                                                        borderWidth: '1px',
-                                                    }}
-                                                >
-                                                    {pageContent2?.borderText_1}
-                                                </span>
-                                            )}
-                                        </span>
-                                    ))}
-                                </div>
-                            ))}
+                            <PageContents item={pageContent1} index="1" />
                         </p>
                     </div>
                     <div className="font-normal text-[#4C4C4D] text-center mt-10 block md:hidden text-[34px] leading-[44px]">
                         <p>
-                            {text1?.split(pageContent2?.borderText).map((splitText, index) => (
-                                <div key={index} style={{ display: 'inline' }}>
-                                    {index > 0 && (
-                                        <span
-                                            className="py-2 px-5 border rounded-[53px]"
-                                            style={{
-                                                color:
-                                                    pageContent2?.textColor?.trim().toLowerCase() === pageContent2.borderText.trim().toLowerCase() ||
-                                                        pageContent2?.textColor_1?.trim().toLowerCase() === pageContent2.borderText_1.trim().toLowerCase()
-                                                        ? '#FF8500'
-                                                        : 'inherit',
-                                                borderColor: '#6D6E71', // Apply border color based on borderText
-                                                borderWidth: '1px',
-                                            }}
-                                        >
-                                            {pageContent2?.borderText}
-                                        </span>
-                                    )}
-                                    {splitText.split(pageContent2?.borderText_1).map((innerSplitText, innerIndex) => (
-
-                                        <span key={innerIndex}>
-
-                                            {innerSplitText.split(' ').map((word, wordIndex) => (
-                                                <span
-                                                    key={wordIndex}
-                                                    style={{
-                                                        color:
-                                                            pageContent2?.textColor?.split(' ').includes(word.replace(/[.,]/g, '')) ||
-                                                                pageContent2?.textColor_1?.split(' ').includes(word.replace(/[.,]/g, ''))
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        border: 'none', // Remove border from words
-                                                    }}
-                                                >
-                                                    {word}
-                                                    {wordIndex < innerSplitText.split(' ').length - 1 && ' '}
-                                                </span>
-                                            ))}
-                                            {innerIndex < splitText.split(pageContent2?.borderText_1).length - 1 && (
-                                                <span
-                                                    className="py-2 px-5 border rounded-[53px]"
-                                                    style={{
-                                                        color:
-                                                            pageContent2?.textColor?.trim().toLowerCase() === pageContent2.borderText_1?.trim().toLowerCase() ||
-                                                                pageContent2?.textColor_1?.trim().toLowerCase() === pageContent2.borderText_1?.trim().toLowerCase()
-                                                                ? '#FF8500'
-                                                                : 'inherit',
-                                                        borderColor: '#6D6E71', // Apply border color based on borderText_1
-                                                        borderWidth: '1px',
-                                                    }}
-                                                >
-                                                    {pageContent2?.borderText_1}
-                                                </span>
-                                            )}
-                                        </span>
-                                    ))}
-                                </div>
-                            ))}
+                            <PageContents item={pageContent2} index="2" />
                         </p>
                     </div>
                     <div className="lg:text-[22px] text-[16px] text-center max-w-[800px] mt-8 leading-[25.81px] md:leading-[30px]">
