@@ -30,7 +30,7 @@ const Rules = ({ hackathonData, timeZones }) => {
   };
 
   useEffect(() => {
-    setTimeZone({value:hackathonData?.timezone_1});
+    setTimeZone({value:hackathonData?.timezone_1}||{});
     setConvertedTime(hackathonData?.time);
   }, []);
 
@@ -143,7 +143,7 @@ const Rules = ({ hackathonData, timeZones }) => {
                     )
                   : "--"}{" "}
                 ‎ ‎ ‎ {moment(convertedTime).format("hh:mm:ss A")} ‎
-                <span className="border-b-2">{timeZone.value} </span>
+                <span className="border-b-2">{timeZone?.value?timeZone?.value:hackathonData.timezone} </span>
               </p>
               <EditIcon onClick={handleClickOpen} className="cursor-pointer text-[#858585]   " />
             </div>
@@ -173,12 +173,7 @@ const Rules = ({ hackathonData, timeZones }) => {
                                 value={timeZone}
                             />
                     
-                  {convertedTime && (
-                    <p>
-                      Your Local Time:{" "}
-                      {moment(convertedTime).format("hh:mm:ss A")}
-                    </p>
-                  )}
+                  
                 </DialogContentText>
               </DialogContent>
               <DialogActions>
