@@ -15,6 +15,21 @@ export const fetchHero = async () => {
   }
 };
 
+export const fetchTimeZone = async () => {
+  try {
+    const response = await findOne('timezone'); 
+    noStore();
+    // return hero;
+    return JSON.parse(JSON.stringify(response.timezones));
+
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+
+
 export const fetchHackathon = async () => {
   try {
     const response = await findOne('hackathons');

@@ -12,19 +12,20 @@ const JudgeMobile = dynamic(() => import('@/app/hackathon/components/JudgeMobile
 
 
 
-import { fetchHackathon, fetchHero, fetchPageContentHacakthon } from '@/app/hackathon/api'
+import { fetchHackathon, fetchHero, fetchPageContentHacakthon, fetchTimeZone } from '@/app/hackathon/api'
 
 
 const Hackathon = async () => {
   const hero = await fetchHero();
   const hackathon = await fetchHackathon()
   const pageContent = await fetchPageContentHacakthon()
-
+  const timezones = await fetchTimeZone()
+ 
   return (
     <div className='pb-10'>
       <div className='container px-6 mx-auto md:px-0'>
         <HackathonHero hero={hero} />
-        <Rules hackathonData={hackathon} />
+        <Rules hackathonData={hackathon} timeZones={timezones}/>
       </div>
       <HackathonSponser hackathonData={hackathon} />
       <div className='container  mx-auto'>
