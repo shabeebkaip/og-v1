@@ -1,13 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-const PageContents = ({ item,index,head }) => {
- 
-
+const PageContents = ({ item, head }) => {
   const borderColor = '#4C4C4D';
-  const textColor = '#FF8500'; // Adjust this to your desired color
+  const textColor = '#FF8500';
 
   const escapeRegExp = (string) => {
-    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); // $& means the whole matched string
+    return string.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/,/g, '');
   };
 
   const getMatchingText = (text, list) => {
@@ -24,38 +22,36 @@ const PageContents = ({ item,index,head }) => {
     const escapedBorderTexts = borderTexts.map(escapeRegExp).join('|');
     const escapedTextColors = textColors.map(escapeRegExp).join('|');
     const combinedPattern = `${escapedBorderTexts}|${escapedTextColors}`;
+
     const parts = text.split(new RegExp(`(${combinedPattern})`, 'gi'));
 
     return parts.map((part, index) => {
-      const isBorderText = borderTexts.some(text => part.toLowerCase() === text.toLowerCase());
-      const isTextColor = textColors.some(text => part.toLowerCase() === text.toLowerCase());
+      const lowerPart = part.toLowerCase();
+      const isBorderText = borderTexts.some(text => lowerPart === text.toLowerCase());
+      const isTextColor = textColors.some(text => lowerPart === text.toLowerCase());
+
       return (
-        <>
         <span
           key={index}
           style={{
             border: isBorderText ? `2px solid ${borderColor}` : 'none',
-            color: isTextColor ? textColor : 'inherit',
-            borderRadius:isBorderText ? `53px` : 'none',
-            padding:isBorderText ? `7px` : 'none'
+            color: isTextColor ? textColor : '#6D6E71',
+            borderRadius: isBorderText ? '53px' : 'none',
+            padding: isBorderText ? '7px' : 'none',
           }}
         >
           {part}
+          {head ? <br /> : null}
         </span>
-        {
-          head ? <br/>:null
-        }
-        
-        </>
       );
     });
   };
+
   return (
     <span>
       {getTextWithStyles(item?.text, matchingBorderTexts, matchingTextColors)}
-
     </span>
-  )
-}
+  );
+};
 
-export default PageContents
+export default PageContents;

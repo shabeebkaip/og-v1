@@ -12,7 +12,7 @@ import PageContents from '@/app/shared/components/PageContents'
 
 const ProgramList = ({ programs, hackathon, courses, reversePitch, pageContent }) => {
     const language = getGlobalCookie('language')
-    const pageContent1 = pageContent.pageContent?.[2]
+    const pageContent1 = pageContent?.pageContent?.[2]
     const text = pageContent1?.text
     return (
         <>
