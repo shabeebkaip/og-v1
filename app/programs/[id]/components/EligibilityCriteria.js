@@ -13,7 +13,7 @@ const EligibilityCriteria = ({ programDetail }) => {
             <div className=' w-[100%] h-[35%] absolute  top-0 right-0 md:hidden block'><OrangeGradient /></div>
             <div className=' pt-20'>
                 <div className=' grid grid-cols-12 gap-4'>
-                    <div className=' col-span-3 h-full w-full'>
+                    <div className=' col-span-2 h-full w-full'>
                         <Image className='h-[70%] w-full rounded-3xl object-cover' blurDataURL='lazy' src={programDetail?.eligibility_image} alt="" width={1000} height={1000} />
                     </div>
                     <div className=' col-span-4 flex flex-col gap-4 w-full'>

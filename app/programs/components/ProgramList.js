@@ -32,10 +32,10 @@ const ProgramList = ({ program }) => {
                                     whileInView={'show'}
                                     className='flex w-full rounded-[23px] justify-center items-center xl:py-10 py-5 mob_box_shadows  md:bg-white'>
                                     <div className='flex flex-col xl:w-[80%] xl:gap-10 gap-5 md:w-[85%]'>
-                                        <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px]'>
+                                        <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px] capitalize'>
                                             {language === "ar" ? item?.ar_programName : item?.programName}
                                         </h2>
-                                        <p className='text-[#4C4C4D] xl:text-[26px] lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[16px]'>
+                                        <p className='text-[#4C4C4D] xl:text-[26px] lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[16px] '>
                                             {language === "ar" ? item?.ar_description : item?.description}
                                         </p>
                                         <div>
@@ -60,7 +60,7 @@ const ProgramList = ({ program }) => {
                                     whileInView={'show'}
                                     className='flex w-full rounded-[23px] justify-center items-center xl:py-10 py-5 mob_box_shadows  md:bg-white'>
                                     <div className='flex flex-col xl:w-[80%] xl:gap-10 gap-5 md:w-[85%]'>
-                                        <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px]'>
+                                        <h2 className='xl:text-[50px] lg:text-[40px] md:text-[20px] text-[30px] text-[#FF8500] font-medium xl:leading-[58px] capitalize'>
                                             {language === "ar" ? item?.ar_programName : item?.programName}
                                         </h2>
                                         <p className='text-[#4C4C4D] xl:text-[26px] lg:text-[18px] md:text-[12px] font-light xl:leading-[30px] text-[16px]'>
