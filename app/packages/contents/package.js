@@ -47,7 +47,7 @@ const fetchPackages = async (query) => {
 
 const Packages = async ({query}) => {
   const hero = await fetchHero();
-  const packages = await fetchPackages({'program.name':query});
+  const packages = await fetchPackages(query&&{'program.name':query});
   console.log(query,"kkkk");
   
   return (
